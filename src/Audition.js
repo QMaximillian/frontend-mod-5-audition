@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
+import './Audition.css';
 
 
-class App extends Component {
+class Audition extends Component {
   render() {
     return (
       <div>
-
+        App
       </div>
     );
   }
 }
 
-export default App;
+export default Audition;

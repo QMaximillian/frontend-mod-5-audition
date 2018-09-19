@@ -1,11 +1,40 @@
 import React from 'react'
-import { render } from 'react-dom'
-import { createStore } from 'redux'
-import { auditionStore } from './reducers/auditionStore'
-import Root from './components/Root'
+import ReactDOM from 'react-dom'
+import { createBrowserHistory } from 'history'
+import { applyMiddleware, compose, createStore } from 'redux'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { Provider } from 'react-redux'
+import { Route, Switch } from 'react-router' // react-router v4
+import { ConnectedRouter } from 'connected-react-router'
+import { reducer, initialState } from './reducers/index'
+import Navbar from './components/Navbar'
 
-const store = createStore(auditionStore, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-render(
-  <Root store={store} />,
+import Audition from './Audition'
+
+const history = createBrowserHistory()
+
+const store = createStore(
+    connectRouter(history)(reducer),
+  initialState,
+    compose(
+      applyMiddleware(
+        routerMiddleware(history)
+      )
+    )
+)
+
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" render={() => <Audition />} />
+          <Route render={() => (<div>Miss</div>)} />
+        </Switch>
+      </div>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root')
 )
