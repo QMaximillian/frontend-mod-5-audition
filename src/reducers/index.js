@@ -13,7 +13,7 @@ export const reducer = (state = initialState, action) => {
     case LOAD_ACTOR:
     return {
       ...state,
-      currentActor: {}
+      currentActor: action.payload.currentActor
     }
 
     // case SHOW_AUDITION:
