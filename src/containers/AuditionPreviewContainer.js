@@ -3,7 +3,7 @@ import ActorUpcomingAuditions from '../components/ActorUpcomingAuditions'
 import ActorInYourAreaAuditions from '../components/ActorInYourAreaAuditions'
 import ActorJournalPreview from '../components/ActorJournalPreview'
 import { connect } from 'react-redux'
-import { loadActor } from '../actions'
+import { loadActor } from '../actions/actions'
 
 class AuditionPreviewContainer extends Component {
 
@@ -16,8 +16,9 @@ class AuditionPreviewContainer extends Component {
   return(
     <div>
       AuditionPreviewContainer
-      <ActorUpcomingAuditions />
+      <ActorUpcomingAuditions actor={this.props.currentActor}/>
       <ActorJournalPreview />
+      <ActorInYourAreaAuditions/>
     </div>
   )
 }

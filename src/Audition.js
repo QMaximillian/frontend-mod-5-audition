@@ -6,7 +6,7 @@ import './Audition.css';
 class Audition extends Component {
   render() {
     return (
-      <div>
+      <div className="sitelayout">
         <Link to="/login">
           <button>Go to Login</button>
         </Link>

@@ -1,0 +1,3 @@
+export const SHOW_AUDITION = "SHOW_AUDITION"
+export const LOAD_ACTOR = "LOAD_ACTOR"
+export const UPDATE_RESUME_FORM = "UPDATE_RESUME_FORM"

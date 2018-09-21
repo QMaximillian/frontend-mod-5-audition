@@ -1,7 +1,6 @@
 import { fetchActor } from '../adapters/actorAdapter'
+import { LOAD_ACTOR, UPDATE_RESUME_FORM } from './types'
 
-export const SHOW_AUDITION = "SHOW_AUDITION"
-export const LOAD_ACTOR = "LOAD_ACTOR"
 
 
 export const loadActor = () => {
@@ -17,6 +16,17 @@ export const setActor = (actor) => {
     type: LOAD_ACTOR,
     payload: {
       currentActor: actor
+    }
+  }
+}
+
+export const updateResumeForm = (actor, event) => {
+  return {
+    type: UPDATE_RESUME_FORM,
+    payload: {
+      currentActor: {
+          first_name: event.target.value
+      }
     }
   }
 }
