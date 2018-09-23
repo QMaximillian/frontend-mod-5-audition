@@ -1,4 +1,4 @@
-import { LOAD_ACTOR, UPDATE_RESUME_FORM } from '../actions/types'
+import { LOAD_ACTOR, UPDATE_CURRENT_ACTOR_INFO, EDIT_ACTOR, LOAD_AUDITION_JOURNALS } from '../actions/types'
 
 // export const initialState = {
 //
@@ -7,6 +7,7 @@ export const initialState = {
     currentActor: {},
     confirmedAuditions: [],
     auditionJournals: [],
+    newAuditionJournal : {},
     actorProfileForm: {
     },
     resumeFormData: {
@@ -25,13 +26,27 @@ export const actorReducer = (state = initialState, action) => {
     return {
       ...state,
       currentActor: action.payload.currentActor,
-      actorProfileForm: action.payload.currentActor
+
     }
 
-    case UPDATE_RESUME_FORM:
-    return {
+    // case UPDATE_CURRENT_ACTOR_INFO:
+    // return {
+    //     ...state,
+    //     currentActor: {...state.currentActor, ...action.payload.currentActor }
+    // }
 
-      }
+    case EDIT_ACTOR:
+    console.log(state.currentActor)
+    return {
+      ...state,
+      currentActor: {...state.currentActor, ...action.payload.currentActor}
+    }
+
+    case LOAD_AUDITION_JOURNALS:
+    return {
+      ...state,
+      auditionJournals: action.payload.auditionJournals
+    }
 
     // case SHOW_AUDITION:
     // return {

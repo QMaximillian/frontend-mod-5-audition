@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ActorUpcomingAuditions from '../components/ActorUpcomingAuditions'
 import ActorInYourAreaAuditions from '../components/ActorInYourAreaAuditions'
-import ActorJournalPreview from '../components/ActorJournalPreview'
 import { connect } from 'react-redux'
 import { loadActor } from '../actions/actions'
 
@@ -17,7 +16,7 @@ class AuditionPreviewContainer extends Component {
     <div>
       AuditionPreviewContainer
       <ActorUpcomingAuditions actor={this.props.currentActor}/>
-      <ActorJournalPreview />
+      {/* <ActorJournalPreview /> */}
       <ActorInYourAreaAuditions/>
     </div>
   )
