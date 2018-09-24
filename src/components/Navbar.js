@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Navbar = (props) => {
+  const loggedIn = false
+  console.log(props);
   return(
     <div>
       <ul>
@@ -11,14 +13,14 @@ const Navbar = (props) => {
             Home
           </li>
         </Link>
-        <Link to='/auditions'>
-          <li>
-            My Auditions
-          </li>
-        </Link>
         <Link to='/find-auditions'>
           <li>
             Find Auditions
+          </li>
+        </Link>
+        <Link to='/auditions'>
+          <li>
+            My Auditions
           </li>
         </Link>
         <Link to="/actor/audition-journals">
@@ -27,7 +29,7 @@ const Navbar = (props) => {
           </li>
         </Link>
         {/* if logged in, show this*/}
-        <Link to='/actor/:id'>
+        <Link to='/actor/1'>
           <li>
             Profile
           </li>
@@ -38,7 +40,7 @@ const Navbar = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  currentActor: state.currentActor
 }
 
 export default connect(mapStateToProps)(Navbar)

@@ -14,6 +14,10 @@ export const fetchGet = (route, id) => {
   return fetch(`${baseUrl}${route}/${id}`).then(resp => resp.json())
 }
 
+export const fetchGetIndex = (route) => {
+  return fetch(`${baseUrl}${route}`).then(resp => resp.json())
+}
+
 // export const fetchPost = (route) => {
 //   return fetch(`${baseUrl}${route}`, {
 //

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-export default class AuditionShow extends Component {
+class AuditionShow extends Component {
 
   state = {
     audition: {}
@@ -14,8 +14,10 @@ export default class AuditionShow extends Component {
             audition: audition.data.attributes
          }, () => console.log(this.state.audition))
        })
+
      }
 render() {
+  console.log(this.props);
      return (
         <div>
           {this.state.audition.show_name}
@@ -29,3 +31,6 @@ render() {
      )
    }
  };
+
+
+ export default AuditionShow

@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import ActorUpcomingAuditions from '../components/ActorUpcomingAuditions'
 import ActorInYourAreaAuditions from '../components/ActorInYourAreaAuditions'
 import { connect } from 'react-redux'
-import { loadActor } from '../actions/actions'
+import { loadInitialActorState } from '../actions/actions'
 
 class ActorHomeContainer extends Component {
 
     componentDidMount(){
-      this.props.loadActor()
+      this.props.loadInitialActorState()
+
       // PUT MY AUDITIONS IN STORE
       //PUT AUDITIONS IN STORE
       //PUT RESUMES IN STORE
@@ -20,7 +21,7 @@ class ActorHomeContainer extends Component {
     }
 
   render() {
-    console.log(this.props.currentActor);
+    console.log(this.props)
   return(
     <div>
       AuditionPreviewContainer
@@ -34,8 +35,14 @@ class ActorHomeContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentActor: state.currentActor
+    currentActor: state.currentActor,
+    appliedAuditions: state.appliedAuditions,
+    resumes: state.resumes,
+    tryoutAuditions: state.tryoutAuditions,
+    auditionJournals: state.auditionJournals,
+    tryouts: state.tryouts
+
   }
 }
 
-export default connect(mapStateToProps, { loadActor })(ActorHomeContainer)
+export default connect(mapStateToProps, { loadInitialActorState })(ActorHomeContainer)

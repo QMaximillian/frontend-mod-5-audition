@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loadActor, updateCurrentActorForm } from '../actions/actions'
+import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
 
 
@@ -10,7 +10,7 @@ class ActorProfile extends Component {
 
 
   componentDidMount() {
-    this.props.loadActor()
+    this.props.loadInitialActorState()
   }
 
   handleChange = (event) => {
@@ -151,4 +151,4 @@ if (typeof this.props.currentActor.attributes === 'undefined') {
 //   }
 // }
 
-export default connect(state => ({ currentActor: state.currentActor }), { loadActor, updateCurrentActorForm })(ActorProfile)
+export default connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile)

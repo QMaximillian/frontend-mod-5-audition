@@ -1,21 +1,43 @@
-import { fetchActor, fetchGet } from '../adapters/actorAdapter'
-import { LOAD_ACTOR, LOAD_AUDITION_JOURNALS } from './types'
+import { fetchActor, fetchGet, fetchGetIndex } from '../adapters/actorAdapter'
+import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX } from './types'
+
+// PUT MY AUDITIONS IN STORE
+//PUT AUDITIONS IN STORE
+//PUT RESUMES IN STORE
+//PUT MY RESUMES IN STORE
+//PUT MY AUDITION_JOURNALS IN STORE
+//PUT MY APPLIED TRYOUTS IN STORE
+//PUT MY TRYOUT AUDITIONS IN STORE
+//PUT RESUMES IN STORE
+//PUT MY DEFAULT RESUME IN STORE
 
 
 
-export const loadActor = () => {
+export const loadInitialActorState = () => {
   return (dispatch) => {
     fetchActor('1').then(resp => {
-      dispatch(setActor(resp.data))
+      dispatch(setInitialState(resp.data))
     })
   }
 }
 
-// export const loadAuditions = () => {
-//   return (dispatch) => {
-//     // fetchAuditions('http://localhost:3001/api/v1/auditions').then(resp => resp.json()).then(auditions => setAuditions())
-//   }
-// }
+export const loadAllAuditions = () => {
+  return (dispatch) => {
+    fetchGetIndex('auditions').then(resp => {
+      dispatch(setAuditionsIndex(resp.data))
+    })
+  }
+}
+
+export const setAuditionsIndex = (auditions) => {
+  return {
+    type: SET_AUDITIONS_INDEX,
+    payload: {
+      auditionIndex: auditions
+    }
+  }
+}
+
 
 export const loadAuditionJournals = () => {
   return (dispatch) => {
@@ -34,11 +56,16 @@ export const setAuditionJournals = (auditionJournals) => {
   }
 }
 
-export const setActor = (actor) => {
+export const setInitialState = (actor) => {
   return {
-    type: LOAD_ACTOR,
+    type: LOAD_INITIAL_ACTOR_STATE,
     payload: {
-      currentActor: actor
+      currentActor: actor,
+      appliedAuditions: actor.attributes.applied_auditions,
+      resumes: actor.attributes.resumes,
+      tryoutAuditions: actor.attributes.tryout_auditions,
+      auditionJournals: actor.attributes.audition_journals,
+      tryouts: actor.attributes.tryouts
     }
   }
 }

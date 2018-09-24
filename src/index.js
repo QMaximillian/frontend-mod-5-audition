@@ -14,9 +14,10 @@ import Audition from './Audition'
 import ActorHomeContainer from './containers/ActorHomeContainer'
 import AuditionJournal from './components/AuditionJournal'
 import ActorProfile from './components/ActorProfile'
-import AuditionContainer from './containers/AuditionContainer'
+import MyAuditionsContainer from './containers/MyAuditionsContainer'
 import AuditionShow from './components/AuditionShow'
 import ResumeSubmit from './components/ResumeSubmit'
+import AllAuditionsContainer from './containers/AllAuditionsContainer'
 
 
 const history = createBrowserHistory()
@@ -43,7 +44,8 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/actor/audition-home/audition-journals/:id"/>
           <Route exact path="/audition/:id/resume_submit" component={ResumeSubmit}/>
-          <Route exact path="/auditions" component={AuditionContainer}/>
+          <Route exact path="/auditions" component={MyAuditionsContainer}/>
+          <Route exact path="/find-auditions" component={AllAuditionsContainer}/>
           <Route exact path="/auditions/:id" component={AuditionShow}/>
           <Route exact path="/actor/audition-journals" component={AuditionJournal}/>
           <Route exact path="/actor/1" component={ActorProfile}/>
