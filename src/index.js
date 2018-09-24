@@ -11,11 +11,12 @@ import { actorReducer, initialState } from './reducers/index'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 import Audition from './Audition'
-import AuditionPreviewContainer from './containers/AuditionPreviewContainer'
+import ActorHomeContainer from './containers/ActorHomeContainer'
 import AuditionJournal from './components/AuditionJournal'
 import ActorProfile from './components/ActorProfile'
 import AuditionContainer from './containers/AuditionContainer'
 import AuditionShow from './components/AuditionShow'
+import ResumeSubmit from './components/ResumeSubmit'
 
 
 const history = createBrowserHistory()
@@ -41,12 +42,12 @@ ReactDOM.render(
         <Navbar />
         <Switch>
           <Route exact path="/actor/audition-home/audition-journals/:id"/>
-          {/* <Route exact path='/actor/audition/:id/submit' > */}
+          <Route exact path="/audition/:id/resume_submit" component={ResumeSubmit}/>
           <Route exact path="/auditions" component={AuditionContainer}/>
           <Route exact path="/auditions/:id" component={AuditionShow}/>
-          <Route exact path="/actor/audition-home/audition-journals" component={AuditionJournal}/>
-          <Route exact path="/actor/audition-home/profile" component={ActorProfile}/>
-          <Route exact path="/actor/audition-home" component={AuditionPreviewContainer}/>
+          <Route exact path="/actor/audition-journals" component={AuditionJournal}/>
+          <Route exact path="/actor/1" component={ActorProfile}/>
+          <Route exact path="/home" component={ActorHomeContainer}/>
           <Route exact path="/" render={() => <Audition />} />
           <Route exact path = "/login" component={Login} />
         </Switch>

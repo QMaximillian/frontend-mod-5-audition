@@ -4,10 +4,19 @@ import ActorInYourAreaAuditions from '../components/ActorInYourAreaAuditions'
 import { connect } from 'react-redux'
 import { loadActor } from '../actions/actions'
 
-class AuditionPreviewContainer extends Component {
+class ActorHomeContainer extends Component {
 
     componentDidMount(){
       this.props.loadActor()
+      // PUT MY AUDITIONS IN STORE
+      //PUT AUDITIONS IN STORE
+      //PUT RESUMES IN STORE
+      //PUT MY RESUMES IN STORE
+      //PUT MY AUDITION_JOURNALS IN STORE
+      //PUT MY APPLIED TRYOUTS IN STORE
+      //PUT MY TRYOUT AUDITIONS IN STORE
+      //PUT RESUMES IN STORE
+      //PUT MY DEFAULT RESUME IN STORE
     }
 
   render() {
@@ -29,4 +38,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadActor })(AuditionPreviewContainer)
+export default connect(mapStateToProps, { loadActor })(ActorHomeContainer)

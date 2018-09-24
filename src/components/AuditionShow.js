@@ -21,9 +21,9 @@ render() {
           {this.state.audition.show_name}
           {this.state.audition.audition_information}
           {this.state.audition.audition_time}
-          
+          <Link to={`/audition/${this.props.match.params.id}/resume_submit`}>
             <button>Submit For This Audition</button>
-          
+          </Link>
         </div>
 
      )
