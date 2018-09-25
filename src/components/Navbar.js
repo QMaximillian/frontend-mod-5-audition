@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Navbar = (props) => {
-  const loggedIn = false
   console.log(props);
   return(
     <div>

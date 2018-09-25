@@ -7,7 +7,7 @@ export const fetchActor = (id) => {
 }
 
 export const fetchUpdateCurrentActor = (id, body) => {
-  return fetch(`${baseActorUrl}/${id}`, putRequest(body))
+  return fetch(`${baseActorUrl}/${id}`, patchRequest(body))
 }
 
 export const fetchGet = (route, id) => {
@@ -28,9 +28,9 @@ export const fetchGetIndex = (route) => {
 
 
 
-function putRequest(body) {
+function patchRequest(body) {
   return {
-    method: 'PUT',
+    method: 'PATCH',
     headers: headers(),
     body: JSON.stringify(body)
   }

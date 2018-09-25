@@ -16,6 +16,7 @@ import AuditionJournal from './components/AuditionJournal'
 import ActorProfile from './components/ActorProfile'
 import MyAuditionsContainer from './containers/MyAuditionsContainer'
 import AuditionShow from './components/AuditionShow'
+import AuditionConfirmation from './components/AuditionConfirmation'
 import ResumeSubmit from './components/ResumeSubmit'
 import AllAuditionsContainer from './containers/AllAuditionsContainer'
 
@@ -51,7 +52,8 @@ ReactDOM.render(
           <Route exact path="/actor/1" component={ActorProfile}/>
           <Route exact path="/home" component={ActorHomeContainer}/>
           <Route exact path="/" render={() => <Audition />} />
-          <Route exact path = "/login" component={Login} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/audition/:id/audition-confirmation" component={AuditionConfirmation} />
         </Switch>
       </div>
     </ConnectedRouter>

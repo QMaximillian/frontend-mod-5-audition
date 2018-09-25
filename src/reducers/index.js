@@ -1,4 +1,4 @@
-import { LOAD_INITIAL_ACTOR_STATE, UPDATE_CURRENT_ACTOR_INFO, EDIT_ACTOR, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX } from '../actions/types'
+import { LOAD_INITIAL_ACTOR_STATE, EDIT_ACTOR, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX } from '../actions/types'
 
 // export const initialState = {
 //
@@ -32,17 +32,18 @@ export const actorReducer = (state = initialState, action) => {
       tryouts: action.payload.tryouts
     }
 
-    // case UPDATE_CURRENT_ACTOR_INFO:
-    // return {
-    //     ...state,
-    //     currentActor: {...state.currentActor, ...action.payload.currentActor }
-    // }
+
 
     case EDIT_ACTOR:
     console.log(state.currentActor)
     return {
       ...state,
-      currentActor: {...state.currentActor, ...action.payload.currentActor}
+        currentActor: {...state.currentActor,
+        attributes: {
+          ...state.currentActor.attributes,
+          ...action.payload.currentActor
+        }
+      }
     }
 
     case LOAD_AUDITION_JOURNALS:
