@@ -21,7 +21,7 @@ class ActorHomeContainer extends Component {
     }
 
   render() {
-    console.log(this.props)
+
   return(
     <div>
       AuditionPreviewContainer

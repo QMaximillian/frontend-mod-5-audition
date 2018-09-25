@@ -6,10 +6,6 @@ import { loadAllAuditions } from '../actions/actions'
 
 class AllAuditionContainer extends Component {
 
-  state = {
-    auditions: []
-  }
-
 mappedAuditions = () => {
   return this.props.auditionIndex.map(audition => {
     return <Audition key={audition.id} audition={audition}/>

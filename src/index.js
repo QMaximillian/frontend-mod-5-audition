@@ -19,6 +19,7 @@ import AuditionShow from './components/AuditionShow'
 import AuditionConfirmation from './components/AuditionConfirmation'
 import ResumeSubmit from './components/ResumeSubmit'
 import AllAuditionsContainer from './containers/AllAuditionsContainer'
+import 'semantic-ui-css/semantic.min.css'
 
 
 const history = createBrowserHistory()

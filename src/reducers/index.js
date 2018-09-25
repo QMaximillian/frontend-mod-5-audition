@@ -1,10 +1,11 @@
-import { LOAD_INITIAL_ACTOR_STATE, EDIT_ACTOR, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX } from '../actions/types'
+import { LOAD_INITIAL_ACTOR_STATE, EDIT_ACTOR, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION } from '../actions/types'
 
 // export const initialState = {
 //
 // }
 export const initialState = {
     currentActor: {},
+    currentAudition: {},
     confirmedAuditions: [],
     auditionJournals: [],
     newAuditionJournal: {},
@@ -56,6 +57,12 @@ export const actorReducer = (state = initialState, action) => {
     return {
       ...state,
       auditionIndex: action.payload.auditionIndex
+    }
+
+    case SET_CURRENT_AUDITION:
+    return {
+      ...state,
+      currentAudition: action.payload.currentAudition
     }
 
     // case SHOW_AUDITION:

@@ -1,5 +1,5 @@
 import { fetchActor, fetchGet, fetchGetIndex } from '../adapters/actorAdapter'
-import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX } from './types'
+import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION } from './types'
 
 // PUT MY AUDITIONS IN STORE
 //PUT AUDITIONS IN STORE
@@ -20,6 +20,17 @@ export const loadInitialActorState = () => {
     })
   }
 }
+
+export const setCurrentAudition
+ = (audition) => {
+   return {
+     type: SET_CURRENT_AUDITION,
+     payload: {
+       currentAudition: audition
+     }
+   }
+ }
+
 
 export const loadAllAuditions = () => {
   return (dispatch) => {

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Navbar = (props) => {
-  console.log(props);
   return(
     <div>
       <ul>
@@ -42,4 +41,4 @@ const mapStateToProps = (state) => {
   currentActor: state.currentActor
 }
 
-export default connect(mapStateToProps)(Navbar)
+export default Navbar

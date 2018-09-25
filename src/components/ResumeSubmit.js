@@ -34,7 +34,7 @@ handleClick = (event) => {
 
   const concatSkills = this.state.skills1 + ", " + this.state.skills2
 
-  console.log({actor_id: this.props.currentActor.id, audition_id: this.props.match.params.id, shows: concatShows, training: concatTraining, characters: concatCharacters, skills: concatSkills})
+  // console.log({actor_id: this.props.currentActor.id, audition_id: this.props.match.params.id, shows: concatShows, training: concatTraining, characters: concatCharacters, skills: concatSkills})
 
   fetch('http://localhost:3001/api/v1/resumes', {
     method: "POST",
