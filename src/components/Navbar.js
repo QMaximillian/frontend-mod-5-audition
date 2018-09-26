@@ -1,44 +1,61 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
-const Navbar = (props) => {
+class Navbar extends Component {
+
+  state = {
+
+  }
+
+handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+render(){
+  const { activeItem } = this.state
+
   return(
-    <div>
-      <ul>
-        <Link to='/home'>
-          <li>
-            Home
-          </li>
-        </Link>
-        <Link to='/find-auditions'>
-          <li>
-            Find Auditions
-          </li>
-        </Link>
-        <Link to='/auditions'>
-          <li>
-            My Auditions
-          </li>
-        </Link>
-        <Link to="/actor/audition-journals">
-          <li>
-            Audition Journals
-          </li>
-        </Link>
-        {/* if logged in, show this*/}
-        <Link to='/actor/1'>
-          <li>
-            Profile
-          </li>
-        </Link>
-      </ul>
-    </div>
+
+    <Menu>
+      <Menu.Item
+        as={ Link }
+        name='Audition'
+        to='/home'
+        active={activeItem === 'home'} onClick={this.handleItemClick}>
+      </Menu.Item>
+      <Menu.Item
+        as={ Link }
+        name='Find Auditions'
+        to='/find-auditions'
+        active={activeItem === 'find-auditions'} onClick={this.handleItemClick}>
+      </Menu.Item>
+      <Menu.Item
+        as={ Link }
+        name='My Auditions'
+        to='/auditions'
+        active={activeItem === 'my-auditions'} onClick={this.handleItemClick}>
+      </Menu.Item>
+      <Menu.Item
+        as={ Link }
+        name='Audition Journals'
+        to='/actor/audition-journals'
+        active={activeItem === 'audition-journals'} onClick={this.handleItemClick}>
+        Audition Journals
+      </Menu.Item>
+      <Menu.Item
+        as={ Link }
+        name='My Profile'
+        to='/actor/1'
+        active={activeItem === 'profile'} onClick={this.handleItemClick}>
+        My Profile
+      </Menu.Item>
+      </Menu>
+
   )
+ }
 }
 
-const mapStateToProps = (state) => {
-  currentActor: state.currentActor
-}
+
+
 
 export default Navbar

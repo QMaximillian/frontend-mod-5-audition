@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
+import { Loader } from 'semantic-ui-react'
 
 
 
@@ -45,7 +46,7 @@ class ActorProfile extends Component {
   if (typeof this.props.currentActor.attributes === 'undefined') {
 
     return (
-      <div>LOADING</div>
+      <div><Loader active inline='centered' /></div>
     )
 
   } else {
@@ -136,6 +137,5 @@ class ActorProfile extends Component {
     }
   }
 }
-
 
 export default connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile)

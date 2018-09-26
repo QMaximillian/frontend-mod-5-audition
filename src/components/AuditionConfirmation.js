@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
-import { fetchGet } from '../adapters/actorAdapter'
-
-
+import { fetchGet, fetchPostTryout } from '../adapters/actorAdapter'
+import { Redirect } from 'react-router-dom'
+import { Loader } from 'semantic-ui-react'
 class AuditionConfirmation extends Component {
+
+
+  // Gotta take the audition time selected out of the array for this specific show
+
+  //Gotta prevent a user from submitting for multiple shows
+
+  //Gotta remove the show from being able to be selected for an audition from the user
+
 
   state = {
     confirmedAudition: {},
-    confirmedTime: 0
+    confirmedTime: 0,
+    redirect: false
   }
 
   componentDidMount(){
@@ -20,6 +29,16 @@ class AuditionConfirmation extends Component {
     this.setState({
       confirmedTime: event.target.value
     })
+  }
+
+  handleTryoutPost = (event) => {
+    fetchPostTryout({actor_id: 1, audition_id: this.props.match.params.id, audition_time: this.state.confirmedTime, city: this.state.confirmedAudition.location, starred: false, callback: false, cast: false}).then(console.log)
+
+    this.setState({
+      redirect: true
+    })
+
+
   }
 
   getDateHours = () => {
@@ -61,18 +80,28 @@ class AuditionConfirmation extends Component {
 
 
 
+
   render() {
-      if (typeof this.state.confirmedAudition.begin_audition === 'undefined') {
-        return (
-          <div>LOADING</div>
-        )
-      } else {
+    console.log(this.state.confirmedTime, this.props)
+
+    if (this.state.redirect) {
+      return <Redirect to='/home'/>
+    } else if (typeof this.state.confirmedAudition.begin_audition === 'undefined') {
+      return (
+        <div><Loader active inline='centered' /></div>
+      )
+    } else {
         console.log(this.state.confirmedAudition)
       return (
         <div>
           <select onChange={this.handleTimeChange} value={this.state.confirmedTime}>
             {this.getDateHours()}
           </select>
+
+        <button
+          onClick={this.handleTryoutPost}
+          type="submit">Submit
+        </button>
 
 
         </div>
