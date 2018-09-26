@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
-import { Loader } from 'semantic-ui-react'
+import { Loader, Form, Input, Dropdown, Select } from 'semantic-ui-react'
 
 
-
+const options = [
+  { text: 'True', value: true },
+  { text: 'False', value: false },
+]
 
 class ActorProfile extends Component {
 
@@ -31,17 +34,8 @@ class ActorProfile extends Component {
       fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, ethnicity: ethnicity, city: city }).then(data => console.log(data))
     }
 
-      // ,
-      // this.props.currentActor.first_name,
-      // this.props.currentActor.last_name,
-      // this.props.currentActor.email,
-      // this.props.currentActor.height,
-      // this.props.currentActor.vocal_range,
-      // this.props.currentActor.equity,
-      // this.props.currentActor.gender,
-      // this.props.currentActor.birthday,
-      // this.props.currentActor.ethnicity,
-      // this.props.currentActor.city
+
+
   render() {
   if (typeof this.props.currentActor.attributes === 'undefined') {
 
@@ -55,42 +49,52 @@ class ActorProfile extends Component {
 
       return(
         <div>
-          <form onSubmit={this.updateActor}>
-            <label>First Name</label>
-            <input
+          <Form onSubmit={this.updateActor}>
+            <Form.Field
+              control={Input}
+              width={4}
               name="first_name"
               onChange={this.handleChange}
               value={first_name}
-              >
-            </input>
-            <label>Last Name</label>
-            <input
+              color="orange"
+              label='First Name'/>
+            <Form.Field
+              control={Input}
+              width={4}
               name="last_name"
               onChange={this.handleChange}
               value={last_name}
-              >
-            </input>
-            <label>E-Mail</label>
-            <input
+              label='Last Name'/>
+            <Form.Field
+              control={Input}
+              width={4}
               name="email"
               onChange={this.handleChange}
               value={email}
-              >
-            </input>
-            <label>Height</label>
-            <input
+              label='E-Mail'/>
+            <Form.Field
+              control={Input}
+              width={4}
               name="height"
               onChange={this.handleChange}
               value={height}
-              >
-            </input>
-            <label>Vocal Range</label>
-            <input
+              label='Height'/>
+            <Form.Field
+              control={Input}
+              width={4}
               name="vocal_range"
               onChange={this.handleChange}
               value={vocal_range}
-              >
-            </input>
+              label='Vocal Range'/>
+
+            <Form.Select
+              control={Select}
+              name="equity"
+              onChange={this.handleChange}
+              label='Equity'
+              options={options}
+              value={equity}/>
+
             <label>Equity</label>
             <select
               name="equity"
@@ -101,13 +105,27 @@ class ActorProfile extends Component {
               <option
                 value="false">False</option>
             </select>
-            <label>Gender</label>
-            <input
+
+            {/* <Form.Field
+              control={Select}
+              width={4}
               name="gender"
               onChange={this.handleChange}
               value={gender}
-              >
-            </input>
+              label='Gender'/> */}
+
+            <label>Gender</label>
+            <select
+              name="gender"
+              value={gender}
+              onChange={this.handleChange}>
+              <option
+                value="Male">Male</option>
+              <option
+                value="Female">Female</option>
+              </select>
+
+
             <label>Birthday</label>
             <input
               name="birthday"
@@ -130,12 +148,19 @@ class ActorProfile extends Component {
               </option>
             </select>
             <button type="submit">Save</button>
-
-          </form>
+          </Form>
         </div>
       )
     }
   }
 }
+
+/* <label>First Name</label>
+<input
+  name="first_name"
+  onChange={this.handleChange}
+  value={first_name}
+  >
+</input> */
 
 export default connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile)
