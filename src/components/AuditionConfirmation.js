@@ -64,6 +64,24 @@ class AuditionConfirmation extends Component {
     }
 
      let allSlotsWithTimes = newNewTime.map(time => {
+
+      // let foundTime  = this.state.confirmedAudition.tryouts.find(tryout => {
+        // let theTryout = tryout.audition_time.slice(1)
+         // tryout.audition_time === this.state.confirmedTime
+         // console.log(time);
+         // console.log(tryout.audition_time);
+
+         // console.log(tryout.audition_time.slice(1).slice(0, 8))
+         // console.log(JSON.stringify(time).slice(12, 20));
+         //
+         //
+         // console.log(time);
+
+         // console.log("Time", time.slice(20))
+
+       // })
+
+
           return (
           <option
             value={time}>{time.toLocaleTimeString()}
@@ -82,7 +100,7 @@ class AuditionConfirmation extends Component {
 
 
   render() {
-    console.log(this.state.confirmedTime, this.props)
+    console.log(this.state.confirmedAudition.tryouts)
 
     if (this.state.redirect) {
       return <Redirect to='/home'/>
@@ -91,10 +109,11 @@ class AuditionConfirmation extends Component {
         <div><Loader active inline='centered' /></div>
       )
     } else {
-        console.log(this.state.confirmedAudition)
+        console.log(this.state.confirmedTime)
       return (
         <div>
-          <select onChange={this.handleTimeChange} value={this.state.confirmedTime}>
+          <select
+            onChange={this.handleTimeChange} value={this.state.confirmedTime}>
             {this.getDateHours()}
           </select>
 

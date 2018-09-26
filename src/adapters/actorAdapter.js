@@ -1,6 +1,15 @@
 const baseActorUrl = 'http://localhost:3001/api/v1/actors'
 const baseUrl = 'http://localhost:3001/api/v1/'
 
+
+export const fetchLoginActor = (actor) => {
+  return fetch(`${baseUrl}login`, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify({ actor })
+  }).then(resp => resp.json())
+}
+
 export const fetchActor = (id) => {
   return fetch(`http://localhost:3001/api/v1/actors/${id}`)
   .then(resp => resp.json())

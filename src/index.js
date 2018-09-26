@@ -27,15 +27,18 @@ const history = createBrowserHistory()
 
 const rootReducer = actorReducer
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
     connectRouter(history)(rootReducer),
   initialState,
-    compose(
+    composeEnhancers(
       applyMiddleware(thunk,
         routerMiddleware(history)
       )
     )
 )
+
 
 
 ReactDOM.render(

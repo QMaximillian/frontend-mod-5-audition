@@ -13,7 +13,7 @@ import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, 
 
 
 
-export const loadInitialActorState = () => {
+export const loadInitialActorState = (actor) => {
   return (dispatch) => {
     fetchActor('1').then(resp => {
       dispatch(setInitialState(resp.data))
