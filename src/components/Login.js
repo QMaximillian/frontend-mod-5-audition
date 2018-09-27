@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Input, Form, Grid, Button, Container } from 'semantic-ui-react'
+import { Input, Form, Grid, Button, Container, Segment } from 'semantic-ui-react'
 import { fetchLoginActor } from '../adapters/actorAdapter'
 
 
@@ -39,47 +39,30 @@ export default class Login extends Component {
     // </Link>
     <div>
     <Grid>
-      <Grid.Row>
+      
+      <Container>
+          <Form centered>
+              <Form.Input
+                name="email"
+                onChange={this.handleChange}
+                value={actor.email}
+                label="Enter E-Mail"/>
+              <Form.Input
+                type="password"
+                name="password"
+                onChange={this.handleChange}
+                value={actor.password}
+                label="Enter Password"/>
 
-      </Grid.Row>
-      <Grid.Row>
-
-      </Grid.Row>
-      <Grid.Row>
-
-      </Grid.Row>
-      <Grid.Row>
-      <Container textAlign="center">
-        <Grid.Column width={6}>
-        </Grid.Column>
-        <Grid.Column width={4}>
-          <Form>
-            <Form.Input
-              width={4}
-              name="email"
-              onChange={this.handleChange}
-              value={actor.email}
-              label="Enter E-Mail"/>
-            <Form.Input
-              type="password"
-              width={4}
-              name="password"
-              onChange={this.handleChange}
-              value={actor.password}
-              label="Enter Password"/>
-              <Form.Button
-                onClick={this.handleSubmit}
-                content="Log In"
-                primary/>
-              <Form.Button
-                content="Sign Up"
-                />
-          </Form>
-        </Grid.Column>
-        <Grid.Column width={6}>
-        </Grid.Column>
+                <Form.Button
+                  onClick={this.handleSubmit}
+                  content="Log In"
+                  primary/>
+                <Form.Button
+                  content="Sign Up"
+                  />
+            </Form>
       </Container>
-     </Grid.Row>
     </Grid>
 
       </div>

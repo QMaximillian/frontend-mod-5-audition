@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
-import { Loader, Form, Input, Dropdown, Select } from 'semantic-ui-react'
+import { Loader, Form, Input, Dropdown, Select, Button } from 'semantic-ui-react'
 
 
 const options = [
@@ -147,7 +147,7 @@ class ActorProfile extends Component {
                 onChange={this.handleChange}>NYC
               </option>
             </select>
-            <button type="submit">Save</button>
+            <Button type="submit">Save</Button>
           </Form>
         </div>
       )

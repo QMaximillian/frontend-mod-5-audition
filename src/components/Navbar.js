@@ -16,7 +16,7 @@ render(){
 
   return(
 
-    <Menu>
+    <Menu verticalAlign='fluid'>
       <Menu.Item
         as={ Link }
         name='Audition'
@@ -50,7 +50,6 @@ render(){
         My Profile
       </Menu.Item>
       </Menu>
-
   )
  }
 }

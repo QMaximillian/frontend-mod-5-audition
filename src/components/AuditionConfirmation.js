@@ -34,6 +34,8 @@ class AuditionConfirmation extends Component {
   handleTryoutPost = (event) => {
     fetchPostTryout({actor_id: 1, audition_id: this.props.match.params.id, audition_time: this.state.confirmedTime, city: this.state.confirmedAudition.location, starred: false, callback: false, cast: false}).then(console.log)
 
+
+    console.log(this.state.confirmedTime)
     this.setState({
       redirect: true
     })
@@ -42,6 +44,7 @@ class AuditionConfirmation extends Component {
   }
 
   getDateHours = () => {
+
 
     let newNewTime = []
 
@@ -63,35 +66,29 @@ class AuditionConfirmation extends Component {
       newNewTime.push(new Date(newTime.getTime() + (15 * i) * 60000))
     }
 
-     let allSlotsWithTimes = newNewTime.map(time => {
-
-      // let foundTime  = this.state.confirmedAudition.tryouts.find(tryout => {
-        // let theTryout = tryout.audition_time.slice(1)
-         // tryout.audition_time === this.state.confirmedTime
-         // console.log(time);
-         // console.log(tryout.audition_time);
-
-         // console.log(tryout.audition_time.slice(1).slice(0, 8))
-         // console.log(JSON.stringify(time).slice(12, 20));
-         //
-         //
-         // console.log(time);
-
-         // console.log("Time", time.slice(20))
-
-       // })
 
 
-          return (
-          <option
-            value={time}>{time.toLocaleTimeString()}
-          </option>
-        )
-    })
 
-    console.log(allSlotsWithTimes)
-    return allSlotsWithTimes
+     const allSlotsWithTimes = newNewTime.filter(time => {
+       // console.log("Submitted Times", this.state.confirmedAudition.submitted_times[0]);
+       // console.log(this.state.confirmedAudition.submitted_times[0] === new Date(time.getTime() + (15 * 1) * 60000).toString())
+       // console.log(typeof(this.state.confirmedAudition.submitted_times[0]), typeof(new Date(time.getTime() + (15 * 1) * 60000).toString()))
+       return !this.state.confirmedAudition.submitted_times.includes(new Date(time.getTime() + (15) * 60000).toString())
+     })
 
+
+     // console.log("Filtered Times", allSlotsWithTimes)
+
+
+    const slots = allSlotsWithTimes.map(time => {
+      // console.log("Time", time)
+       return (
+       <option
+         value={time}>{time.toLocaleTimeString()}
+       </option>
+     )
+   })
+    return slots
   }
 
 
@@ -100,7 +97,7 @@ class AuditionConfirmation extends Component {
 
 
   render() {
-    console.log(this.state.confirmedAudition.tryouts)
+
 
     if (this.state.redirect) {
       return <Redirect to='/home'/>
@@ -109,7 +106,7 @@ class AuditionConfirmation extends Component {
         <div><Loader active inline='centered' /></div>
       )
     } else {
-        console.log(this.state.confirmedTime)
+        // console.log(this.state.confirmedTime)
       return (
         <div>
           <select
@@ -130,3 +127,20 @@ class AuditionConfirmation extends Component {
 }
 
 export default AuditionConfirmation
+
+// let foundTime  = this.state.confirmedAudition.tryouts.find(tryout => {
+//   let theTryout = tryout.audition_time.slice(1)
+   // tryout.audition_time === this.state.confirmedTime
+
+   // console.log(this.state.confirmedTime)
+
+
+   // console.log(tryout.audition_time.slice(1).slice(0, 8))
+   // console.log(JSON.stringify(time).slice(12, 20));
+   //
+   //
+   // console.log(time);
+
+   // console.log("Time", time.slice(20))
+
+ // })
