@@ -60,20 +60,25 @@ class AuditionConfirmation extends Component {
     let hoursAvailable = endTime - beginTime
     let slotsAvailable = (60 / timeSlot) * hoursAvailable
 
-    let newTime = new Date(auditionTimes.getTime() + 15*60000)
+    let newTime = new Date(auditionTimes.getTime() + timeSlot * 60000)
 
     for (let i = 0; i < slotsAvailable; i++) {
-      newNewTime.push(new Date(newTime.getTime() + (15 * i) * 60000))
+      newNewTime.push(new Date(newTime.getTime() + (timeSlot * i) * 60000))
     }
 
 
 
 
-     const allSlotsWithTimes = newNewTime.filter(time => {
+     const allSlotsWithTimes = newNewTime.filter((time, i) => {
        // console.log("Submitted Times", this.state.confirmedAudition.submitted_times[0]);
-       // console.log(this.state.confirmedAudition.submitted_times[0] === new Date(time.getTime() + (15 * 1) * 60000).toString())
+       // console.log(this.state.confirmedAudition.submitted_times[i] === new Date(time.getTime() + (15 * i) * 60000).toString())
        // console.log(typeof(this.state.confirmedAudition.submitted_times[0]), typeof(new Date(time.getTime() + (15 * 1) * 60000).toString()))
-       return !this.state.confirmedAudition.submitted_times.includes(new Date(time.getTime() + (15) * 60000).toString())
+
+       console.log(this.state.confirmedAudition.submitted_times)
+       console.log(new Date(time.getTime() + (0) * 60000).toString())
+       console.log(time);
+
+       return !this.state.confirmedAudition.submitted_times.includes(new Date(time.getTime() + (0) * 60000).toString())
      })
 
 
