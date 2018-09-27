@@ -27,8 +27,8 @@ export default class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log(event);
-    fetchLoginActor(this.state.actor)
+
+    fetchLoginActor(this.state.actor).then(console.log)
   }
 
   render() {
@@ -39,7 +39,7 @@ export default class Login extends Component {
     // </Link>
     <div>
     <Grid>
-      
+
       <Container>
           <Form centered>
               <Form.Input

@@ -9,6 +9,7 @@ class AllAuditionContainer extends Component {
 mappedAuditions = () => {
   const difference = this.props.auditionIndex.filter(audition => {
     return !this.props.appliedAuditions.includes(audition.id)
+      // GOTTA FIGURE OUT HOW TO MATCH IDS WITH DIFFERENT OBJECT BEING RETURN
       // console.log(applied.id);
       // console.log(audition.id);
       // applied.id !== audition.id

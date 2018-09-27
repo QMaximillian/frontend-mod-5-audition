@@ -44,8 +44,6 @@ class AuditionConfirmation extends Component {
   }
 
   getDateHours = () => {
-
-
     let newNewTime = []
 
     let beginTime = new Date(this.state.confirmedAudition.begin_audition)
@@ -66,33 +64,18 @@ class AuditionConfirmation extends Component {
       newNewTime.push(new Date(newTime.getTime() + (timeSlot * i) * 60000))
     }
 
-
-
-
-     const allSlotsWithTimes = newNewTime.filter((time, i) => {
-       // console.log("Submitted Times", this.state.confirmedAudition.submitted_times[0]);
-       // console.log(this.state.confirmedAudition.submitted_times[i] === new Date(time.getTime() + (15 * i) * 60000).toString())
-       // console.log(typeof(this.state.confirmedAudition.submitted_times[0]), typeof(new Date(time.getTime() + (15 * 1) * 60000).toString()))
-
-       console.log(this.state.confirmedAudition.submitted_times)
-       console.log(new Date(time.getTime() + (0) * 60000).toString())
-       console.log(time);
-
+     const allSlotsWithTimes = newNewTime.filter((time) => {
        return !this.state.confirmedAudition.submitted_times.includes(new Date(time.getTime() + (0) * 60000).toString())
      })
 
 
-     // console.log("Filtered Times", allSlotsWithTimes)
-
-
     const slots = allSlotsWithTimes.map(time => {
-      // console.log("Time", time)
-       return (
-       <option
-         value={time}>{time.toLocaleTimeString()}
-       </option>
-     )
-   })
+        return (
+         <option
+           value={time}>{time.toLocaleTimeString()}
+         </option>
+        )
+     })
     return slots
   }
 
@@ -132,20 +115,3 @@ class AuditionConfirmation extends Component {
 }
 
 export default AuditionConfirmation
-
-// let foundTime  = this.state.confirmedAudition.tryouts.find(tryout => {
-//   let theTryout = tryout.audition_time.slice(1)
-   // tryout.audition_time === this.state.confirmedTime
-
-   // console.log(this.state.confirmedTime)
-
-
-   // console.log(tryout.audition_time.slice(1).slice(0, 8))
-   // console.log(JSON.stringify(time).slice(12, 20));
-   //
-   //
-   // console.log(time);
-
-   // console.log("Time", time.slice(20))
-
- // })

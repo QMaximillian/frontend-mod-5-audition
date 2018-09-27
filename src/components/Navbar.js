@@ -16,7 +16,7 @@ render(){
 
   return(
 
-    <Menu verticalAlign='fluid'>
+    <Menu className="navbar">
       <Menu.Item
         as={ Link }
         name='Audition'
@@ -32,7 +32,7 @@ render(){
       <Menu.Item
         as={ Link }
         name='My Auditions'
-        to='/auditions'
+        to='/my-auditions'
         active={activeItem === 'my-auditions'} onClick={this.handleItemClick}>
       </Menu.Item>
       <Menu.Item

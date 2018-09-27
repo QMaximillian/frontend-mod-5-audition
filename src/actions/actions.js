@@ -12,7 +12,6 @@ import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, 
 //PUT MY DEFAULT RESUME IN STORE
 
 
-
 export const loadInitialActorState = (actor) => {
   return (dispatch) => {
     fetchActor('1').then(resp => {
@@ -20,6 +19,8 @@ export const loadInitialActorState = (actor) => {
     })
   }
 }
+
+
 
 export const setCurrentAudition
  = (audition) => {

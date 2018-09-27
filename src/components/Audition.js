@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 
@@ -7,6 +8,7 @@ import { Link } from 'react-router-dom'
 class Audition extends Component {
 
    render() {
+
      return (
         <div>
             <Link to={`/auditions/${this.props.audition.id}`}>
@@ -19,4 +21,4 @@ class Audition extends Component {
    }
  }
 
-export default Audition
+export default connect(state => ({ appliedAuditions: state.appliedAuditions }))(Audition)
