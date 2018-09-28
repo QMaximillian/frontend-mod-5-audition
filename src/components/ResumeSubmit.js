@@ -7,19 +7,32 @@ import { Redirect } from 'react-router-dom'
 class ResumeSubmit extends Component {
 
 state = {
-  redirect: false
+  redirect: false,
+  characterChildren: 0,
+  trainingChildren: 0,
+  skillChildren: 0
 }
 
-mappedResumes = () => {
-  return this.props.resumes.map(resume => {
-    return <Resume key={resume.id} resume={resume}/>
-  })
-}
+// mappedResumes = () => {
+//   return this.props.resumes.map(resume => {
+//     return <Resume key={resume.id} resume={resume}/>
+//   })
+// }
 
 handleChange = (event) => {
   this.setState({
     [event.target.name]:event.target.value
   })
+}
+
+onAddChild = (event) => {
+  event.persist()
+  event.preventDefault()
+  this.setState(prevState => {
+    return {
+      [event.target.name]: event.target.value++
+    }
+  }, () => console.log(event.target.name, event.target.value))
 }
 
 handleClick = (event) => {
@@ -57,23 +70,93 @@ handleClick = (event) => {
 
 
    render(){
+    //Created arrays for each input
+     const characters = []
+     const show = []
+     const training = []
+     const skills = []
+// For loop to instantiate new inputs for character and show values
+  //and add  them to the array to display on the page
+    for (let i = 0; i < this.state.characterChildren; i++) {
+      characters.push(<input
+      name={`character${i}`}
+      onChange={(event) => this.handleChange(event)} key={i} number={i}/>)
+
+      show.push(<input
+      name={`show${i}`}
+      onChange={(event) => this.handleChange(event)} key={i} number={i}/>)
+    }
+
+
+    for (let i = 0; i < this.state.trainingChildren; i++) {
+      training.push(<input
+      name={`character${i}`}
+      onChange={(event) => this.handleChange(event)} key={i} number={i}/>)
+    }
+
+    for (let i = 0; i < this.state.skillChildren; i++) {
+      training.push(<input
+      name={`character${i}`}
+      onChange={(event) => this.handleChange(event)} key={i} number={i}/>)
+    }
+
+
+
+
+
      if (this.state.redirect) {
        return <Redirect push to={`/audition/${this.props.match.params.id}/audition-confirmation`}/>
      } else {
      return (
         <div>
-          {this.mappedResumes()}
+          {/* {this.mappedResumes()} */}
           <div>
 
             <label>New Resume</label>
             <form onChange={this.handleChange}>
 
+
               <label>Character</label>
-              <input
-                name="character1">
-              </input>
+
+              {characters}
 
               <label>Show</label>
+              <button
+                onClick={event => this.onAddChild(event)}
+                name="characterChildren">
+                +
+              </button>
+
+              {show}
+
+              <label>Training</label>
+              <button
+                onClick={event => this.onAddChild(event)}
+                name="trainingChildren">
+                +
+              </button>
+
+              {training}
+
+              <label>Skills</label>
+              <button
+                onClick={event => this.onAddChild(event)}
+                name="skillChildren">
+                +
+              </button>
+
+              {training}
+
+
+
+
+
+              {/* <label>Character</label>
+              <input
+                name="character1">
+              </input> */}
+
+              {/* <label>Show</label>
               <input
                 name="show1">
               </input><br />
@@ -116,7 +199,7 @@ handleClick = (event) => {
               <label>Skills</label>
               <input
                 name="skills2">
-              </input><br />
+              </input><br /> */}
             </form>
           </div>
 

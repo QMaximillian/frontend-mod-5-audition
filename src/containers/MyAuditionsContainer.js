@@ -36,4 +36,4 @@ componentDidMount(){
  }
 
 
- export default connect(state => ({ appliedAuditions: state.appliedAuditions }))(MyAuditionsContainer)
+ export default connect(state => ({ appliedAuditions: state.appliedAuditions, tryouts: state.tryouts }))(MyAuditionsContainer)

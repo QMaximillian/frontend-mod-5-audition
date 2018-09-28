@@ -6,20 +6,34 @@ import { loadAllAuditions } from '../actions/actions'
 
 class AllAuditionContainer extends Component {
 
-mappedAuditions = () => {
-  const difference = this.props.auditionIndex.filter(audition => {
-    return !this.props.appliedAuditions.includes(audition.id)
-      // console.log(applied.id);
-      // console.log(audition.id);
-      // applied.id !== audition.id
-    })
-console.log(difference);
+// mappedAuditions = () => {
+//   let array = []
+//
+//   for (let i = 0; i < this.props.auditionIndex.length; i++) {
+//     for (let j = 0; j < this.props.appliedAuditions.length; j++) {
+//       // console.log(parseInt(this.props.auditionIndex[i].id))
+//       // console.log(this.props.appliedAuditions[j].id)
+//       if (this.props.auditionIndex[i].id !== this.props.appliedAuditions[j].id.toString()) {
+//         // console.log(this.props.auditionIndex[i].id)
+//         console.log(this.props.auditionIndex[i])
+//         // How to return all qualifying values?
+//         array.push(this.props.auditionIndex[i])
+//     }
+//   }
+// }
+//   return array.map(audition => {
+//     console.log(audition);
+//     return <Audition key={audition.id} audition={audition}/>
+// })
+// }
 
-     // return !this.props.appliedAuditions.includes(audition)
-    return this.props.auditionIndex.map(audition => {
-      return <Audition key={audition.id} audition={audition}/>
-    })
+mappedAuditions = () => {
+  return this.props.auditionIndex.map(audition => {
+    return <Audition key={audition.id} audition={audition}/>
+  })
 }
+
+
 
 componentDidMount(){
   this.props.loadAllAuditions()
@@ -31,13 +45,9 @@ componentDidMount(){
        <div>LOADING</div>
       )
      } else {
-     console.log(this.props.appliedAuditions)
-     console.log(this.props.auditionIndex)
           return (
              <div>
                {this.mappedAuditions()}
-
-
              </div>
           )
      }
@@ -49,4 +59,4 @@ componentDidMount(){
 //   allAuditions: state.allAuditions
 // }
 
- export default connect(state => ({ auditionIndex: state.auditionIndex, appliedAuditions: state.appliedAuditions }), { loadAllAuditions })(AllAuditionContainer)
+ export default connect(state => ({ auditionIndex: state.auditionIndex, appliedAuditions: state.appliedAuditions, currentActor: state.currentActor }), { loadAllAuditions })(AllAuditionContainer)
