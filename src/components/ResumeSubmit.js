@@ -30,15 +30,15 @@ onAddChild = (event) => {
   event.preventDefault()
   this.setState(prevState => {
     return {
-      [event.target.name]: event.target.value++
+      [event.target.name]: ++event.target.value
     }
-  }, () => console.log(event.target.name, event.target.value))
+  },()=> console.log(this.state.trainingChildren))
 }
 
 handleClick = (event) => {
   event.preventDefault()
 
-  console.log(this.state);
+  // console.log(this.state);
   const concatCharacters = this.state.character1 + ", " + this.state.character2 + ", " + this.state.character3
 
   const concatShows = this.state.show1 + ", " + this.state.show2 + ", " + this.state.show3
@@ -70,39 +70,43 @@ handleClick = (event) => {
 
 
    render(){
+
     //Created arrays for each input
      const characters = []
      const show = []
      const training = []
      const skills = []
+     console.log(training)
+     console.log(skills)
+
 // For loop to instantiate new inputs for character and show values
   //and add  them to the array to display on the page
     for (let i = 0; i < this.state.characterChildren; i++) {
       characters.push(<input
       name={`character${i}`}
-      onChange={(event) => this.handleChange(event)} key={i} number={i}/>)
+      onChange={(event) => this.handleChange(event)} key={this.props.currentActor.id + `character${i}`}/>)
 
       show.push(<input
       name={`show${i}`}
-      onChange={(event) => this.handleChange(event)} key={i} number={i}/>)
+      onChange={(event) => this.handleChange(event)} key={i}/>)
     }
 
 
     for (let i = 0; i < this.state.trainingChildren; i++) {
       training.push(<input
-      name={`character${i}`}
-      onChange={(event) => this.handleChange(event)} key={i} number={i}/>)
+      name={`training${i}`}
+      onChange={(event) => this.handleChange(event)} key={i}/>)
     }
 
     for (let i = 0; i < this.state.skillChildren; i++) {
       training.push(<input
       name={`character${i}`}
-      onChange={(event) => this.handleChange(event)} key={i} number={i}/>)
+      onChange={(event) => this.handleChange(event)} key={i}/>)
     }
 
 
 
-
+    // console.log(this.state.character1);
 
      if (this.state.redirect) {
        return <Redirect push to={`/audition/${this.props.match.params.id}/audition-confirmation`}/>
