@@ -40,6 +40,7 @@ componentDidMount(){
 }
 
    render() {
+     console.log("Find Auditions");
      if (typeof this.props.appliedAuditions === 'undefined') {
        return (
        <div>LOADING</div>

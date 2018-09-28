@@ -25,11 +25,14 @@ export default class Login extends Component {
     }, () => console.log(this.state.actor))
     }
 
-  handleSubmit = (event) => {
+  handleLoginSubmit = (event) => {
     event.preventDefault()
-
     fetchLoginActor(this.state.actor).then(console.log)
   }
+
+  // handleSignUp = (event) => {
+  //   event.
+  // }
 
   render() {
 
@@ -55,12 +58,9 @@ export default class Login extends Component {
                 label="Enter Password"/>
 
                 <Form.Button
-                  onClick={this.handleSubmit}
+                  onClick={this.handleLoginSubmit}
                   content="Log In"
                   primary/>
-                <Form.Button
-                  content="Sign Up"
-                  />
             </Form>
       </Container>
     </Grid>

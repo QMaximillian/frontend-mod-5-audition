@@ -7,7 +7,7 @@ import { loadInitialActorState } from '../actions/actions'
 class ActorHomeContainer extends Component {
 
     componentDidMount(){
-      this.props.loadInitialActorState()
+      // this.props.loadInitialActorState()
 
       // PUT MY AUDITIONS IN STORE
       //PUT AUDITIONS IN STORE

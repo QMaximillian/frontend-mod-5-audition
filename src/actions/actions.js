@@ -14,7 +14,7 @@ import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, 
 
 export const loadInitialActorState = (actor) => {
   return (dispatch) => {
-    fetchActor('1').then(resp => {
+    fetchActor(actor.id).then(resp => {
       dispatch(setInitialState(resp.data))
     })
   }

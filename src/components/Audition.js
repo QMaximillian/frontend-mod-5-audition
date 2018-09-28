@@ -44,6 +44,7 @@ class Audition extends Component {
 
 
    render() {
+     console.log("Audition");
      return (
       <div>
         {this.availableAuditions()}

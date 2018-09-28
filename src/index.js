@@ -13,6 +13,7 @@ import Login from './components/Login'
 import Audition from './Audition'
 import ActorHomeContainer from './containers/ActorHomeContainer'
 import AuditionJournal from './components/AuditionJournal'
+import SignUp from './components/SignUp'
 import ActorProfile from './components/ActorProfile'
 import MyAuditionsContainer from './containers/MyAuditionsContainer'
 import AuditionShow from './components/AuditionShow'
@@ -58,6 +59,7 @@ ReactDOM.render(
           <Route exact path="/home" component={ActorHomeContainer}/>
           <Route exact path="/" render={() => <Audition />} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/audition/:id/audition-confirmation" component={AuditionConfirmation} />
         </Switch>
       </div>

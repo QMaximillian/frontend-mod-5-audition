@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
+
+
 class Navbar extends Component {
 
   state = {
@@ -49,6 +51,21 @@ render(){
         active={activeItem === 'profile'} onClick={this.handleItemClick}>
         My Profile
       </Menu.Item>
+      <Menu.Item
+        as={ Link }
+        name='Login'
+        to='/login'
+        active={activeItem === 'login'} onClick={this.handleItemClick}>
+        Login
+      </Menu.Item>
+      <Menu.Item
+        as={ Link }
+        name='Sign Up'
+        to='/sign-up'
+        active={activeItem === 'sign-up'} onClick={this.handleItemClick}>
+        Sign Up
+      </Menu.Item>
+
       </Menu>
   )
  }
