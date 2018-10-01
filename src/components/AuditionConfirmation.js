@@ -96,13 +96,14 @@ class AuditionConfirmation extends Component {
     } else {
         // console.log(this.state.confirmedTime)
       return (
-        <div>
+        <div style={{textAlign: 'center'}} className="card" >
+
         <div style={{textAlign: 'center'}}><br />
           Audition Confirmation
         </div><br />
           <select
-            style={{textAlign: 'center'}}
-            onChange={this.handleTimeChange} value={this.state.confirmedTime}>
+            onChange={this.handleTimeChange}
+            value={this.state.confirmedTime}>
             {this.getDateHours()}
           </select>
 

@@ -70,17 +70,12 @@ class ActorProfile extends Component {
 
     const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity, city } = this.props.currentActor.attributes
 
-    console.log(equity);
-    // {display: "flex",       justifyContent: "center",
-    //   alignItems:"center",
-    // backgroundImage: "linear-gradient(to bottom right, red, yellow)"}
       return(
-        <div className="sitelayout">
+        <div >
           <Form
-            className="profile-card"
             onSubmit={this.updateActor}>
+
             <Form.Field
-              className="input-shadow"
               control={Input}
               width={4}
               name="first_name"
@@ -88,6 +83,7 @@ class ActorProfile extends Component {
               value={first_name}
               color="orange"
               label='First Name'/>
+
             <Form.Field
               control={Input}
               width={4}
@@ -95,6 +91,7 @@ class ActorProfile extends Component {
               onChange={this.handleChange}
               value={last_name}
               label='Last Name'/>
+
             <Form.Field
               control={Input}
               width={4}
@@ -102,6 +99,7 @@ class ActorProfile extends Component {
               onChange={this.handleChange}
               value={email}
               label='E-Mail'/>
+
             <Form.Field
               control={Input}
               width={4}
@@ -109,6 +107,7 @@ class ActorProfile extends Component {
               onChange={this.handleChange}
               value={height}
               label='Height'/>
+
             <Form.Field
               control={Input}
               width={4}
@@ -119,6 +118,7 @@ class ActorProfile extends Component {
 
             <Form.Select
               control={Select}
+              width={4}
               name="equity"
               onChange={(event, state) => this.handleChange(state)}
               label='Equity'
@@ -133,7 +133,8 @@ class ActorProfile extends Component {
                 onChange={(event, state) => this.handleChange(state)}
                 value={gender}
                 options={genders}
-                label='Gender'/>
+                label='Gender'
+              />
 
             {/* <label>Equity</label>
             <select
@@ -160,27 +161,22 @@ class ActorProfile extends Component {
               </select> */}
 
 
-            <label>Birthday</label>
-            <input
-              name="birthday"
-              onChange={this.handleChange}
-              value={birthday}
-              >
-            </input>
-            <label>Ethnicity</label>
-            <input
-              name="ethnicity"
-              onChange={this.handleChange}
-              value={ethnicity}
-              >
-            </input>
-            {/* <select>
-              <option
-                name="NYC"
-                value={city}
-                onChange={this.handleChange}>NYC
-              </option>
-            </select> */}
+              <Form.Field
+                control={Input}
+                width={4}
+                name="birthday"
+                onChange={this.handleChange}
+                value={birthday}
+                label='Birthday'/>
+
+              <Form.Field
+                control={Input}
+                width={4}
+                name="ethnicity"
+                onChange={this.handleChange}
+                value={ethnicity}
+                label='Ethnicity'/>
+            <br />
             <Button type="submit">Save</Button>
           </Form>
         </div>

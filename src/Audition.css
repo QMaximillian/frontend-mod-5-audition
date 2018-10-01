@@ -38,6 +38,10 @@ body {
   background-size: cover;
 }
 
+body, html {
+  height: 100vh
+}
+
 div#root {
   background-color: rgba(0,0,0,0.4);
   height: 100vh;
@@ -55,10 +59,41 @@ div#root {
   border: 2px solid #e7e7e7;
   border-radius: 4px;
   padding: 5rem;
-  opacity: 0.5;
+  opacity: 0.4;
+  background-color: aquamarine;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 
   filter: alpha(opacity=100);
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+
+  padding: 10px;
+}
+
+.grid-cell {
+
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.home-grid {
+
+}
+
+.container {
+  grid-template-columns: 50px 50px 50px 50px;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+}
+
+
 
 .profile-card {
     border: 2px solid #e7e7e7;

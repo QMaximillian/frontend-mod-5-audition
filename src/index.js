@@ -63,7 +63,7 @@ ReactDOM.render(
           <Route exact path="/login" component={Login} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/audition/:id/audition-confirmation" component={AuditionConfirmation} />
-          <Route exact path="/" component={Audition} />
+          <Route exact path="/" component={ActorHomeContainer} />
         </Switch>
       </div>
     </ConnectedRouter>

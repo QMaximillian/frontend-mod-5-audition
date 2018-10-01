@@ -8,13 +8,15 @@ class Audition extends Component {
    render() {
 
      return (
+       <Link to={`/auditions/${this.props.audition.id}`}>
       <div className='card'>
-        <Link to={`/auditions/${this.props.audition.id}`}>
+
         {this.props.audition.attributes.show_name}
         {this.props.audition.attributes.audition_time}
         {this.props.audition.attributes.location}
-      </Link>
+
       </div>
+      </Link>
       )
     }
 }

@@ -22,10 +22,19 @@ class ActorHomeContainer extends Component {
 
   render() {
     return(
-        <div>
-          Welcome to Audition!
-          <ActorUpcomingAuditions currentActor={this.props.currentActor}/>
-        </div>
+          <div className="grid">
+            <div className="item-a">
+              <h1>Welcome to Audition!</h1>
+            </div>
+            <div className="item-b">Welcome to Audition!</div>
+            <div className="item-c">Welcome to Audition!</div>
+            <div className="item-d">Welcome to Audition!</div>
+            {/* <div className="grid-cell">Welcome to Audition!</div>
+            <div className="grid-cell">Welcome to Audition!</div>
+            <div className="grid-cell">Welcome to Audition!</div>
+            <div className="grid-cell">Welcome to Audition!</div>
+            <div className="grid-cell">Welcome to Audition!</div> */}
+          </div>
     )
 }
 }

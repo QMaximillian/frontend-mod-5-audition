@@ -38,7 +38,7 @@ render() {
       <div className='card' style={{textAlign: 'center'}}>
           {this.state.audition.show_name}<br/>
           {this.state.audition.audition_information}<br/>
-          {day.toUTCString()}<br/>
+          {day.toUTCString().slice(0,16)}<br/>
           <Link to={`/audition/${this.props.match.params.id}/resume_submit`}>
             <Button>Submit For This Audition</Button>
           </Link>

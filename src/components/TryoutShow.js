@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
 
-export default class TryoutShow extends Component {
+export default class TryoutModal extends Component {
    render() {
      return (
         <div>
-          Tryout Show
+          Tryout Modal
         </div>
      )
    }

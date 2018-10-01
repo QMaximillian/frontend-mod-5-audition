@@ -27,18 +27,22 @@ componentDidMount(){
       } else if (this.props.appliedAuditions.length === 0) {
         return(
           <div>
-            You have no auditions
+            {this.props.currentActor.attributes.first_name} has no auditions
           </div>
         )
       } else {
        return (
+         <div>
+         {this.props.currentActor.attributes.first_name}'s Auditions
           <div className="sitelayout">
+
       {this.mappedAuditions()}
           </div>
+        </div>
        )
      }
    }
  }
 
 
- export default connect(state => ({ appliedAuditions: state.appliedAuditions, tryouts: state.tryouts }))(MyAuditionsContainer)
+ export default connect(state => ({ appliedAuditions: state.appliedAuditions, tryouts: state.tryouts, currentActor: state.currentActor }))(MyAuditionsContainer)

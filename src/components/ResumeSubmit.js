@@ -60,7 +60,7 @@ handleClick = (event) => {
      return <Redirect push to={`/audition/${this.props.match.params.id}/audition-confirmation`}/>
      } else {
      return (
-          <div className="sitelayout">
+          <div className="card">
             <div>
               <label style={{textAlign: 'center'}}><br/>
                 Add any performance, training, and skills information
