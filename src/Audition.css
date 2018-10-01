@@ -32,16 +32,23 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 body {
   background-image: linear-gradient(to bottom right, red, yellow)
   !important;
-  opacity: .7
-  !important;
+  /* opacity: .7; */
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+div#root {
+  background-color: rgba(0,0,0,0.4);
+  height: 100vh;
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 5rem;
   padding: 1rem;
+  text-align: center;
 }
 
 .card {
@@ -49,7 +56,15 @@ body {
   border-radius: 4px;
   padding: 5rem;
   opacity: 0.5;
-  filter: alpha(opacity=50);
+
+  filter: alpha(opacity=100);
+}
+
+.profile-card {
+    border: 2px solid #e7e7e7;
+    border-radius: 4px;
+    padding: 5rem;
+    opacity: 0.5;
 }
 
 .card:hover {

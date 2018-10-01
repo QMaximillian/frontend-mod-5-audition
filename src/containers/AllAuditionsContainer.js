@@ -9,27 +9,34 @@ class AllAuditionContainer extends Component {
 
 
 //
-mappedAuditions = () => {
-  return this.props.auditionIndex.map(audition => {
+// mappedAuditions = () => {
+//   return this.props.auditionIndex.map(audition => {
+//
+//     return <Audition key={audition.id} audition={audition}/>
+//   })
+// }
 
-    return <Audition key={audition.id} audition={audition}/>
+mappedAuditions2 = () => {
+  return this.props.auditionIndex.map(audition => {
+    // console.log(audition.attributes.actors_submitted[0])
+    if (audition.attributes.actors_submitted.length === 0) {
+      return <Audition key={audition.id} audition={audition}/>
+    }
   })
 }
+  // this.props.auditionIndex.attributes.map(audition => {
+  //   var x = JSON.parse(JSON.stringify(audition.attributes.actors_submitted));
+  //
+  //     const y = x.filter(xyz => {
+  //       console.log(xyz.id);
+  //       return xyz.id === parseInt(this.props.currentActor.id)
+  //     })
+  //
+  //     console.log(y);
 
-// mappedAuditions = () => {
-//  return this.props.auditionIndex.map(audition => {
-//     var x = JSON.parse(JSON.stringify(audition.attributes.actors_submitted));
-//
-//       const y = x.filter(xyz => {
-//         console.log(xyz.id);
-//         return xyz.id === parseInt(this.props.currentActor.id)
-//       })
-//
-//       console.log(y);
-//
-//   })
-//
-// }
+  // })
+
+
 
 componentDidMount(){
   this.props.loadAllAuditions()
@@ -45,7 +52,8 @@ componentDidMount(){
           return (
              <div>
                <section className='card-container'>
-               {this.mappedAuditions()}
+               {/* {this.mappedAuditions()} */}
+               {this.mappedAuditions2()}
                </section>
              </div>
           )

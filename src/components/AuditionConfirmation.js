@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { fetchGet, fetchPostTryout } from '../adapters/actorAdapter'
 import { Redirect } from 'react-router-dom'
-import { Loader } from 'semantic-ui-react'
+import { Loader, Button } from 'semantic-ui-react'
 class AuditionConfirmation extends Component {
 
 
@@ -97,15 +97,19 @@ class AuditionConfirmation extends Component {
         // console.log(this.state.confirmedTime)
       return (
         <div>
+        <div style={{textAlign: 'center'}}><br />
+          Audition Confirmation
+        </div><br />
           <select
+            style={{textAlign: 'center'}}
             onChange={this.handleTimeChange} value={this.state.confirmedTime}>
             {this.getDateHours()}
           </select>
 
-        <button
+        <Button
           onClick={this.handleTryoutPost}
           type="submit">Submit
-        </button>
+        </Button>
 
 
         </div>

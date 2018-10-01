@@ -23,8 +23,8 @@ class ActorHomeContainer extends Component {
   render() {
     return(
         <div>
-          AuditionPreviewContainer
-          <ActorUpcomingAuditions actor={this.props.currentActor}/>
+          Welcome to Audition!
+          <ActorUpcomingAuditions currentActor={this.props.currentActor}/>
         </div>
     )
 }

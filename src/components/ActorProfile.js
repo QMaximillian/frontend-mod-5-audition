@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
-import { Loader, Form, Input, Select, Button } from 'semantic-ui-react'
+import { Loader, Form, Input, Select, Button, Dropdown } from 'semantic-ui-react'
 import '../Audition.css'
 
 
@@ -19,6 +19,7 @@ class ActorProfile extends Component {
   }
 
   handleChange = (event) => {
+    event.persist()
     this.props.updateCurrentActorForm({
       [event.target.name]: event.target.value
     })
@@ -38,6 +39,11 @@ class ActorProfile extends Component {
 
 
   render() {
+
+    const options = [
+      { text: "True", value: true },
+      { text: "False", value: false }
+    ]
   if (typeof this.props.currentActor.attributes === 'undefined') {
 
     return (
@@ -55,6 +61,7 @@ class ActorProfile extends Component {
       return(
         <div className="sitelayout">
           <Form
+            className="profile-card"
             onSubmit={this.updateActor}>
             <Form.Field
               className="input-shadow"
@@ -97,7 +104,7 @@ class ActorProfile extends Component {
             <Form.Select
               control={Select}
               name="equity"
-              onChange={this.handleChange}
+              onChange={(event) => this.handleChange(event)}
               label='Equity'
               options={options}
               value={equity}/>
