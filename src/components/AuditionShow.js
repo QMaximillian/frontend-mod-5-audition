@@ -31,20 +31,8 @@ class AuditionShow extends Component {
 
 
 render() {
-
+  console.log(this.state.audition);
   const day = new Date(this.state.audition.begin_audition)
-// if (typeof this.props.auditionIndex === 'undefined') {
-//     return (
-//       <div>
-//         LOADING
-//       </div>
-//     )
-// } else {
-//     const foundAudition = this.props.auditionIndex.find(audition => {
-//       return audition.id === this.props.match.params.id
-//     })
-//
-//     console.log(foundAudition);
 
      return (
       <div className='card' style={{textAlign: 'center'}}>

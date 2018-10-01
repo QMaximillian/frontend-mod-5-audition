@@ -5,12 +5,12 @@ import Audition from '../Audition'
 
 class ActorUpcomingAuditions extends Component {
 
-mappedUpcoming = () => {
-  return this.props.currentActor.attributes.tryout_auditions.map(tryout_audition => {
-    console.log(tryout_audition);
-      return <Audition audition={tryout_audition}/>
-  })
-}
+// mappedUpcoming = () => {
+//   return this.props.currentActor.attributes.tryout_auditions.map(tryout_audition => {
+//     console.log(tryout_audition);
+//       return <Audition audition={tryout_audition}/>
+//   })
+// }
 
 render(){
   if (this.props.currentActor.attributes !== undefined) {

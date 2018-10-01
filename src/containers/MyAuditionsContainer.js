@@ -24,6 +24,12 @@ componentDidMount(){
         return (
           <div><Loader active inline='centered' /></div>
         )
+      } else if (this.props.appliedAuditions.length === 0) {
+        return(
+          <div>
+            You have no auditions
+          </div>
+        )
       } else {
        return (
           <div className="sitelayout">

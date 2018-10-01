@@ -8,21 +8,31 @@ import { loadAllAuditions } from '../actions/actions'
 class AllAuditionContainer extends Component {
 
 
-//
-// mappedAuditions = () => {
-//   return this.props.auditionIndex.map(audition => {
-//
-//     return <Audition key={audition.id} audition={audition}/>
-//   })
-// }
 
-mappedAuditions2 = () => {
-  return this.props.auditionIndex.map(audition => {
-    // console.log(audition.attributes.actors_submitted[0])
-    if (audition.attributes.actors_submitted.length === 0) {
-      return <Audition key={audition.id} audition={audition}/>
-    }
+mappedAuditions = () => {
+  return this.filteredAuditions().map(audition => {
+
+    return <Audition key={audition.id} audition={audition}/>
   })
+}
+
+filteredAuditions = () => {
+  return this.props.auditionIndex.filter(audition => {
+    return !audition.attributes.actor_tryouts.map(actor => actor.id).includes(parseInt(this.props.currentActor.id))
+  })
+    // console.log(audition.attributes.actors_submitted[0])
+    // if (audition.attributes.actors_submitted.length === 0) {
+    //   return <Audition key={audition.id} audition={audition}/>
+    // } else {
+    // return audition.attributes.actors_submitted.filter(act => {
+    //     // console.log(aud.id)
+    //     console.log(this.props.currentActor.id)
+    //     return act.id !== parseInt(this.props.currentActor.id)
+    //
+    //   })
+    //   console.log();
+    // }
+
 }
   // this.props.auditionIndex.attributes.map(audition => {
   //   var x = JSON.parse(JSON.stringify(audition.attributes.actors_submitted));
@@ -53,7 +63,7 @@ componentDidMount(){
              <div>
                <section className='card-container'>
                {/* {this.mappedAuditions()} */}
-               {this.mappedAuditions2()}
+               {this.mappedAuditions()}
                </section>
              </div>
           )

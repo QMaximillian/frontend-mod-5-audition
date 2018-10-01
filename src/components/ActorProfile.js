@@ -19,11 +19,17 @@ class ActorProfile extends Component {
   }
 
   handleChange = (event) => {
+    if (event.name) {
+      console.log("Dropdown State");
+      this.props.updateCurrentActorForm({
+        [event.name]: event.value
+      })
+    } else {
     event.persist()
     this.props.updateCurrentActorForm({
       [event.target.name]: event.target.value
     })
-    console.log([event.target.name], event.target.value)
+    }
   }
 
 
@@ -36,14 +42,24 @@ class ActorProfile extends Component {
       fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, ethnicity: ethnicity, city: city }).then(data => console.log(data))
     }
 
+  onSelectChange = (state) => {
+    console.log(state)
+  }
+
 
 
   render() {
 
-    const options = [
-      { text: "True", value: true },
-      { text: "False", value: false }
+    const booleans = [
+      { key: 'true', text: "True", value: true },
+      { key: 'false', text: "False", value: false }
     ]
+
+    const genders = [
+      {key: 'female', text: "Female", value: "Female"},
+      {key: 'male', text: "Male", value: "Male"}
+    ]
+
   if (typeof this.props.currentActor.attributes === 'undefined') {
 
     return (
@@ -54,7 +70,7 @@ class ActorProfile extends Component {
 
     const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity, city } = this.props.currentActor.attributes
 
-
+    console.log(equity);
     // {display: "flex",       justifyContent: "center",
     //   alignItems:"center",
     // backgroundImage: "linear-gradient(to bottom right, red, yellow)"}
@@ -104,12 +120,22 @@ class ActorProfile extends Component {
             <Form.Select
               control={Select}
               name="equity"
-              onChange={(event) => this.handleChange(event)}
+              onChange={(event, state) => this.handleChange(state)}
               label='Equity'
-              options={options}
-              value={equity}/>
+              options={booleans}
+              value={equity}
+              />
 
-            <label>Equity</label>
+              <Form.Field
+                control={Select}
+                width={4}
+                name="gender"
+                onChange={(event, state) => this.handleChange(state)}
+                value={gender}
+                options={genders}
+                label='Gender'/>
+
+            {/* <label>Equity</label>
             <select
               name="equity"
               value={equity}
@@ -118,17 +144,11 @@ class ActorProfile extends Component {
                 value="true">True</option>
               <option
                 value="false">False</option>
-            </select>
+            </select> */}
 
-            {/* <Form.Field
-              control={Select}
-              width={4}
-              name="gender"
-              onChange={this.handleChange}
-              value={gender}
-              label='Gender'/> */}
 
-            <label>Gender</label>
+
+            {/* <label>Gender</label>
             <select
               name="gender"
               value={gender}
@@ -137,7 +157,7 @@ class ActorProfile extends Component {
                 value="Male">Male</option>
               <option
                 value="Female">Female</option>
-              </select>
+              </select> */}
 
 
             <label>Birthday</label>
@@ -154,13 +174,13 @@ class ActorProfile extends Component {
               value={ethnicity}
               >
             </input>
-            <select>
+            {/* <select>
               <option
                 name="NYC"
                 value={city}
                 onChange={this.handleChange}>NYC
               </option>
-            </select>
+            </select> */}
             <Button type="submit">Save</Button>
           </Form>
         </div>
