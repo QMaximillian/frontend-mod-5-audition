@@ -4,11 +4,11 @@ import React from 'react'
 
 const AuditionJournalCard = (props) => {
 
-  const newDate = (time) => {
-      return new Date(time)
-  }
+  // const newDate = (time) => {
+  //     return new Date(time)
+  // }
 
-  const { auditionJournal, tryout_id } = props
+  const { auditionJournal } = props
 
   console.log(auditionJournal)
   return(

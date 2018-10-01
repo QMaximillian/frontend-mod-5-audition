@@ -22,6 +22,7 @@ import ResumeSubmit from './components/ResumeSubmit'
 import AllAuditionsContainer from './containers/AllAuditionsContainer'
 import 'semantic-ui-css/semantic.min.css'
 import './Audition.css'
+import TryoutShow from './components/TryoutShow'
 
 
 const history = createBrowserHistory()
@@ -54,13 +55,15 @@ ReactDOM.render(
           <Route exact path="/my-auditions" component={MyAuditionsContainer}/>
           <Route exact path="/find-auditions" component={AllAuditionsContainer}/>
           <Route exact path="/auditions/:id" component={AuditionShow}/>
-          <Route exact path="/actor/audition-journals" component={AuditionJournal}/>
+          <Route exact path="/tryout/:id" component={TryoutShow}/>
+          {/* <Route exact path="/actor/audition-journals" component={AuditionJournal}/> */}
           <Route exact path="/actor/1" component={ActorProfile}/>
           <Route exact path="/home" component={ActorHomeContainer}/>
           <Route exact path="/" render={() => <Audition />} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/audition/:id/audition-confirmation" component={AuditionConfirmation} />
+          <Route exact path="/" component={Audition} />
         </Switch>
       </div>
     </ConnectedRouter>

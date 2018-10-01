@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 
 
@@ -37,13 +37,13 @@ render(){
         to='/my-auditions'
         active={activeItem === 'my-auditions'} onClick={this.handleItemClick}>
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         as={ Link }
         name='Audition Journals'
         to='/actor/audition-journals'
         active={activeItem === 'audition-journals'} onClick={this.handleItemClick}>
         Audition Journals
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item
         as={ Link }
         name='My Profile'

@@ -12,9 +12,9 @@ import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, 
 //PUT MY DEFAULT RESUME IN STORE
 
 
-export const loadInitialActorState = (actor) => {
+export const loadInitialActorState = () => {
   return (dispatch) => {
-    fetchActor(actor.id).then(resp => {
+    fetchActor(1).then(resp => {
       dispatch(setInitialState(resp.data))
     })
   }

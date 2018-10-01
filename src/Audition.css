@@ -1,4 +1,58 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+.sitelayout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.signupbackground {
+  background-image: url("https://cdn2.rsc.org.uk/sitefinity/images/buildings-and-objects/audiences/audience-photos_-july-2015-_photo-by-david-tett-_c_-rsc_rsc-audience-july-2015-64.tmb-img-912.jpg?sfvrsn=2");
+  filter: blur(5px);
+}
+
+.input-shadow {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container {
+    margin-top: 50px auto;
+		margin: 0px auto;
+		width: 1200px;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+body {
+  background-image: linear-gradient(to bottom right, red, yellow)
+  !important;
+  opacity: .7
+  !important;
+
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5rem;
+  padding: 1rem;
+}
+
+.card {
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+  padding: 5rem;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.card:hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
 }

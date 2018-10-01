@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
-import { Loader, Form, Input, Dropdown, Select, Button } from 'semantic-ui-react'
+import { Loader, Form, Input, Select, Button } from 'semantic-ui-react'
+import '../Audition.css'
 
 
 const options = [
@@ -47,10 +48,16 @@ class ActorProfile extends Component {
 
     const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity, city } = this.props.currentActor.attributes
 
+
+    // {display: "flex",       justifyContent: "center",
+    //   alignItems:"center",
+    // backgroundImage: "linear-gradient(to bottom right, red, yellow)"}
       return(
-        <div>
-          <Form onSubmit={this.updateActor}>
+        <div className="sitelayout">
+          <Form
+            onSubmit={this.updateActor}>
             <Form.Field
+              className="input-shadow"
               control={Input}
               width={4}
               name="first_name"

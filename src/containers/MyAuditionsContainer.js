@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import Audition from '../components/Audition.js'
 import MyAudition from '../components/MyAudition.js'
 import { connect } from 'react-redux'
 import { Loader } from 'semantic-ui-react'
-// import { MyAudition } from '../components/'
+import "../Audition.css"
 
 
 class MyAuditionsContainer extends Component {
@@ -27,7 +26,7 @@ componentDidMount(){
         )
       } else {
        return (
-          <div>
+          <div className="sitelayout">
       {this.mappedAuditions()}
           </div>
        )

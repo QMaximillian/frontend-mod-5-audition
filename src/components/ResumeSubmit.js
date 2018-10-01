@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Resume from './Resume'
+// import Resume from './Resume'
 import { Redirect } from 'react-router-dom'
 
 
@@ -22,7 +22,7 @@ state = {
 handleChange = (event) => {
   this.setState({
     [event.target.name]:event.target.value
-  })
+  }, ()=> console.log(this.state))
 }
 
 onAddChild = (event) => {
@@ -32,14 +32,14 @@ onAddChild = (event) => {
     return {
       [event.target.name]: ++event.target.value
     }
-  },()=> console.log(this.state.trainingChildren))
+  })
 }
 
 handleClick = (event) => {
   event.preventDefault()
 
   // console.log(this.state);
-  const concatCharacters = this.state.character1 + ", " + this.state.character2 + ", " + this.state.character3
+  const concatCharacters =   this.state.character1 + ", " + this.state.character2 + ", " + this.state.character3
 
   const concatShows = this.state.show1 + ", " + this.state.show2 + ", " + this.state.show3
 
@@ -76,8 +76,7 @@ handleClick = (event) => {
      const show = []
      const training = []
      const skills = []
-     console.log(training)
-     console.log(skills)
+
 
 // For loop to instantiate new inputs for character and show values
   //and add  them to the array to display on the page
@@ -106,48 +105,54 @@ handleClick = (event) => {
 
 
 
-    // console.log(this.state.character1);
+
 
      if (this.state.redirect) {
        return <Redirect push to={`/audition/${this.props.match.params.id}/audition-confirmation`}/>
      } else {
      return (
         <div>
-          {/* {this.mappedResumes()} */}
+          <button
+            onClick={event => this.onAddChild(event)}
+            name="characterChildren">
+            + Character/Show
+          </button><br />
+
+          <button
+            onClick={event => this.onAddChild(event)}
+            name="trainingChildren">
+            + Training
+          </button>
           <div>
 
-            <label>New Resume</label>
+          <button
+            onClick={event => this.onAddChild(event)}
+            name="skillChildren">
+            + Skills
+          </button>
+
+
             <form onChange={this.handleChange}>
 
 
-              <label>Character</label>
+              <label
+                style={
+                  {display: 'inline-block',
+                  marginRight:'10px'}
+                }>Character</label>
 
               {characters}
-
-              <label>Show</label>
-              <button
-                onClick={event => this.onAddChild(event)}
-                name="characterChildren">
-                +
-              </button>
+              <br />
+              <label style={{display:'inline-block'}}>Show</label>
 
               {show}
+              <label>Training</label><br />
 
-              <label>Training</label>
-              <button
-                onClick={event => this.onAddChild(event)}
-                name="trainingChildren">
-                +
-              </button>
 
               {training}
 
               <label>Skills</label>
-              <button
-                onClick={event => this.onAddChild(event)}
-                name="skillChildren">
-                +
-              </button>
+
 
               {training}
 

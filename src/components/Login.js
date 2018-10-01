@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import { Input, Form, Grid, Button, Container, Segment } from 'semantic-ui-react'
+// import { Redirect } from 'react-router-dom'
+import { Form, Grid, Container} from 'semantic-ui-react'
 import { fetchLoginActor } from '../adapters/actorAdapter'
+import '../Audition.css'
 
 
 export default class Login extends Component {
@@ -43,8 +44,8 @@ export default class Login extends Component {
     <div>
     <Grid>
 
-      <Container>
-          <Form centered>
+      <Container className="container">
+          <Form>
               <Form.Input
                 name="email"
                 onChange={this.handleChange}

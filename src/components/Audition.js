@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class Audition extends Component {
 
-
+// /
     availableAuditions = () => {
       if (this.props.tryouts === undefined || this.props.tryouts.length === 0) {
       return (
@@ -19,7 +19,7 @@ class Audition extends Component {
       )
     } else {
       return this.props.tryouts.map(tryout => {
-        if (tryout.audition_id === parseInt(this.props.audition.id)) {
+        if (tryout.audition_id === parseInt(this.props.audition.id, 10)) {
           return (
             <div>
                 {this.props.audition.attributes.show_name}
@@ -43,14 +43,28 @@ class Audition extends Component {
   }
 
 
+    // availableAuditions = () => {
+    //
+    //
+    //   if (typeof this.props.auditionIndex !== 'undefined') {
+    //
+    //   const audition = this.props.auditionIndex.filter(audition => {
+    //     return parseInt(audition.attributes.actors_submitted) !== this.props.currentActor.id
+    //   })
+    //
+    //   return <Audition audition={audition}/>
+    //   }
+    // }
+
+
    render() {
-     console.log("Audition");
+
      return (
-      <div>
+      <div className='card'>
         {this.availableAuditions()}
       </div>
       )
     }
 }
 
-export default connect(state => ({ tryouts: state.tryouts }))(Audition)
+export default connect(state => ({ currentActor: state.currentActor, auditionIndex: state.auditionIndex, tryouts: state.tryouts }))(Audition)
