@@ -34,9 +34,8 @@ componentDidMount(){
        return (
          <div>
          {this.props.currentActor.attributes.first_name}'s Auditions
-          <div className="sitelayout">
-
-      {this.mappedAuditions()}
+          <div className="card-container">
+            {this.mappedAuditions()}
           </div>
         </div>
        )

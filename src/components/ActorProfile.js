@@ -42,9 +42,6 @@ class ActorProfile extends Component {
       fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, ethnicity: ethnicity, city: city }).then(data => console.log(data))
     }
 
-  onSelectChange = (state) => {
-    console.log(state)
-  }
 
 
 
@@ -71,8 +68,9 @@ class ActorProfile extends Component {
     const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity, city } = this.props.currentActor.attributes
 
       return(
-        <div >
+        <div className="profile-card">
           <Form
+            centered
             onSubmit={this.updateActor}>
 
             <Form.Field
@@ -136,31 +134,6 @@ class ActorProfile extends Component {
                 label='Gender'
               />
 
-            {/* <label>Equity</label>
-            <select
-              name="equity"
-              value={equity}
-              onChange={this.handleChange}>
-              <option
-                value="true">True</option>
-              <option
-                value="false">False</option>
-            </select> */}
-
-
-
-            {/* <label>Gender</label>
-            <select
-              name="gender"
-              value={gender}
-              onChange={this.handleChange}>
-              <option
-                value="Male">Male</option>
-              <option
-                value="Female">Female</option>
-              </select> */}
-
-
               <Form.Field
                 control={Input}
                 width={4}
@@ -184,13 +157,5 @@ class ActorProfile extends Component {
     }
   }
 }
-
-/* <label>First Name</label>
-<input
-  name="first_name"
-  onChange={this.handleChange}
-  value={first_name}
-  >
-</input> */
 
 export default connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile)

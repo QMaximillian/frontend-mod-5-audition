@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .signupbackground {
@@ -25,8 +24,6 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		width: 1200px;
     justify-content: center;
     align-items: center;
-
-
 }
 
 body {
@@ -36,6 +33,7 @@ body {
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
+
 }
 
 body, html {
@@ -80,26 +78,18 @@ div#root {
   text-align: center;
 }
 
-.home-grid {
-
-}
-
-.container {
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "header header header header"
-    "main main . sidebar"
-    "footer footer footer footer";
-}
-
-
-
 .profile-card {
-    border: 2px solid #e7e7e7;
-    border-radius: 4px;
-    padding: 5rem;
-    opacity: 0.5;
+  margin: 0 auto;
+  width:75%;
+  text-align: left;
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+  padding: 5rem;
+  opacity: 1.0;
+  background-color: aquamarine;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+
+  filter: alpha(opacity=100);
 }
 
 .card:hover {
