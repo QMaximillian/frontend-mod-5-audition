@@ -53,10 +53,10 @@ render(){
       </Menu.Item>
       <Menu.Item
         as={ Link }
-        name='Login'
-        to='/login'
-        active={activeItem === 'login'} onClick={this.handleItemClick}>
-        Login
+        name='Find Theaters'
+        to='/find-theaters'
+        active={activeItem === 'find-theaters'} onClick={this.handleItemClick}>
+        Find Theaters
       </Menu.Item>
       <Menu.Item
         as={ Link }

@@ -1,6 +1,6 @@
 const baseActorUrl = 'http://localhost:3001/api/v1/actors'
 const baseUrl = 'http://localhost:3001/api/v1/'
-
+const baseTheaterUrl = 'http://localhost:3001/api/v1/theaters'
 
 export const fetchLoginActor = (actor) => {
   return fetch(`${baseUrl}login`, {
@@ -8,6 +8,10 @@ export const fetchLoginActor = (actor) => {
     headers: headers(),
     body: JSON.stringify({ actor })
   }).then(resp => resp.json())
+}
+
+export const fetchTheaters = () => {
+  return fetch(baseTheaterUrl).then(resp => resp.json())
 }
 
 export const fetchActor = (id) => {

@@ -1,4 +1,4 @@
-import { LOAD_INITIAL_ACTOR_STATE, EDIT_ACTOR, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION } from '../actions/types'
+import { LOAD_INITIAL_ACTOR_STATE, EDIT_ACTOR, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION, SET_THEATERS_INDEX} from '../actions/types'
 
 // export const initialState = {
 //
@@ -11,7 +11,8 @@ export const initialState = {
     newAuditionJournal: {},
     actorProfileForm: {},
     resumes: [],
-    auditionIndex: []
+    auditionIndex: [],
+    theatersIndex: []
   }
 
 // export const formInitialState = {
@@ -62,6 +63,12 @@ export const actorReducer = (state = initialState, action) => {
     return {
       ...state,
       currentAudition: action.payload.currentAudition
+    }
+
+    case SET_THEATERS_INDEX:
+    return {
+      ...state,
+      theatersIndex: action.payload.theatersIndex
     }
 
     // case SHOW_AUDITION:
