@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Audition from '../components/Audition.js'
 import { connect } from 'react-redux'
 import { loadAllAuditions } from '../actions/actions'
+import { Loader } from 'semantic-ui-react'
 
 
 
@@ -18,34 +19,10 @@ mappedAuditions = () => {
 
 filteredAuditions = () => {
   return this.props.auditionIndex.filter(audition => {
-    return !audition.attributes.actor_tryouts.map(actor => actor.id).includes(parseInt(this.props.currentActor.id))
+    return !audition.attributes.actor_tryouts.map(actor => actor.id).includes(parseInt(this.props.currentActor.id, 10))
   })
-    // console.log(audition.attributes.actors_submitted[0])
-    // if (audition.attributes.actors_submitted.length === 0) {
-    //   return <Audition key={audition.id} audition={audition}/>
-    // } else {
-    // return audition.attributes.actors_submitted.filter(act => {
-    //     // console.log(aud.id)
-    //     console.log(this.props.currentActor.id)
-    //     return act.id !== parseInt(this.props.currentActor.id)
-    //
-    //   })
-    //   console.log();
-    // }
 
 }
-  // this.props.auditionIndex.attributes.map(audition => {
-  //   var x = JSON.parse(JSON.stringify(audition.attributes.actors_submitted));
-  //
-  //     const y = x.filter(xyz => {
-  //       console.log(xyz.id);
-  //       return xyz.id === parseInt(this.props.currentActor.id)
-  //     })
-  //
-  //     console.log(y);
-
-  // })
-
 
 
 componentDidMount(){
@@ -56,8 +33,8 @@ componentDidMount(){
      console.log("Find Auditions");
      if (typeof this.props.appliedAuditions === 'undefined') {
        return (
-       <div>LOADING</div>
-      )
+         <div><Loader active inline='centered' /></div>
+       )
      } else {
           return (
              <div>

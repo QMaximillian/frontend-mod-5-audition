@@ -6,11 +6,10 @@ import { LOAD_INITIAL_ACTOR_STATE, EDIT_ACTOR, LOAD_AUDITION_JOURNALS, SET_AUDIT
 export const initialState = {
     currentActor: {},
     currentAudition: {},
-    confirmedAuditions: [],
+    tryouts: [],
     auditionJournals: [],
     newAuditionJournal: {},
-    actorProfileForm: {
-    },
+    actorProfileForm: {},
     resumes: [],
     auditionIndex: []
   }

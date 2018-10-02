@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { loadInitialActorState } from '../actions/actions'
 import '../Audition.css'
 
+
 class ActorHomeContainer extends Component {
 
     componentDidMount(){
@@ -25,6 +26,7 @@ class ActorHomeContainer extends Component {
           <div className="home-grid">
             <div className="sidebar"></div>
             <h1>Welcome to Audition</h1>
+            <ActorUpcomingAuditions />
           </div>
     )
 }

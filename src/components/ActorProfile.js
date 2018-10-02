@@ -2,14 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
-import { Loader, Form, Input, Select, Button, Dropdown } from 'semantic-ui-react'
+import { Loader, Form, Input, Select, Button } from 'semantic-ui-react'
 import '../Audition.css'
 
 
-const options = [
-  { text: 'True', value: true },
-  { text: 'False', value: false },
-]
 
 class ActorProfile extends Component {
 
@@ -64,8 +60,8 @@ class ActorProfile extends Component {
     )
 
   } else {
-
-    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity, city } = this.props.currentActor.attributes
+// city
+    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity,  } = this.props.currentActor.attributes
 
       return(
         <div className="profile-card">
