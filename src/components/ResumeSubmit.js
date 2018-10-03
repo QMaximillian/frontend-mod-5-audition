@@ -61,8 +61,8 @@ handleClick = (event) => {
      } else {
      return (
           <div className="card">
-            <div>
-              <label style={{textAlign: 'center'}}><br/>
+            <div style={{textAlign: 'center'}}>
+              <label><br/>
                 Add any performance, training, and skills information
               </label><br/>
               <Form centered>

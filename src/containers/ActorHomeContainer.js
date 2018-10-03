@@ -3,9 +3,22 @@ import ActorUpcomingAuditions from '../components/ActorUpcomingAuditions'
 import { connect } from 'react-redux'
 import { loadInitialActorState } from '../actions/actions'
 import '../Audition.css'
+import Search from '../components/Search'
+
 
 
 class ActorHomeContainer extends Component {
+
+
+  state = {
+    search: ''
+  }
+
+  handleChange = (event) => {
+      this.setState({
+        search: event.target.value
+      }, () => console.log(this.state.search))
+  }
 
     componentDidMount(){
       this.props.loadInitialActorState()
@@ -24,9 +37,12 @@ class ActorHomeContainer extends Component {
   render() {
     return(
           <div className="home-grid">
-            <div className="sidebar"></div>
+            <div className="sidebar" style={{textAlign: 'center'}}>
             <h1>Welcome to Audition</h1>
-            <ActorUpcomingAuditions />
+            <Search search={this.state.search}
+              handleChange={this.handleChange}/>
+            <ActorUpcomingAuditions search={this.state.search}/>
+            </div>
           </div>
     )
 }

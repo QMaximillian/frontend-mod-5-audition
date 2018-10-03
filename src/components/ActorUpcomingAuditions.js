@@ -9,7 +9,8 @@ class ActorUpcomingAuditions extends Component {
 
 filteredUpcoming = () => {
   return this.props.appliedAuditions.filter(audition => {
-      return new Date(audition.audition_date).getTime() > Date.now()
+
+      return new Date(audition.audition_date).getTime() > Date.now() && audition.show_name.match(this.props.search)
     })
   }
 

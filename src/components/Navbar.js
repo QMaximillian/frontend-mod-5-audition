@@ -16,13 +16,12 @@ handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 render(){
   const { activeItem } = this.state
 
-  return(
-
+  return (
     <Menu className="navbar">
       <Menu.Item
         as={ Link }
         name='Audition'
-        to='/home'
+        to='/'
         active={activeItem === 'home'} onClick={this.handleItemClick}>
       </Menu.Item>
       <Menu.Item
@@ -58,13 +57,13 @@ render(){
         active={activeItem === 'find-theaters'} onClick={this.handleItemClick}>
         Find Theaters
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         as={ Link }
         name='Sign Up'
         to='/sign-up'
         active={activeItem === 'sign-up'} onClick={this.handleItemClick}>
         Sign Up
-      </Menu.Item>
+      </Menu.Item> */}
 
       </Menu>
   )

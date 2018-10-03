@@ -12,13 +12,19 @@ class AuditionShow extends Component {
   }
 
      componentDidMount(){
-
+       if (this.props.match.params.auditionId) {
+       fetchGet('auditions', this.props.match.params.auditionId).then(audition => {
+         this.setState({
+            audition: audition.data.attributes
+         }, () => console.log(this.state.audition))
+       })
+     } else {
        fetchGet('auditions', this.props.match.params.id).then(audition => {
          this.setState({
             audition: audition.data.attributes
          }, () => console.log(this.state.audition))
        })
-
+     }
        // const audition = this.props.auditionIndex.find(audition => {
        //   return audition.id === this.props.match.params.id
        //   })

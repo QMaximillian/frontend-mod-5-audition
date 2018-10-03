@@ -23,16 +23,27 @@ class Audition extends Component {
            </span>
         </Link>
        )
+     } else if (this.props.parent === "Season") {
+       console.log(this.props);
+       return (
+         <Link to={`${this.props.match.params.seasonId}/auditions/${this.props.audition.id}`}>
+           <span
+             className="card"
+             onClick={this.handleClick}>
+               {this.props.audition.show_name}
+               {this.props.audition.location}
+           </span>
+        </Link>
+       )
      } else {
-     return (
-       <Link to={`/auditions/${this.props.audition.id}`}>
-      <div className='card'>
-        {this.props.audition.attributes.show_name}
-        {this.props.audition.attributes.audition_time}
-        {this.props.audition.attributes.location}
-      </div>
-      </Link>
-      )
+       return (
+         <Link to={`/auditions/${this.props.audition.id}`}>
+          <div className='card'>
+            {this.props.audition.attributes.show_name}<br /><br/>
+            {this.props.audition.attributes.location}
+          </div>
+        </Link>
+        )
     }
   }
 }

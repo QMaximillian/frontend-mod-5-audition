@@ -24,6 +24,7 @@ import 'semantic-ui-css/semantic.min.css'
 import './Audition.css'
 import TryoutShow from './components/TryoutShow'
 import TheatersContainer from './containers/TheatersContainer'
+import SeasonShow from './components/SeasonShow'
 
 
 const history = createBrowserHistory()
@@ -52,6 +53,7 @@ ReactDOM.render(
         <Navbar />
         <Switch>
           <Route exact path="/actor/audition-home/audition-journals/:id"/>
+          <Route exact path="/theater/:theaterId/season/:seasonId" component={SeasonShow}/>
           <Route exact path="/audition/:id/resume_submit" component={ResumeSubmit}/>
           <Route exact path="/my-auditions" component={MyAuditionsContainer}/>
           <Route exact path="/find-auditions" component={AllAuditionsContainer}/>
@@ -59,14 +61,14 @@ ReactDOM.render(
           <Route exact path="/tryout/:id" component={TryoutShow}/>
           {/* <Route exact path="/actor/audition-journals" component={AuditionJournal}/> */}
           <Route exact path="/actor/1" component={ActorProfile}/>
-          <Route exact path="/home" component={ActorHomeContainer}/>
-          <Route exact path="/" render={() => <Audition />} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/audition/:id/audition-confirmation" component={AuditionConfirmation} />
           <Route exact path="/" component={ActorHomeContainer} />
           <Route exact path="/find-theaters"
         component={TheatersContainer}/>
+          <Route exact path="/theater/:theaterId/season/:seasonId/auditions/:auditionId"
+        component={AuditionShow}/>
 
         </Switch>
       </div>

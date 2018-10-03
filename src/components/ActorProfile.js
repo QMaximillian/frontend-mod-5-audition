@@ -54,17 +54,16 @@ class ActorProfile extends Component {
     ]
 
   if (typeof this.props.currentActor.attributes === 'undefined') {
-
     return (
       <div><Loader active inline='centered' /></div>
     )
-
   } else {
 // city
-    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity,  } = this.props.currentActor.attributes
+    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity } = this.props.currentActor.attributes
 
       return(
         <div className="profile-card">
+          <div style={{textAlign: 'center'}}>
           <Form
             centered
             onSubmit={this.updateActor}>
@@ -146,8 +145,10 @@ class ActorProfile extends Component {
                 value={ethnicity}
                 label='Ethnicity'/>
             <br />
+
             <Button type="submit">Save</Button>
           </Form>
+          </div>
         </div>
       )
     }
