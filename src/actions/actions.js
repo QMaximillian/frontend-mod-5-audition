@@ -1,5 +1,5 @@
-import { fetchActor, fetchGet, fetchGetIndex, fetchTheaters, fetchSeasons, fetchSeason } from '../adapters/actorAdapter'
-import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION, SET_THEATERS_INDEX, SET_SEASONS_INDEX, SET_SEASON } from './types'
+import { fetchActor, fetchShow, fetchGet, fetchGetIndex, fetchTheaters, fetchSeasons, fetchSeason } from '../adapters/actorAdapter'
+import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION, SET_THEATERS_INDEX, SET_SEASONS_INDEX, SET_SEASON, SET_SHOW } from './types'
 
 // PUT MY AUDITIONS IN STORE
 //PUT AUDITIONS IN STORE
@@ -17,6 +17,23 @@ export const loadSeasons = () => {
     fetchSeasons().then(resp => {
       dispatch(setSeasons(resp.data))
     })
+  }
+}
+
+export const loadShow = (id) => {
+  return (dispatch) => {
+    fetchShow(id).then(resp => {
+      dispatch(setShow(resp.data))
+    })
+  }
+}
+
+export const setShow = (show) => {
+  return  {
+    type: SET_SHOW,
+    payload: {
+      show: show
+    }
   }
 }
 

@@ -98,7 +98,7 @@ class AuditionConfirmation extends Component {
       return (
         <div style={{textAlign: 'center'}} className="card" >
 
-        <div style={{textAlign: 'center'}}><br />
+        <div style={{textAlign: 'center', fontSize: '2em'}}><br />
           Audition Confirmation
         </div><br />
           <select

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Season from './Season'
 import Audition from './Audition'
+import PlayTab from './PlayTab'
+import '../Audition.css'
 
 
 export default class Theater extends Component {
@@ -15,12 +17,9 @@ export default class Theater extends Component {
     })
   }
 
-  mappedAuditions = () => {
-    return this.props.theater.attributes.get_auditions.map(audition => {
-      return <Audition
-        parent="Theater"
-        audition={audition}
-      />
+  mappedShows = () => {
+    return this.props.theater.attributes.get_shows.map(show => {
+      return <PlayTab theaterId={parseInt(this.props.theater.id)} seasonId={this.props.theater.attributes.seasons[0].id} parent="Theater" show={show} />
     })
   }
 
@@ -34,6 +33,8 @@ export default class Theater extends Component {
 
    render() {
      console.log(this.props)
+     console.log(parseInt(this.props.theater.id))
+     console.log(this.props.theater.attributes.seasons[0].id)
      return (
         <div
           className="card"
@@ -63,18 +64,16 @@ export default class Theater extends Component {
             </div>
           </div> */}
           <div>
-            <div>Seasons</div>
-            <div>
-            {this.mappedSeasons()}
+            <h1>Seasons</h1>
+              <div className="season-tab-container">
+                {this.mappedSeasons()}
+              </div>
           </div>
-          </div>
-          <div>
 
-          </div>
           <div>
-            <div>Auditions</div>
-            <div style={{float: "left", marginTop: '50px'}}>
-              {this.mappedAuditions()}
+            <h1>Shows</h1>
+            <div className="show-tab-container">
+              {this.mappedShows()}
             </div>
           </div>
         </div> : <div></div>}

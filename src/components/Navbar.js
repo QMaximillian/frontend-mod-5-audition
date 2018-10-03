@@ -17,7 +17,7 @@ render(){
   const { activeItem } = this.state
 
   return (
-    <Menu className="navbar">
+    <Menu textAlign="center" className="navbar">
       <Menu.Item
         as={ Link }
         name='Audition'
@@ -53,18 +53,10 @@ render(){
       <Menu.Item
         as={ Link }
         name='Find Theaters'
-        to='/find-theaters'
-        active={activeItem === 'find-theaters'} onClick={this.handleItemClick}>
+        to='/theaters'
+        active={activeItem === 'theaters'} onClick={this.handleItemClick}>
         Find Theaters
       </Menu.Item>
-      {/* <Menu.Item
-        as={ Link }
-        name='Sign Up'
-        to='/sign-up'
-        active={activeItem === 'sign-up'} onClick={this.handleItemClick}>
-        Sign Up
-      </Menu.Item> */}
-
       </Menu>
   )
  }

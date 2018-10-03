@@ -35,20 +35,22 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
 }
 
-body {
-  background-image: linear-gradient(to bottom right, red, yellow)
-  !important;
+.top-level {
+  background: linear-gradient(to bottom right, red, yellow);
   /* opacity: .7; */
   height: 100%;
+
   background-repeat: no-repeat;
+
   background-size: cover;
+
   background-attachment: fixed;
   margin: 0;
   font-family: 'Tw Cen MT';
 }
 
-body, html {
-  height: 100vh
+html {
+  height: 100%;
 }
 
 div#root {
@@ -58,7 +60,7 @@ div#root {
 
 .card-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 5rem;
   padding: 1rem;
   text-align: center;
@@ -73,7 +75,20 @@ div#root {
   background-color: aquamarine;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
   font-family: 'Tw Cen MT';
+  filter: alpha(opacity=100);
+}
 
+.play-tab-card {
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+  padding: 5rem;
+  opacity: 0.4;
+  background-color: aquamarine;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  font-family: 'Tw Cen MT';
+  margin-right: 10px;
+  height: 200px;
+  width: 200px;
   filter: alpha(opacity=100);
 }
 
@@ -144,4 +159,20 @@ div#root {
 
 .theater-button {
   margin: 50px;
+}
+
+.play-show-grid {
+  display: flex;
+}
+
+.play-show-item {
+  flex: 1;
+}
+
+.show-tab-container {
+    display: flex;
+}
+
+.season-tab-container {
+    display: flex;
 }

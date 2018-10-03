@@ -25,12 +25,7 @@ class AuditionShow extends Component {
          }, () => console.log(this.state.audition))
        })
      }
-       // const audition = this.props.auditionIndex.find(audition => {
-       //   return audition.id === this.props.match.params.id
-       //   })
-       //
-       //   console.log(audition);
-      }
+    }
 
 
 
@@ -39,10 +34,12 @@ class AuditionShow extends Component {
 render() {
   console.log(this.state.audition);
   const day = new Date(this.state.audition.begin_audition)
-
      return (
       <div className='card' style={{textAlign: 'center'}}>
-          {this.state.audition.show_name}<br/>
+          <div style={{fontSize: '2em'}}>
+            {this.state.audition.show_name}<br/>
+          </div>
+
           {this.state.audition.audition_information}<br/>
           {day.toUTCString().slice(0,16)}<br/>
           <Link to={`/audition/${this.props.match.params.id}/resume_submit`}>

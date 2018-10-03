@@ -2,6 +2,7 @@ const baseActorUrl = 'http://localhost:3001/api/v1/actors'
 const baseUrl = 'http://localhost:3001/api/v1/'
 const baseTheaterUrl = 'http://localhost:3001/api/v1/theaters'
 const baseSeasonUrl = 'http://localhost:3001/api/v1/seasons'
+const baseShowUrl = 'http://localhost:3001/api/v1/shows'
 
 export const fetchLoginActor = (actor) => {
   return fetch(`${baseUrl}login`, {
@@ -11,9 +12,14 @@ export const fetchLoginActor = (actor) => {
   }).then(resp => resp.json())
 }
 
+export const fetchShow = (id) => {
+  return fetch(`${baseShowUrl}/${id}`).then(resp => resp.json())
+}
+
 export const fetchSeasons = () => {
   return fetch(baseSeasonUrl).then(resp => resp.json())
 }
+
 
 export const fetchSeason = (id) => {
   return fetch(`${baseSeasonUrl}/${id}`).then(resp => resp.json())

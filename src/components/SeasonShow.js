@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { loadSeason } from '../actions/actions'
 import { fetchSeasons } from '../adapters/actorAdapter'
 import { connect } from 'react-redux'
-import Audition from './Audition'
+import PlayTab from './PlayTab'
 import { Loader } from 'semantic-ui-react'
 
 class SeasonShow extends Component {
@@ -17,9 +17,9 @@ class SeasonShow extends Component {
   }
 
 
-  mappedAuditions = () => {
-    return this.props.season.attributes.auditions.map(audition => {
-      return <Audition match={this.props.match} parent="Season" audition={audition}/>
+  mappedShows = () => {
+    return this.props.season.attributes.shows.map(show => {
+      return <PlayTab match={this.props.match} show={show}/>
     })
   }
 
@@ -28,19 +28,20 @@ class SeasonShow extends Component {
       return {
         clicked: !prevState.clicked
       }
-    }, () => console.log("Clicked"))
+    })
   }
 
 
    render() {
-     console.log(this.props)
      if (this.props.season.attributes) {
        return (
           <div onClick={this.handleClick} className="card">
             {this.props.season.attributes.season_name}
             {this.props.season.attributes.year}
             {this.props.season.attributes.season_description}
-            {this.state.clicked ? <div className="card-container">{this.mappedAuditions()}</div> : <div></div>}
+            {this.state.clicked ?
+              <div className="card-container">{this.mappedShows()}</div>
+               : <div></div>}
           </div>
        )
      } else {

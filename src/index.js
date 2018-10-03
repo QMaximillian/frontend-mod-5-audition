@@ -22,9 +22,11 @@ import ResumeSubmit from './components/ResumeSubmit'
 import AllAuditionsContainer from './containers/AllAuditionsContainer'
 import 'semantic-ui-css/semantic.min.css'
 import './Audition.css'
+import './index.css'
 import TryoutShow from './components/TryoutShow'
 import TheatersContainer from './containers/TheatersContainer'
 import SeasonShow from './components/SeasonShow'
+import PlayShow from './components/PlayShow'
 
 
 const history = createBrowserHistory()
@@ -49,7 +51,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <div className="top-level">
         <Navbar />
         <Switch>
           <Route exact path="/actor/audition-home/audition-journals/:id"/>
@@ -65,11 +67,10 @@ ReactDOM.render(
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/audition/:id/audition-confirmation" component={AuditionConfirmation} />
           <Route exact path="/" component={ActorHomeContainer} />
-          <Route exact path="/find-theaters"
+          <Route exact path="/theaters"
         component={TheatersContainer}/>
-          <Route exact path="/theater/:theaterId/season/:seasonId/auditions/:auditionId"
-        component={AuditionShow}/>
-
+          <Route exact path="/theater/:theaterId/season/:seasonId/show/:showId"
+        component={PlayShow}/>
         </Switch>
       </div>
     </ConnectedRouter>

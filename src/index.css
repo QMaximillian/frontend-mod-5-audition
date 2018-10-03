@@ -3,3 +3,21 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+html {
+  background: linear-gradient(to bottom right, red, yellow);
+  /* opacity: .7; */
+  height: 100%;
+
+  background-repeat: no-repeat;
+
+  background-size: cover;
+
+  background-attachment: fixed;
+  margin: 0;
+  font-family: 'Tw Cen MT';
+}
+/* 
+.top-level {
+
+} */

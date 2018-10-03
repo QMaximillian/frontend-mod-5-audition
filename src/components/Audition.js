@@ -19,7 +19,7 @@ class Audition extends Component {
              className="card-no-hover"
              onClick={this.handleClick}>
                {this.props.audition.show_name}
-               {this.props.audition.location}
+               {this.props.audition.state}
            </span>
         </Link>
        )
@@ -31,7 +31,7 @@ class Audition extends Component {
              className="card"
              onClick={this.handleClick}>
                {this.props.audition.show_name}
-               {this.props.audition.location}
+               {this.props.audition.state}
            </span>
         </Link>
        )
@@ -40,7 +40,7 @@ class Audition extends Component {
          <Link to={`/auditions/${this.props.audition.id}`}>
           <div className='card'>
             {this.props.audition.attributes.show_name}<br /><br/>
-            {this.props.audition.attributes.location}
+            {this.props.audition.attributes.state}
           </div>
         </Link>
         )
