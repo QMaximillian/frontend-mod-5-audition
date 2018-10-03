@@ -1,3 +1,12 @@
+
+
+@font-face {
+  font-family: "Tw Cen MT";
+  font-style: normal;
+  font-weight: 800;
+  src: local("Tw Cen MT"), url('./fonts/Tw-Cen-MT.ttf') format('ttf')
+}
+
 .navbar {
   display: flex;
   justify-content: space-evenly;
@@ -30,10 +39,12 @@ body {
   background-image: linear-gradient(to bottom right, red, yellow)
   !important;
   /* opacity: .7; */
-  height: 100vh;
+  height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-
+  background-attachment: fixed;
+  margin: 0;
+  font-family: 'Tw Cen MT';
 }
 
 body, html {
@@ -51,6 +62,7 @@ div#root {
   grid-gap: 5rem;
   padding: 1rem;
   text-align: center;
+  font-family: 'Tw Cen MT';
 }
 
 .card {
@@ -60,7 +72,20 @@ div#root {
   opacity: 0.4;
   background-color: aquamarine;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  font-family: 'Tw Cen MT';
 
+  filter: alpha(opacity=100);
+}
+
+.card-no-hover {
+  width: 200px;
+  height: 150px;
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+  padding: 5rem;
+  background-color: aquamarine;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  font-family: 'Tw Cen MT';
   filter: alpha(opacity=100);
 }
 
@@ -88,6 +113,7 @@ div#root {
   opacity: 1.0;
   background-color: aquamarine;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  /* font-family: 'Tw Cen MT'; */
 
   filter: alpha(opacity=100);
 }
@@ -95,4 +121,27 @@ div#root {
 .card:hover {
   opacity: 1.0;
   filter: alpha(opacity=100);
+}
+
+.flex-grid {
+  display: flex;
+}
+
+.theater-logo {
+  flex: 1 1 0;
+  flex-direction: column;
+}
+
+.grid-fourth {
+  flex: 1 0 0;
+  flex-direction: row;
+}
+
+.theater-links {
+  display: flex;
+  justify-content: center;
+}
+
+.theater-button {
+  margin: 50px;
 }

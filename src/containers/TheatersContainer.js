@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadTheaters } from '../actions/actions'
+import Theater from '../components/Theater'
+import '../Audition.css'
 
 class TheatersContainer extends Component {
 
@@ -8,11 +10,17 @@ class TheatersContainer extends Component {
     this.props.loadTheaters()
   }
 
+  mappedTheaters = () => {
+    return this.props.theatersIndex.map(theater => {
+      return <Theater theater={theater}/>
+    })
+  }
+
    render() {
      console.log(this.props.theatersIndex)
      return (
         <div>
-          TheatersContainer
+          {this.mappedTheaters()}
         </div>
      )
    }
