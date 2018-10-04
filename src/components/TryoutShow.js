@@ -6,13 +6,13 @@ class TryoutShow extends Component {
 
     componentDidMount(){
       this.props.loadTryout(this.props.match.params.id)
-      this.props.loadAudition(this.props.match.params.id)
+
     }
 
      render() {
 
        console.log(this.props)
-       if (this.props.tryout.attributes && this.props.audition.attributes) {
+       if (this.props.audition.attributes) {
        return (
           <div className="tryout-show-grid profile-card">
             <div>
@@ -45,4 +45,4 @@ class TryoutShow extends Component {
    }
  }
 
- export default connect(state => ({ tryout: state.tryout, audition: state.audition }), { loadTryout, loadAudition })(TryoutShow)
+ export default connect(state => ({ tryout: state.tryout, audition: state.audition, currentActor: state.currentActor }), { loadTryout, loadAudition })(TryoutShow)

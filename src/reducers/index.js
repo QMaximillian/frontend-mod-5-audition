@@ -15,7 +15,7 @@ export const initialState = {
     season: [],
     show: [],
     tryout: [],
-    audition: []
+    audition: {}
   }
 
 
@@ -34,9 +34,12 @@ export const actorReducer = (state = initialState, action) => {
     }
 
     case SET_AUDITION:
+    console.log("Me", action.payload.audition)
     return {
       ...state,
-      audition: action.payload.audition
+      audition: [
+        ...state.audition, action.payload.audition
+      ]
     }
 
     case SET_SHOW:

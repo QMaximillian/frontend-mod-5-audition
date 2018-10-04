@@ -4,15 +4,20 @@ import { connect } from 'react-redux'
 import { Loader } from 'semantic-ui-react'
 import "../Audition.css"
 import Search from '../components/Search'
+import { loadAudition } from '../actions/actions'
 
 
 class MyAuditionsContainer extends Component {
 
 
+  // componentDidMount(){
+  //   this.props.loadActor(t)
+  // }
 
 mappedAuditions = () => {
-  return this.props.appliedAuditions.map(audition => {
-    return <MyAudition key={audition.id} audition={audition} />
+  return this.props.tryouts.map(tryout => {
+    console.log(tryout)
+    return <MyAudition key={tryout.id} tryout={tryout}/>
   })
 }
 
@@ -44,4 +49,4 @@ mappedAuditions = () => {
  }
 
 
- export default connect(state => ({ appliedAuditions: state.appliedAuditions, tryouts: state.tryouts, currentActor: state.currentActor }))(MyAuditionsContainer)
+ export default connect(state => ({ audition: state.audition, appliedAuditions: state.appliedAuditions, tryouts: state.tryouts, currentActor: state.currentActor }), { loadAudition })(MyAuditionsContainer)

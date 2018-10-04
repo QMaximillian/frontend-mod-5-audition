@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { fetchGet, fetchPostTryout } from '../adapters/actorAdapter'
 import { Link } from 'react-router-dom'
 import { Loader, Button } from 'semantic-ui-react'
+import { loadAudition } from '../actions/actions'
+import { connect } from 'react-redux'
+
 class AuditionConfirmation extends Component {
 
 
@@ -16,6 +19,7 @@ class AuditionConfirmation extends Component {
       confirmedAudition: resp.data.attributes
     })
   )
+    this.props.loadAudition(this.props.match.params.id)
   }
 
   handleTimeChange = (event) => {
@@ -25,7 +29,7 @@ class AuditionConfirmation extends Component {
   }
 
   handleTryoutPost = (event) => {
-    fetchPostTryout({actor_id: 1, audition_id: this.props.match.params.id, audition_time: this.state.confirmedTime, location: this.state.confirmedAudition.location, starred: false, callback: false, cast: false})
+    fetchPostTryout({audition_name: this.props.audition.show_name,actor_id: 1, audition_id: this.props.match.params.id, audition_time: this.state.confirmedTime, location: this.state.confirmedAudition.location, starred: false, callback: false, cast: false})
 
 
     this.setState({
@@ -77,13 +81,15 @@ class AuditionConfirmation extends Component {
 
 
   render() {
+
     if (typeof this.state.confirmedAudition.begin_audition === 'undefined') {
       return (
         <div><Loader active inline='centered' /></div>
       )
-    } else {
+    } else if (this.props.audition[0] !== 'undefined'){
       return (
         <div style={{textAlign: 'center'}} className="card" >
+          {console.log(this.props.audition[0])}
           <div>
         <div style={{textAlign: 'center', fontSize: '2em'}}>
           Audition Confirmation
@@ -110,4 +116,4 @@ class AuditionConfirmation extends Component {
   }
 }
 
-export default AuditionConfirmation
+export default connect(state => ({ audition: state.audition }), { loadAudition })(AuditionConfirmation)
