@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { loadShow } from '../actions/actions'
 import { connect } from 'react-redux'
 import { Loader, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+
 class PlayShow extends Component {
 
   componentDidMount(){
@@ -21,9 +23,11 @@ class PlayShow extends Component {
             <div
               className="play-show-item" style={{textAlign: 'left', fontSize: '2em', paddingBottom: '30px'}}>
               {show.attributes.show_name}
-              <Button style={{float: 'right'}}>
-                Submit for this Audition
-              </Button>
+              {/* <Link to={`audition/${this.props.match.params.showId}/resume_submit`}>
+                <Button style={{float: 'right'}}>
+                  Submit for this Audition
+                </Button>
+              </Link> */}
             </div>
           </div>
             <div style={{textDecoration: 'underline', fontSize: '1em'}}>

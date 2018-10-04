@@ -37,9 +37,7 @@ export const actorReducer = (state = initialState, action) => {
     console.log("Me", action.payload.audition)
     return {
       ...state,
-      audition: [
-        ...state.audition, action.payload.audition
-      ]
+      audition: action.payload.audition
     }
 
     case SET_SHOW:

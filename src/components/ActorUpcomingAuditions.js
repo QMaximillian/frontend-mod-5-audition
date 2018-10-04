@@ -26,13 +26,14 @@ filteredUpcoming = () => {
 
   mappedPastAuditions = () => {
     return this.filteredPast().map(audition => {
+      console.log(audition);
       return <AuditionTab audition={audition} />
     })
   }
 
 
   render(){
-    console.log(this.props.tryouts);
+    console.log(this.props);
     if (this.props.appliedAuditions === undefined) {
       return (
         <div>
@@ -64,6 +65,11 @@ filteredUpcoming = () => {
             Tryout Location
           </h3>
         </th>
+        <th>
+          <h3 className="ui center aligned header">
+            Day
+          </h3>
+        </th>
       </tr>
         {this.mappedFutureAuditions()}
       </tbody>
@@ -84,6 +90,11 @@ filteredUpcoming = () => {
         <th>
           <h3 className="ui center aligned header">
             Tryout Location
+          </h3>
+        </th>
+        <th>
+          <h3 className="ui center aligned header">
+            Day
           </h3>
         </th>
       </tr>

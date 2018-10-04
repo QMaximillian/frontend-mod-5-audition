@@ -141,8 +141,8 @@ export const setAuditionsIndex = (auditions) => {
 export const loadAudition = (id, callback=null) => {
   return (dispatch) => {
     fetchAudition(id).then(resp => {
-      dispatch(setAudition(resp.data.attributes))
-    }).then(callback)
+      dispatch(setAudition(resp.data))
+    })
   }
 }
 

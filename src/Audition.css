@@ -109,7 +109,6 @@ div#root {
 .play-tab-card-1 {
   border: 2px solid #e7e7e7;
   border-radius: 4px;
-  padding: 5rem;
   opacity: 1.0;
   background-color: aquamarine;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
@@ -117,6 +116,8 @@ div#root {
   height: 200px;
   width: 200px;
   filter: alpha(opacity=100);
+  display: flex;
+  align-items: center;
 }
 
 .card-no-hover {
