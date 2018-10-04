@@ -43,15 +43,32 @@ export default class Theater extends Component {
             <img className="theater-logo" src={this.props.theater.attributes.img_link}/>
             {this.state.clicked ?
               <div>
+            <div>
               <div className="grid-fourth">
-                <label>About Us</label>
+                <div>
+                  <label style={{fontSize: '2rem', textDecoration: "underline"}}>Theater</label>
+                </div>
+                <div> {this.props.theater.attributes.theater_name}
+                </div>
               </div>
 
-            <div className="flex-grid">
-            <div className="grid-fourth" style={{alignItems: "center"}}>{this.props.theater.attributes.theater_name}</div>
-            <div className="grid-fourth"> {this.props.theater.attributes.theater_location}</div>
 
-            <div className="grid-fourth">{this.props.theater.attributes.theater_information}</div>
+            <div className="grid-fourth">
+              <div>
+                <label style={{fontSize: '2rem', textDecoration: "underline"}}>Location</label>
+              </div>
+              <div> {this.props.theater.attributes.theater_location}
+              </div>
+            </div>
+
+            <div className="grid-fourth">
+              <div>
+                <label style={{fontSize: '2rem', textDecoration: "underline"}}>Theater Information</label>
+              </div>
+              <div> {this.props.theater.attributes.theater_information}
+              </div>
+            </div>
+
             <div className="grid-fourth">{this.props.theater.attributes.theater_mission}</div>
 
           </div>

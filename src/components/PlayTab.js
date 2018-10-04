@@ -7,7 +7,7 @@ const PlayTab = (props) => {
   if (props.parent === "Theater") {
     return (
       <Link to={`theater/${props.theaterId}/season/${props.seasonId}/show/${props.show.id}`}>
-        <div className="play-tab-card">
+        <div className="card-no-hover">
           {props.show.show_name}
         </div>
        </Link>

@@ -39,7 +39,6 @@ componentDidMount(){
           return (
              <div>
                <section className='card-container'>
-               {/* {this.mappedAuditions()} */}
                {this.mappedAuditions()}
                </section>
              </div>

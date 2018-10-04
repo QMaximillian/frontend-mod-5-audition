@@ -33,7 +33,9 @@ componentDidMount(){
       } else {
        return (
          <div>
-         {this.props.currentActor.attributes.first_name}'s Auditions
+           <div style={{textAlign: "center", fontSize: "2em"}}>
+           {this.props.currentActor.attributes.first_name}'s Auditions
+          </div>
           <div className="card-container">
             {this.mappedAuditions()}
           </div>

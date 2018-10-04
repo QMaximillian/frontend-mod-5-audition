@@ -38,9 +38,16 @@ class Audition extends Component {
      } else {
        return (
          <Link to={`/auditions/${this.props.audition.id}`}>
-          <div className='card'>
-            {this.props.audition.attributes.show_name}<br /><br/>
-            {this.props.audition.attributes.state}
+          <div className='card-no-hover'>
+            <div style={{position: 'relative', top: '50%',
+              transform: 'translateY(-50%)'}}>
+              <div>
+              {this.props.audition.attributes.show_name}
+              </div>
+              <div>
+              {/* {this.props.audition.attributes.state} */}
+              </div>
+            </div>
           </div>
         </Link>
         )

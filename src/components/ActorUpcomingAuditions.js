@@ -10,7 +10,7 @@ class ActorUpcomingAuditions extends Component {
 filteredUpcoming = () => {
   return this.props.appliedAuditions.filter(audition => {
 
-      return new Date(audition.audition_date).getTime() > Date.now() && audition.show_name.match(this.props.search)
+      return new Date(audition.audition_date).getTime() > Date.now() && audition.show_name.toLowerCase().match(this.props.search.toLowerCase())
     })
   }
 
@@ -37,10 +37,29 @@ filteredUpcoming = () => {
       )
     } else {
       return (
-        <div>
+        <div style={{transform: 'scale(0.8, 0.8)'}}><br />
+          <div style={{fontSize: '2rem'}}>
           Upcoming Auditions
+          </div>
+
+          <table className="ui celled striped padded table">
+      <tbody>
+        <tr>
+          <th>
+            <h3 className="ui center aligned header">
+              Show
+            </h3>
+          </th>
+          <th>
+            <h3 className="ui center aligned header">
+              Tryout Location
+            </h3>
+          </th>
+        </tr>
           {this.mappedAuditions()}
-        </div>
+        </tbody>
+        </table>
+      </div>
       )
     }
   }

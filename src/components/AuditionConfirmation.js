@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import { fetchGet, fetchPostTryout } from '../adapters/actorAdapter'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { Loader, Button } from 'semantic-ui-react'
 class AuditionConfirmation extends Component {
-
-
-  // Gotta take the audition time selected out of the array for this specific show
-
-  //Gotta prevent a user from submitting for multiple shows
-
-  //Gotta remove the show from being able to be selected for an audition from the user
 
 
   state = {
@@ -32,10 +25,9 @@ class AuditionConfirmation extends Component {
   }
 
   handleTryoutPost = (event) => {
-    fetchPostTryout({actor_id: 1, audition_id: this.props.match.params.id, audition_time: this.state.confirmedTime, city: this.state.confirmedAudition.location, starred: false, callback: false, cast: false}).then(console.log)
+    fetchPostTryout({actor_id: 1, audition_id: this.props.match.params.id, audition_time: this.state.confirmedTime, city: this.state.confirmedAudition.location, starred: false, callback: false, cast: false})
 
 
-    console.log(this.state.confirmedTime)
     this.setState({
       redirect: true
     })
@@ -85,35 +77,34 @@ class AuditionConfirmation extends Component {
 
 
   render() {
-
-
-    if (this.state.redirect) {
-      return <Redirect to='/home'/>
-    } else if (typeof this.state.confirmedAudition.begin_audition === 'undefined') {
+    if (typeof this.state.confirmedAudition.begin_audition === 'undefined') {
       return (
         <div><Loader active inline='centered' /></div>
       )
     } else {
-        // console.log(this.state.confirmedTime)
       return (
         <div style={{textAlign: 'center'}} className="card" >
-
-        <div style={{textAlign: 'center', fontSize: '2em'}}><br />
+          <div>
+        <div style={{textAlign: 'center', fontSize: '2em'}}>
           Audition Confirmation
         </div><br />
-          <select
-            onChange={this.handleTimeChange}
-            value={this.state.confirmedTime}>
-            {this.getDateHours()}
-          </select>
-
-        <Button
-          onClick={this.handleTryoutPost}
-          type="submit">Submit
-        </Button>
-
-
+          <div>
+            <select
+              onChange={this.handleTimeChange}
+              value={this.state.confirmedTime}>
+              {this.getDateHours()}
+            </select>
+          </div><br />
+          <Link to={`/audition/${this.props.match.params.id}/audition-confirmation/confirmed`}>
+            <div>
+              <Button
+                onClick={this.handleTryoutPost}
+                type="submit">Submit
+              </Button>
+            </div>
+          </Link>
         </div>
+      </div>
       )
     }
   }

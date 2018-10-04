@@ -27,6 +27,7 @@ import TryoutShow from './components/TryoutShow'
 import TheatersContainer from './containers/TheatersContainer'
 import SeasonShow from './components/SeasonShow'
 import PlayShow from './components/PlayShow'
+import AuditionConfirmed from './components/AuditionConfirmed'
 
 
 const history = createBrowserHistory()
@@ -71,6 +72,10 @@ ReactDOM.render(
         component={TheatersContainer}/>
           <Route exact path="/theater/:theaterId/season/:seasonId/show/:showId"
         component={PlayShow}/>
+          <Route exact path="/audition/:id/audition-confirmation/confirmed"
+        component={AuditionConfirmed}/>
+          <Route exact path="/my-auditions/tryouts/:id"
+        component={TryoutShow}/>
         </Switch>
       </div>
     </ConnectedRouter>

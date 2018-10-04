@@ -3,6 +3,7 @@ const baseUrl = 'http://localhost:3001/api/v1/'
 const baseTheaterUrl = 'http://localhost:3001/api/v1/theaters'
 const baseSeasonUrl = 'http://localhost:3001/api/v1/seasons'
 const baseShowUrl = 'http://localhost:3001/api/v1/shows'
+const baseTryoutUrl = 'http://localhost:3001/api/v1/tryouts'
 
 export const fetchLoginActor = (actor) => {
   return fetch(`${baseUrl}login`, {
@@ -10,6 +11,10 @@ export const fetchLoginActor = (actor) => {
     headers: headers(),
     body: JSON.stringify({ actor })
   }).then(resp => resp.json())
+}
+
+export const fetchTryout = (id) => {
+  return fetch(`${baseTryoutUrl}/${id}`).then(resp => resp.json())
 }
 
 export const fetchShow = (id) => {
@@ -53,13 +58,8 @@ export const fetchPostTryout = (body) => {
     body: JSON.stringify(body)
   }).then(resp => resp.json())
 }
-// export const fetchPost = (route) => {
-//   return fetch(`${baseUrl}${route}`, {
-//
-//   }
-//
-//   ).then(resp => resp.json()).then(console.log)
-// }
+
+
 
 
 

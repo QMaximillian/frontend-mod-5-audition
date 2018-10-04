@@ -71,7 +71,29 @@ div#root {
   border: 2px solid #e7e7e7;
   border-radius: 4px;
   padding: 5rem;
-  opacity: 0.4;
+  opacity: 1.0;
+  background-color: aquamarine;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  font-family: 'Tw Cen MT';
+  filter: alpha(opacity=100);
+}
+
+.tab-card {
+  height: 70px;
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+  opacity: 1.0;
+  background-color: aquamarine;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  font-family: 'Tw Cen MT';
+  filter: alpha(opacity=100);
+}
+
+.theater-card {
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+  padding: 5rem;
+  opacity: 1.0;
   background-color: aquamarine;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
   font-family: 'Tw Cen MT';
@@ -93,14 +115,14 @@ div#root {
 }
 
 .card-no-hover {
-  width: 200px;
-  height: 150px;
   border: 2px solid #e7e7e7;
   border-radius: 4px;
   padding: 5rem;
   background-color: aquamarine;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-  font-family: 'Tw Cen MT';
+  margin-right: 10px;
+  height: 200px;
+  width: 200px;
   filter: alpha(opacity=100);
 }
 
@@ -149,7 +171,7 @@ div#root {
 
 .grid-fourth {
   flex: 1 0 0;
-  flex-direction: row;
+  display: flex;
 }
 
 .theater-links {
@@ -175,4 +197,15 @@ div#root {
 
 .season-tab-container {
     display: flex;
+}
+
+.split {
+  margin-top: 200px;
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  display: inline-block;
+
 }

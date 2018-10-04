@@ -17,21 +17,11 @@ class ActorHomeContainer extends Component {
   handleChange = (event) => {
       this.setState({
         search: event.target.value
-      }, () => console.log(this.state.search))
+      })
   }
 
     componentDidMount(){
       this.props.loadInitialActorState()
-
-      // PUT MY AUDITIONS IN STORE
-      // PUT AUDITIONS IN STORE
-      // PUT RESUMES IN STORE
-      // PUT MY RESUMES IN STORE
-      // PUT MY AUDITION_JOURNALS IN STORE
-      // PUT MY APPLIED TRYOUTS IN STORE
-      // PUT MY TRYOUT AUDITIONS IN STORE
-      // PUT RESUMES IN STORE
-      // PUT MY DEFAULT RESUME IN STORE
     }
 
   render() {
