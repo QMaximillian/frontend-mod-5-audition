@@ -15,7 +15,7 @@ class TryoutShow extends Component {
        if (this.props.tryout.attributes && this.props.audition.attributes) {
        return (
           <div className="tryout-show-grid profile-card">
-            <div>
+            <div style={{textAlign: 'center'}}>
               <h1 >{this.props.audition.attributes.show_name}
               </h1>
             </div>
