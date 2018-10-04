@@ -12,18 +12,13 @@ class MyAudition extends Component {
    render() {
      console.log(this.props)
      return (
-       <div>
-        <div className="card-container">
          <Link to={`/my-auditions/tryouts/${this.props.audition.id}`}>
-        <div className="card">
+        <div className="play-tab-card-1">
 
           <div>{this.props.audition.show_name}</div>
 
         </div>
         </Link>
-      </div>
-
-    </div>
      )
    }
  };

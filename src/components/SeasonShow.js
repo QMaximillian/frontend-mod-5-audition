@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { loadSeason } from '../actions/actions'
-import { fetchSeasons } from '../adapters/actorAdapter'
 import { connect } from 'react-redux'
 import PlayTab from './PlayTab'
 import { Loader } from 'semantic-ui-react'

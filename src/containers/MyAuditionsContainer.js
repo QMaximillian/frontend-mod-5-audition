@@ -3,6 +3,7 @@ import MyAudition from '../components/MyAudition.js'
 import { connect } from 'react-redux'
 import { Loader } from 'semantic-ui-react'
 import "../Audition.css"
+import Search from '../components/Search'
 
 
 class MyAuditionsContainer extends Component {
@@ -15,9 +16,6 @@ mappedAuditions = () => {
   })
 }
 
-componentDidMount(){
-    console.log(this.props);
-}
 
    render() {
       if (typeof this.props.appliedAuditions === 'undefined') {
@@ -26,9 +24,9 @@ componentDidMount(){
         )
       } else if (this.props.appliedAuditions.length === 0) {
         return(
-          <div>
+          <h1 style={{textAlign: 'center', fontSize: '2rem'}}>
             {this.props.currentActor.attributes.first_name} has no auditions
-          </div>
+          </h1>
         )
       } else {
        return (
@@ -39,7 +37,7 @@ componentDidMount(){
           <div className="card-container">
             {this.mappedAuditions()}
           </div>
-        </div>
+          </div>
        )
      }
    }

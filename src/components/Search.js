@@ -8,7 +8,8 @@ export default class Search extends Component {
    render() {
      return (
         <div>
-          <Input
+          <Input style={{width: "300px"}}
+            placeholder="Search for your upcoming auditions..."
             onChange={this.props.handleChange}
             value={this.props.search}>
           </Input>

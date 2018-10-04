@@ -15,9 +15,15 @@ html {
 
   background-attachment: fixed;
   margin: 0;
-  font-family: 'Tw Cen MT';
+  font-family: 'Helvetica Neue'
 }
-/* 
+
+@font-face {
+  font-family: 'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-style: normal;
+  font-weight: 800;
+}
+/*
 .top-level {
 
 } */

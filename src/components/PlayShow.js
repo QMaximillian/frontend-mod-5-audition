@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { fetchShow } from '../adapters/actorAdapter'
 import { loadShow } from '../actions/actions'
 import { connect } from 'react-redux'
-import { Loader } from 'semantic-ui-react'
+import { Loader, Button } from 'semantic-ui-react'
 class PlayShow extends Component {
 
   componentDidMount(){
@@ -17,11 +16,16 @@ class PlayShow extends Component {
      const { show } = this.props
      if (show.attributes) {
        return (
-          <div className="play-show-grid profile-card">
+          <div className="tryout-show-grid profile-card">
+          <div>
             <div
-              className="play-show-item" style={{textAlign: 'left', fontSize: '2em'}}>
+              className="play-show-item" style={{textAlign: 'left', fontSize: '2em', paddingBottom: '30px'}}>
               {show.attributes.show_name}
+              <Button style={{float: 'right'}}>
+                Submit for this Audition
+              </Button>
             </div>
+          </div>
             <div style={{textDecoration: 'underline', fontSize: '1em'}}>
               Description
             </div>

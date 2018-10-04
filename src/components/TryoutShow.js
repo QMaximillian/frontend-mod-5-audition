@@ -1,19 +1,38 @@
 import React, { Component } from 'react'
-import { loadTryout } from '../actions/actions'
+import { loadTryout, loadAudition } from '../actions/actions'
 import { connect } from 'react-redux'
 
 class TryoutShow extends Component {
 
     componentDidMount(){
       this.props.loadTryout(this.props.match.params.id)
+      this.props.loadAudition(this.props.match.params.id)
     }
 
      render() {
-       console.log(this.props.tryout.attributes);
-       if (this.props.tryout.attributes) {
+
+       console.log(this.props)
+       if (this.props.tryout.attributes && this.props.audition.attributes) {
        return (
-          <div className="play-show-grid profile-card">
-            TryoutShow
+          <div className="tryout-show-grid profile-card">
+            <div>
+              <h1 >{this.props.audition.attributes.show_name}
+              </h1>
+            </div>
+            <div>
+            <hr style={{color: 'black', width: 500, height: 10, zIndex: 1}} />
+            </div>
+
+              <h1>{this.props.audition.attributes.audition_date}</h1>
+
+            <div>
+              <h1>{this.props.audition.attributes.audition_information}</h1>
+            </div>
+              <h1>{this.props.audition.attributes.state}</h1>
+            <div>
+              <h1>{this.props.audition.attributes.location}</h1>
+            </div>
+              <h1>{new Date(this.props.tryout.attributes.audition_time).toUTCString().slice(0, 22)}</h1>
           </div>
        )
      } else {
@@ -26,4 +45,4 @@ class TryoutShow extends Component {
    }
  }
 
- export default connect(state => ({ tryout: state.tryout }), { loadTryout })(TryoutShow)
+ export default connect(state => ({ tryout: state.tryout, audition: state.audition }), { loadTryout, loadAudition })(TryoutShow)

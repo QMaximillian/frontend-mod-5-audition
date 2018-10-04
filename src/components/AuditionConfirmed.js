@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 
-const AuditionConfirmed = (props) => {
+class AuditionConfirmed extends Component {
+
+
+
+  render() {
   return(
     <div>
-      <div>
-        Audition Confirmed
+      <div className="profile-card">
+        <h1 style={{textAlign: 'center'}}>Audition Confirmed</h1>
       </div>
     </div>
   )
+}
 }
 
 export default AuditionConfirmed

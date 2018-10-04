@@ -9,7 +9,9 @@ import '../Audition.css'
 
 class ActorProfile extends Component {
 
-
+  state = {
+    success: false
+  }
   componentDidMount() {
     this.props.loadInitialActorState()
   }
@@ -28,6 +30,10 @@ class ActorProfile extends Component {
     }
   }
 
+  saveAlert = () => {
+
+  }
+
 
 
   updateActor = (event) => {
@@ -35,7 +41,13 @@ class ActorProfile extends Component {
 
     const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity, city } = this.props.currentActor.attributes
 
-      fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, ethnicity: ethnicity, city: city }).then(data => console.log(data))
+      fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, ethnicity: ethnicity, city: city }).then(
+        this.setState(prevState => {
+          return {
+            success: true
+          }
+        })
+      )
     }
 
 
@@ -63,11 +75,14 @@ class ActorProfile extends Component {
 
       return(
         <div className="profile-card">
-          <div style={{textAlign: 'center'}}>
+          <div style={{textAlign: 'center', fontSize: '2rem'}}>
+            {first_name}'s Profile
+          </div><br />
+          <div style={{display: 'inline-block'}} style={{textAlign: 'center'}}>
           <Form
             centered
             onSubmit={this.updateActor}>
-
+              <div>
             <Form.Field
               control={Input}
               width={4}
@@ -77,6 +92,7 @@ class ActorProfile extends Component {
               color="orange"
               label='First Name'/>
 
+
             <Form.Field
               control={Input}
               width={4}
@@ -84,10 +100,11 @@ class ActorProfile extends Component {
               onChange={this.handleChange}
               value={last_name}
               label='Last Name'/>
+              </div>
 
             <Form.Field
               control={Input}
-              width={4}
+              width={6}
               name="email"
               onChange={this.handleChange}
               value={email}
@@ -149,6 +166,7 @@ class ActorProfile extends Component {
             <Button type="submit">Save</Button>
           </Form>
           </div>
+          {this.state.success ? <div>Success</div> : <div>Not Success</div>}
         </div>
       )
     }

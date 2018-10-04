@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Season from './Season'
-import Audition from './Audition'
 import PlayTab from './PlayTab'
 import '../Audition.css'
 
@@ -19,7 +18,7 @@ export default class Theater extends Component {
 
   mappedShows = () => {
     return this.props.theater.attributes.get_shows.map(show => {
-      return <PlayTab theaterId={parseInt(this.props.theater.id)} seasonId={this.props.theater.attributes.seasons[0].id} parent="Theater" show={show} />
+      return <PlayTab theaterId={parseInt(this.props.theater.id, 10)} seasonId={this.props.theater.attributes.seasons[0].id} parent="Theater" show={show} />
     })
   }
 
@@ -32,15 +31,12 @@ export default class Theater extends Component {
   }
 
    render() {
-     console.log(this.props)
-     console.log(parseInt(this.props.theater.id))
-     console.log(this.props.theater.attributes.seasons[0].id)
      return (
         <div
           className="card"
           onClick={this.handleClick}
           style={{marginBottom: "10px"}}>
-            <img className="theater-logo" src={this.props.theater.attributes.img_link}/>
+            <img alt="Logo for theater" className="theater-logo" src={this.props.theater.attributes.img_link}/>
             {this.state.clicked ?
               <div>
             <div>
@@ -85,7 +81,7 @@ export default class Theater extends Component {
               <div className="season-tab-container">
                 {this.mappedSeasons()}
               </div>
-          </div>
+          </div><br />
 
           <div>
             <h1>Shows</h1>

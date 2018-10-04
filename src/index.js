@@ -10,7 +10,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { actorReducer, initialState } from './reducers/index'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
-import Audition from './Audition'
+
 import ActorHomeContainer from './containers/ActorHomeContainer'
 // import AuditionJournal from './components/AuditionJournal'
 import SignUp from './components/SignUp'
