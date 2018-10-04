@@ -6,10 +6,10 @@ export default class Season extends Component {
      console.log(this.props);
      return (
        <Link to={`theater/${this.props.season.theater_id}/season/${this.props.season.id}`}>
-        <div className="card-no-hover grid-fourth">
-          <div style={{textAlign: 'center'}}>
+        <div className="card">
+          <div style={{textAlign: 'center', fontSize: '2rem'}}>
           {this.props.season.season_name}<br />
-          {this.props.season.year}
+          {/* {this.props.season.year} */}
           </div>
         </div>
       </Link>

@@ -34,9 +34,8 @@ class SeasonShow extends Component {
    render() {
      if (this.props.season.attributes) {
        return (
-          <div onClick={this.handleClick} className="card">
+          <div onClick={this.handleClick} className="card" style={{fontSize: '2rem'}}>
             {this.props.season.attributes.season_name}
-            {this.props.season.attributes.year}
             {this.props.season.attributes.season_description}
             {this.state.clicked ?
               <div className="card-container">{this.mappedShows()}</div>
