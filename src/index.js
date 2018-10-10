@@ -19,6 +19,7 @@ import MyAuditionsContainer from './containers/MyAuditionsContainer'
 import AuditionShow from './components/AuditionShow'
 import AuditionConfirmation from './components/AuditionConfirmation'
 import ResumeSubmit from './components/ResumeSubmit'
+import ResumePDFSubmit from './v2/ResumePDFSubmit'
 import AllAuditionsContainer from './containers/AllAuditionsContainer'
 import 'semantic-ui-css/semantic.min.css'
 import './Audition.css'
@@ -55,6 +56,7 @@ ReactDOM.render(
       <div className="top-level">
         <Navbar />
         <Switch>
+          <Route exact path="/resume_submit" component={ResumePDFSubmit}/>
           <Route exact path="/actor/audition-home/audition-journals/:id"/>
           <Route exact path="/theater/:theaterId/season/:seasonId" component={SeasonShow}/>
           <Route exact path="/audition/:id/resume_submit" component={ResumeSubmit}/>

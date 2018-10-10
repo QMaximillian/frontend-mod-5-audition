@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
 import { Loader, Form, Input, Select, Button, Grid } from 'semantic-ui-react'
+import Moment from 'react-moment'
 import '../Audition.css'
 
 
@@ -150,7 +151,7 @@ class ActorProfile extends Component {
                 label='Gender'
               />
 
-              <Form.Field
+                <Form.Field
                 control={Input}
                 width={6}
                 name="birthday"
@@ -158,6 +159,7 @@ class ActorProfile extends Component {
                 value={birthday}
                 placeholder="YYYY-MM-DD"
                 label='Birthday'/>
+
 
               {/* <Form.Field
                 control={Input}
