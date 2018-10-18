@@ -57,10 +57,9 @@ export const fetchGetIndex = (route) => {
 }
 
 export const fetchPostTryout = (body) => {
-  return fetch(baseUrl + 'tryouts', {
+  return fetch(baseTryoutUrl, {
     method: 'POST',
-    headers: headers(),
-    body: JSON.stringify(body)
+    body: body
   }).then(resp => resp.json())
 }
 
