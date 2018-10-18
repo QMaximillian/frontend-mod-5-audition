@@ -19,7 +19,7 @@ mappedAuditions = () => {
 
 filteredAuditions = () => {
   return this.props.auditionIndex.filter(audition => {
-    return !audition.attributes.actor_tryouts.map(actor => actor.id).includes(parseInt(this.props.currentActor.id, 10))
+    return !audition.attributes.tryouts.map(actor => actor.id).includes(parseInt(this.props.currentActor.id, 10))
   })
 
 }
@@ -31,7 +31,7 @@ componentDidMount(){
 
    render() {
      console.log("Find Auditions");
-     if (typeof this.props.appliedAuditions === 'undefined') {
+     if (typeof this.props.tryouts === 'undefined') {
        return (
          <div><Loader active inline='centered' /></div>
        )
@@ -48,7 +48,7 @@ componentDidMount(){
    }
  }
 
- export default connect(state => ({ auditionIndex: state.auditionIndex, appliedAuditions: state.appliedAuditions, currentActor: state.currentActor }), { loadAllAuditions })(AllAuditionContainer)
+ export default connect(state => ({ auditionIndex: state.auditionIndex, tryouts: state.tryouts, currentActor: state.currentActor }), { loadAllAuditions })(AllAuditionContainer)
 
  // mappedAuditions = () => {
  //   return this.props.auditionIndex.map(audition => {

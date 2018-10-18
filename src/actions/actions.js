@@ -178,10 +178,6 @@ export const setInitialState = (actor) => {
     type: LOAD_INITIAL_ACTOR_STATE,
     payload: {
       currentActor: actor,
-      appliedAuditions: actor.attributes.applied_auditions,
-      resumes: actor.attributes.resumes,
-      tryoutAuditions: actor.attributes.tryout_auditions,
-      auditionJournals: actor.attributes.audition_journals,
       tryouts: actor.attributes.tryouts
     }
   }

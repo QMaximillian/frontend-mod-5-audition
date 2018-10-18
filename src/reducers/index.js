@@ -26,10 +26,6 @@ export const actorReducer = (state = initialState, action) => {
     return {
       ...state,
       currentActor: action.payload.currentActor,
-      appliedAuditions: action.payload.appliedAuditions,
-      tryoutAuditions: action.payload.tryoutAuditions,
-      resumes: action.payload.resumes,
-      auditionJournals: action.payload.auditionJournals,
       tryouts: action.payload.tryouts
     }
 
