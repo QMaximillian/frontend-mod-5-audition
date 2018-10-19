@@ -11,23 +11,51 @@ class MyAuditionsContainer extends Component {
 
 
   // componentDidMount(){
-  //   this.props.loadActor(t)
+  //   this.props.loadActor(1)
   // }
 
-mappedAuditions = () => {
-  return this.props.tryouts.map(tryout => {
-    console.log(tryout)
-    return <MyAudition key={tryout.id} tryout={tryout}/>
-  })
-}
+// mappedAuditions = () => {
+//   return this.props.tryouts.map(tryout => {
+//     console.log(tryout)
+//     return <MyAudition key={tryout.id} tryout={tryout}/>
+//   })
+// }
+//
+//
+  mappedAuditions = () => {
 
+    return this.props.currentActor.attributes.auditions.map(audition => {
+      return (<div>
+                <div>
+                  {audition.show_name}
+                </div>
+                  {this.mappedTryout(audition)}
+              </div> )
+    })
+  }
+
+  mappedTryout = (audition) => {
+  const tryouts = this.props.currentActor.attributes.tryouts.filter(tryout => {
+       return tryout.audition_id === audition.id
+    })
+
+    return tryouts.map(tryout => {
+      return (
+        <div>
+          {tryout.audition_time}
+        </div>
+      )
+    })
+  }
 
    render() {
-      if (typeof this.props.appliedAuditions === 'undefined') {
-        return (
-          <div><Loader active inline='centered' /></div>
-        )
-      } else if (this.props.appliedAuditions.length === 0) {
+      // if (typeof this.props.currentActor.auditions === 'undefined') {
+      //
+      if (typeof this.props.currentActor.attributes === 'undefined') {
+          return (
+            <div><Loader active inline='centered' /></div>
+          )
+        } else if (this.props.currentActor.attributes.tryouts.length === 0){
         return(
           <h1 style={{textAlign: 'center', fontSize: '2rem'}}>
             {this.props.currentActor.attributes.first_name} has no auditions
@@ -46,7 +74,9 @@ mappedAuditions = () => {
        )
      }
    }
+
+
  }
 
 
- export default connect(state => ({ audition: state.audition, appliedAuditions: state.appliedAuditions, tryouts: state.tryouts, currentActor: state.currentActor }), { loadAudition })(MyAuditionsContainer)
+ export default connect(state => ({ auditions: state.auditions, tryouts: state.tryouts, currentActor: state.currentActor }), { loadAudition })(MyAuditionsContainer)
