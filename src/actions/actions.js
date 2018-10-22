@@ -1,5 +1,6 @@
 import { fetchActor, fetchShow, fetchGet, fetchGetIndex, fetchTheaters, fetchSeasons, fetchSeason, fetchTryout, fetchAudition } from '../adapters/actorAdapter'
-import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION, SET_THEATERS_INDEX, SET_SEASONS_INDEX, SET_SEASON, SET_SHOW, SET_TRYOUT, SET_AUDITION } from './types'
+import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION, SET_THEATERS_INDEX, SET_SEASONS_INDEX, SET_SEASON, SET_SHOW, SET_TRYOUT, SET_AUDITION, EDIT_ACTOR, CREATE_JOURNAL, RESUME_SUBMIT_REDIRECT } from './types'
+import { push } from 'connected-react-router'
 
 // PUT MY AUDITIONS IN STORE
 //PUT AUDITIONS IN STORE
@@ -189,7 +190,7 @@ export const setInitialState = (actor) => {
 export const updateCurrentActorForm = (currentActor) => {
   console.log(currentActor);
   return {
-    type: "EDIT_ACTOR",
+    type: EDIT_ACTOR,
     payload: {
       currentActor
     }
@@ -198,9 +199,18 @@ export const updateCurrentActorForm = (currentActor) => {
 
 export const createAuditionJournal = (text) => {
   return {
-    type: "CREATE_JOURNAL",
+    type: CREATE_JOURNAL,
     payload: {
       text
     }
   }
 }
+
+// export const redirectConfirmation = (id) => {
+//   return {
+//     type: RESUME_SUBMIT_REDIRECT,
+//     payload: {
+//       redirect: dispatch(push(`/audition/${id}/audition-confirmation/confirmed}`))
+//     }
+//   }
+// }

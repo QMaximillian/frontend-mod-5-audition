@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { fetchPostTryout, fetchGet } from '../adapters/actorAdapter'
+import { Link, Redirect } from 'react-router-dom'
 import { Button, Input } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { loadAudition } from '../actions/actions'
+import { push } from 'connected-react-router'
 
 class ResumePDFSubmit extends Component {
 
 
   state = {
     file: '',
+    redirect: false,
     confirmedTime: 0,
     confirmedAudition: {}
   }
@@ -37,6 +40,11 @@ class ResumePDFSubmit extends Component {
 
 
     fetchPostTryout(formData)
+
+    this.setState({
+       redirect: true
+    })
+
   }
 
 
@@ -87,7 +95,9 @@ class ResumePDFSubmit extends Component {
 
 
    render() {
-     console.log(this.props.audition)
+    if (this.state.redirect) {
+      return <Redirect push to={`/audition/${this.props.match.params.id}/audition-confirmation/confirmed`}/>
+    } else {
      return (
       <React.Fragment>
       <div className="card">
@@ -114,14 +124,15 @@ class ResumePDFSubmit extends Component {
               </select>
             </div>
          </div>
-       <Button onClick={(event) => this.handleSubmit(event)}>
-         Submit for Audition
-       </Button>
+         <Button onClick={(event) => this.handleSubmit(event)}>
+           Submit for Audition
+         </Button>
        </div>
       </div>
       </React.Fragment>
     )
    }
  }
+}
 
  export default connect(state => ({ audition: state.audition }), { loadAudition })(ResumePDFSubmit)
