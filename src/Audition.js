@@ -4,6 +4,7 @@ import ActorHomeContainer from './containers/ActorHomeContainer'
 import { loadInitialActorState } from './actions/actions'
 import {connect} from 'react-redux'
 import './Audition.css'
+import Moment from 'react-moment'
 
 
 class Audition extends Component {

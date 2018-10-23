@@ -5,6 +5,8 @@ import { Button, Input } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { loadAudition } from '../actions/actions'
 import { push } from 'connected-react-router'
+import Moment from 'react-moment'
+import moment from 'moment'
 
 class ResumePDFSubmit extends Component {
 
@@ -61,7 +63,7 @@ class ResumePDFSubmit extends Component {
     let beginTime = new Date(this.state.confirmedAudition.begin_audition)
 
     let endTime = new Date(this.state.confirmedAudition.end_audition)
-
+    console.log(beginTime, endTime);
     let auditionTimes = new Date(this.state.confirmedAudition.begin_audition)
 
     console.log(beginTime);
@@ -93,6 +95,15 @@ class ResumePDFSubmit extends Component {
     return slots
   }
 
+  getDateHoursMoment = () => {
+    let newNewTime = []
+
+    // if (this.state.confirmedAudition.begin_audition !== undefined) {
+    //   let difference = this.state.confirmedAudition.begin_audition.diff(this.state.confirmedAudition.end_audition, 'hours')
+
+      console.log(moment.utc(this.state.confirmedAudition.begin_audition).diff( moment.utc(this.state.confirmedAudition.end_audition), 'hours'))
+    // }
+  }
 
    render() {
     if (this.state.redirect) {
@@ -100,6 +111,7 @@ class ResumePDFSubmit extends Component {
     } else {
      return (
       <React.Fragment>
+      <Moment>{this.state.confirmedAudition.begin_audition}</Moment>
       <div className="card">
         <div style={{textAlign: 'center'}}>
          <div>
@@ -120,7 +132,7 @@ class ResumePDFSubmit extends Component {
               <select
                 onChange={this.handleTimeChange}
                 value={this.state.confirmedTime}>
-                {this.getDateHours()}
+                {this.getDateHoursMoment()}
               </select>
             </div>
          </div>
