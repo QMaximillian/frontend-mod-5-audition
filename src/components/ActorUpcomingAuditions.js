@@ -2,45 +2,53 @@ import React, { Component } from 'react'
 import { Loader } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import AuditionTab from './AuditionTab'
-
+import moment from 'moment'
 class ActorUpcomingAuditions extends Component {
 
 
-filteredUpcoming = () => {
-  return this.props.appliedAuditions.filter(audition => {
-      return new Date(audition.audition_date).getTime() > Date.now() && audition.show_name.toLowerCase().match(this.props.search.toLowerCase())
-    })
-  }
+// filteredUpcoming = () => {
+//   return this.props.currentActor.attributes.tryouts.filter(tryout => {
+//       return new Date(tryout.audition_date).getTime() > Date.now() && tryout.show_name.toLowerCase().match(this.props.search.toLowerCase())
+//     })
+//   }
 
   filteredPast = () => {
-    return this.props.appliedAuditions.filter(audition => {
-      return new Date(audition.audition_date).getTime() < Date.now() && audition.show_name.toLowerCase().match(this.props.search.toLowerCase())
+    return this.props.currentActor.attributes.tryouts.filter(tryout => {
+      let show_name = this.props.currentActor.attributes.auditions.map(audition => {
+        if (audition.id === tryout.audition_id) {
+          return audition.show_name
+        }
+      })
+
+      if (moment.utc((tryout.audition_time)).isBefore(moment().format()) &&       show_name.toString().toLowerCase().match(this.props.search.toLowerCase())) {
+          return tryout
+        }
     })
   }
 
-  mappedFutureAuditions = () => {
-    return this.filteredUpcoming().map(audition => {
-      return <AuditionTab audition={audition}/>
-    })
-  }
+  // mappedFutureAuditions = () => {
+  //   console.log(this.filteredPast());
+  //   return this.filteredUpcoming().map(tryout => {
+  //     return <AuditionTab tryout={tryout}/>
+  //   })
+  // }
 
   mappedPastAuditions = () => {
-    return this.filteredPast().map(audition => {
-      console.log(audition);
-      return <AuditionTab audition={audition} />
+    return this.filteredPast().map(tryout => {
+      return <AuditionTab tryout={tryout} />
     })
   }
 
 
   render(){
     console.log(this.props);
-    if (this.props.appliedAuditions === undefined) {
+    if (this.props.currentActor === undefined) {
       return (
         <div>
           <Loader />
         </div>
       )
-    } else if (this.props.appliedAuditions.length === 0) {
+    } else if (this.props.currentActor.attributes === undefined) {
       return (
         <div>
           You have no upcoming auditions
@@ -71,7 +79,7 @@ filteredUpcoming = () => {
           </h3>
         </th>
       </tr>
-        {this.mappedFutureAuditions()}
+        {/* this.mappedFutureAuditions() */}
       </tbody>
       </table>
 
@@ -107,4 +115,4 @@ filteredUpcoming = () => {
   }
 }
 
-export default connect(state => ({ appliedAuditions: state.appliedAuditions, tryouts: state.tryouts }))(ActorUpcomingAuditions)
+export default connect(state => ({ currentActor: state.currentActor }))(ActorUpcomingAuditions)

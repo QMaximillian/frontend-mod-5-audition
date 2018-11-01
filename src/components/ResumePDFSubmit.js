@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { fetchPostTryout, fetchGet } from '../adapters/actorAdapter'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Button, Input } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { loadAudition } from '../actions/actions'
-import { push } from 'connected-react-router'
-import Moment from 'react-moment'
+// import Moment from 'react-moment'
 import moment from 'moment'
 
 class ResumePDFSubmit extends Component {
@@ -39,6 +38,7 @@ class ResumePDFSubmit extends Component {
     formData.append('tryout[actor_id]', 1)
     formData.append('tryout[audition_id]', this.props.match.params.id)
     formData.append('tryout[audition_time]', this.state.confirmedTime)
+    formData.append('tryout[location]', "New York City")
 
 
     fetchPostTryout(formData)
@@ -53,7 +53,7 @@ class ResumePDFSubmit extends Component {
   handleTimeChange = (event) => {
     this.setState({
       confirmedTime: event.target.value
-    })
+    }, () => console.log(this.state.confirmedTime))
   }
 
 
@@ -96,22 +96,59 @@ class ResumePDFSubmit extends Component {
   }
 
   getDateHoursMoment = () => {
-    let newNewTime = []
 
-    // if (this.state.confirmedAudition.begin_audition !== undefined) {
-    //   let difference = this.state.confirmedAudition.begin_audition.diff(this.state.confirmedAudition.end_audition, 'hours')
+    const { end_audition, begin_audition, time_slots, submitted_times } = this.state.confirmedAudition
 
-      console.log(moment.utc(this.state.confirmedAudition.begin_audition).diff( moment.utc(this.state.confirmedAudition.end_audition), 'hours'))
-    // }
+    let startTime = moment(begin_audition)
+    let endTime = moment(end_audition)
+
+    let timeStops = []
+
+if (time_slots !== undefined){
+    while(startTime <= endTime){
+      timeStops.push(moment(startTime).format('YYYY-MM-DD HH:mm Z'))
+      startTime.add(time_slots, 'minutes');
+      // console.log(timeStops)
+    }
   }
+      // console.log(timeStops)
+
+
+      if (submitted_times !== undefined) {
+    const allSlotsWithTimes = timeStops.filter((time) => {
+      return !this.state.confirmedAudition.submitted_times.includes(time)
+    })
+    // console.log(allSlotsWithTimes);
+    const slots = allSlotsWithTimes.map(time => {
+        return (
+          <React.Fragment>
+          <option
+           value={moment(time).format()}>{moment(time).format('HH:mm A')}
+          </option>
+          </React.Fragment>
+        )
+     })
+    return slots
+  }
+    }
+
+
+
+
+
+
 
    render() {
     if (this.state.redirect) {
       return <Redirect push to={`/audition/${this.props.match.params.id}/audition-confirmation/confirmed`}/>
     } else {
+
+      const { begin_audition } = this.state.confirmedAudition
+
+      let dayOfAudition = moment(begin_audition).format("MM-DD-YYYY")
+
      return (
       <React.Fragment>
-      <Moment>{this.state.confirmedAudition.begin_audition}</Moment>
       <div className="card">
         <div style={{textAlign: 'center'}}>
          <div>
@@ -129,6 +166,7 @@ class ResumePDFSubmit extends Component {
               filename={this.state.headshot}>
             </Input> */}
             <div>
+            <label>{dayOfAudition}</label><br />
               <select
                 onChange={this.handleTimeChange}
                 value={this.state.confirmedTime}>

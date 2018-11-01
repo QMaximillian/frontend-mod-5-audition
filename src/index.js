@@ -18,7 +18,7 @@ import ActorProfile from './components/ActorProfile'
 import MyAuditionsContainer from './containers/MyAuditionsContainer'
 import AuditionShow from './components/AuditionShow'
 import AuditionConfirmation from './components/AuditionConfirmation'
-import ResumeSubmit from './components/ResumeSubmit'
+
 import ResumePDFSubmit from './components/ResumePDFSubmit'
 import AllAuditionsContainer from './containers/AllAuditionsContainer'
 import 'semantic-ui-css/semantic.min.css'

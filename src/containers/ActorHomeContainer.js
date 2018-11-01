@@ -46,7 +46,6 @@ const mapStateToProps = (state) => {
     tryoutAuditions: state.tryoutAuditions,
     auditionJournals: state.auditionJournals,
     tryouts: state.tryouts
-
   }
 }
 

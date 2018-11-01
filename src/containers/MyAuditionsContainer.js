@@ -1,27 +1,14 @@
 import React, { Component } from 'react'
-import MyAudition from '../components/MyAudition.js'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Loader } from 'semantic-ui-react'
 import "../Audition.css"
-import Search from '../components/Search'
 import { loadAudition } from '../actions/actions'
 
 
 class MyAuditionsContainer extends Component {
 
 
-  // componentDidMount(){
-  //   this.props.loadActor(1)
-  // }
-
-// mappedAuditions = () => {
-//   return this.props.tryouts.map(tryout => {
-//     console.log(tryout)
-//     return <MyAudition key={tryout.id} tryout={tryout}/>
-//   })
-// }
-//
-//
   mappedAuditions = () => {
 
     return this.props.currentActor.attributes.auditions.map(audition => {
@@ -30,7 +17,9 @@ class MyAuditionsContainer extends Component {
                   {audition.show_name}
                 </div>
                   {this.mappedTryout(audition)}
-              </div> )
+              </div>
+
+            )
     })
   }
 
@@ -41,9 +30,11 @@ class MyAuditionsContainer extends Component {
 
     return tryouts.map(tryout => {
       return (
+        <Link to={`tryout/${tryout.id}`}>
         <div>
           {tryout.audition_time}
         </div>
+        </Link>
       )
     })
   }

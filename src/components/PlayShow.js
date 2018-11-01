@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { loadShow } from '../actions/actions'
 import { connect } from 'react-redux'
-import { Loader, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Loader } from 'semantic-ui-react'
+// import { Link } from 'react-router-dom'
 
 class PlayShow extends Component {
 

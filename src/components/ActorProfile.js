@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
 import { Loader, Form, Input, Select, Button, Grid } from 'semantic-ui-react'
-import Moment from 'react-moment'
+// import moment from 'moment'
 import '../Audition.css'
 
 
@@ -40,9 +40,9 @@ class ActorProfile extends Component {
   updateActor = (event) => {
     event.preventDefault()
 
-    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity, city } = this.props.currentActor.attributes
+    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, city } = this.props.currentActor.attributes
 
-      fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, ethnicity: ethnicity, city: city }).then(
+      fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, city: city }).then(
         this.setState({
             success: true
         })
@@ -70,7 +70,7 @@ class ActorProfile extends Component {
     )
   } else {
 // city
-    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, ethnicity } = this.props.currentActor.attributes
+    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday } = this.props.currentActor.attributes
 
       return(
         <div className="profile-card">
