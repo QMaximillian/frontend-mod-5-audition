@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchGet } from '../adapters/actorAdapter'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import {Button} from 'semantic-ui-react'
 
 
@@ -32,8 +33,7 @@ class AuditionShow extends Component {
 
 
 render() {
-  console.log(this.state.audition);
-  const day = new Date(this.state.audition.begin_audition)
+
      return (
       <div className='card' style={{textAlign: 'center'}}>
           <div style={{fontSize: '2em'}}>
@@ -41,7 +41,15 @@ render() {
           </div>
 
           {this.state.audition.audition_information}<br/>
-          {day.toUTCString().slice(0,16)}<br/>
+          {moment(this.state.audition.begin_audition).format('ddd, MMM DD YYYY')}<br/>
+          <h4>{this.state.audition.personnel}</h4>
+          <h4>{this.state.audition.call_type}</h4>
+          <h4>{this.state.audition.breakdown}</h4>
+          <h4>{this.state.audition.contract}</h4>
+          <h4>{this.state.audition.seeking}</h4>
+          <h4>{this.state.audition.show_dates}</h4>
+          <h4>{this.state.audition.other}</h4>
+          <h4>{this.state.audition.location}</h4>
           <Link to={`/audition/${this.props.match.params.id}/resume_submit`}>
             <Button>Submit For This Audition</Button>
           </Link>

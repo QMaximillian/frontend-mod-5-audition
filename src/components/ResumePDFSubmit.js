@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 import { loadAudition } from '../actions/actions'
 // import Moment from 'react-moment'
 import moment from 'moment'
+import '../Audition.css'
 
 class ResumePDFSubmit extends Component {
 
@@ -152,13 +153,21 @@ if (time_slots !== undefined){
       <div className="card">
         <div style={{textAlign: 'center'}}>
          <div>
+       <Button color="teal">
+          <label
+          >Upload Your Resume
             <Input
-              multiple
+            className="ui upload icon"
+            style={{"display":"none"}}
               name="pdf"
               type="file"
               onChange={this.handleFileChange}
               filename={this.state.file}>
             </Input>
+          </label>
+          {this.state.file ? console.log("render the file") : console.log("don't render the file")}
+        </Button>
+
             {/* <Input
               name="img"
               type="file"
