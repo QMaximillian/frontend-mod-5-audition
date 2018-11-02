@@ -34,7 +34,7 @@ class PlayShow extends Component {
               Description
             </div>
             {show.attributes.show_description}
-            {show.attributes.location}
+
           </div>
        )
      } else {

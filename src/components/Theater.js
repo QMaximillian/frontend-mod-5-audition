@@ -42,26 +42,23 @@ export default class Theater extends Component {
             <div>
               <div className="grid-fourth">
                 <div>
-                  <label style={{fontSize: '2rem', textDecoration: "underline"}}>Theater</label>
-                </div>
-                <div> {this.props.theater.attributes.theater_name}
+                  <h1 style={{fontSize: '2rem', textDecoration: "underline"}}>Theater</h1>
+                  {this.props.theater.attributes.theater_name}
                 </div>
               </div>
 
 
             <div className="grid-fourth">
               <div>
-                <label style={{fontSize: '2rem', textDecoration: "underline"}}>Location</label>
-              </div>
-              <div> {this.props.theater.attributes.theater_location}
+                <h1 style={{fontSize: '2rem', textDecoration: "underline"}}>Location</h1>
+                  {this.props.theater.attributes.theater_location}
               </div>
             </div>
 
             <div className="grid-fourth">
               <div>
-                <label style={{fontSize: '2rem', textDecoration: "underline"}}>Theater Information</label>
-              </div>
-              <div> {this.props.theater.attributes.theater_information}
+                <h1 style={{fontSize: '2rem', textDecoration: "underline"}}>Theater Information</h1>
+                  {this.props.theater.attributes.theater_information}
               </div>
             </div>
 

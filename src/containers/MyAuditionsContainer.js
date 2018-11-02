@@ -4,23 +4,22 @@ import { connect } from 'react-redux'
 import { Loader } from 'semantic-ui-react'
 import "../Audition.css"
 import { loadAudition } from '../actions/actions'
+import moment from 'moment'
 
 
 class MyAuditionsContainer extends Component {
 
 
   mappedAuditions = () => {
-
     return this.props.currentActor.attributes.auditions.map(audition => {
       return (<div>
-                <div>
+                <h1>
                   {audition.show_name}
-                </div>
+                </h1>
                   {this.mappedTryout(audition)}
               </div>
-
             )
-    })
+      })
   }
 
   mappedTryout = (audition) => {
@@ -28,15 +27,24 @@ class MyAuditionsContainer extends Component {
        return tryout.audition_id === audition.id
     })
 
-    return tryouts.map(tryout => {
+    return tryouts.map((tryout, i) => {
       return (
-        <Link to={`tryout/${tryout.id}`}>
         <div>
-          {tryout.audition_time}
+        <h3>{this.getGetOrdinal(i + 1)} Tryout</h3>
+        <Link to={`tryout/${tryout.id}`}>
+        <div className="card">
+          {moment(tryout.audition_time).format("MM/DD/YYYY HH:mm A")}
         </div>
         </Link>
+        </div>
       )
     })
+  }
+
+  getGetOrdinal = (n) => {
+    var s=["th","st","nd","rd"],
+    v=n%100;
+    return n+(s[(v-20)%10]||s[v]||s[0]);
   }
 
    render() {

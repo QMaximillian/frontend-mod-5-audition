@@ -168,9 +168,8 @@ if (time_slots !== undefined){
               filename={this.state.file}>
             </Input>
           </label>
-          {this.state.file ? console.log("render the file") : console.log("don't render the file")}
         </Button>
-
+{this.state.file ? <div>Resume Attached</div> : console.log("don't render the file")}
             {/* <Input
               name="img"
               type="file"
