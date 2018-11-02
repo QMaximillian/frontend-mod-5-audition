@@ -1,18 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import moment from 'moment'
-// import { Link } from 'react-router-dom'
-const AuditionTab = (props) => {
+import { connect } from 'react-redux'
+import { loadAudition } from '../actions/actions.js'
+class AuditionTab extends Component {
 
-console.log(props.tryout.show_id);
+  componentDidMount(){
+    this.props.loadAudition(this.props.tryout.audition_id)
+  }
+
+render() {
+
+  if (this.props.audition.attributes !== undefined){
   return (
     // <Link to={`audition/${props.audition.show_name}/`}>
     <tr>
-      <th style={{textAlign: 'center'}}></th>
-      <th style={{textAlign: 'center'}}>{props.tryout.location}</th>
-      <th style={{textAlign: 'center'}}>{moment(props.tryout.audition_time).format("MM/DD/YYYY HH:mm A")}</th>
+      <th style={{textAlign: 'center'}}>{this.props.audition.attributes.show_name}</th>
+      <th style={{textAlign: 'center'}}>{this.props.tryout.location}</th>
+      <th style={{textAlign: 'center'}}>{moment(this.props.tryout.audition_time).format("MM/DD/YYYY HH:mm A")}</th>
     </tr>
     // </Link>
   )
+} else {
+  return (
+    <div>LOADING</div>
+  )
+}
+}
 }
 
-export default AuditionTab
+export default connect(state => ({ audition: state.audition }), { loadAudition })(AuditionTab)

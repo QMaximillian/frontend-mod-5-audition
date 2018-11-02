@@ -6,6 +6,7 @@ import moment from 'moment'
 import {Button} from 'semantic-ui-react'
 
 
+
 class AuditionShow extends Component {
 
   state = {
@@ -33,13 +34,15 @@ class AuditionShow extends Component {
 
 
 render() {
-
+  if (this.state.audition.show_name) {
      return (
-      <div className='card' style={{textAlign: 'center'}}>
+      <div className='card' style={{textAlign: 'left'}}>
           <div style={{fontSize: '2em'}}>
-            {this.state.audition.show_name}<br/>
+            <h1>{this.state.audition.show_name}</h1><br/>
+            <h5>{this.state.audition.location}</h5>
           </div>
-
+          <hr/>
+          <h2>Details</h2>
           {this.state.audition.audition_information}<br/>
           {moment(this.state.audition.begin_audition).format('ddd, MMM DD YYYY')}<br/>
           <h4>{this.state.audition.personnel}</h4>
@@ -49,15 +52,17 @@ render() {
           <h4>{this.state.audition.seeking}</h4>
           <h4>{this.state.audition.show_dates}</h4>
           <h4>{this.state.audition.other}</h4>
-          <h4>{this.state.audition.location}</h4>
+
           <Link to={`/audition/${this.props.match.params.id}/resume_submit`}>
             <Button>Submit For This Audition</Button>
           </Link>
         </div>
-
-
-
        )
+     } else {
+       return (
+       <div>LOADING</div>
+     )
+     }
      }
  }
 

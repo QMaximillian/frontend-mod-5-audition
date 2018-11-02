@@ -29,14 +29,14 @@ class ResumePDFSubmit extends Component {
   handleFileChange = (event) => {
     this.setState({
       file: event.target.files[0]
-    }, () => console.log(this.state))
+    })
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
     const formData = new FormData()
     formData.append('tryout[resume]', this.state.file)
-    formData.append('tryout[actor_id]', 1)
+    formData.append('tryout[actor_id]', this.props.currentActor.id)
     formData.append('tryout[audition_id]', this.props.match.params.id)
     formData.append('tryout[audition_time]', this.state.confirmedTime)
     formData.append('tryout[location]', "New York City")
@@ -54,47 +54,47 @@ class ResumePDFSubmit extends Component {
   handleTimeChange = (event) => {
     this.setState({
       confirmedTime: event.target.value
-    }, () => console.log(this.state.confirmedTime))
+    })
   }
 
 
-  getDateHours = () => {
-    let newNewTime = []
-
-    let beginTime = new Date(this.state.confirmedAudition.begin_audition)
-
-    let endTime = new Date(this.state.confirmedAudition.end_audition)
-    console.log(beginTime, endTime);
-    let auditionTimes = new Date(this.state.confirmedAudition.begin_audition)
-
-    console.log(beginTime);
-
-    let timeSlot = this.state.confirmedAudition.time_slots
-    beginTime = beginTime.getUTCHours()
-    endTime = endTime.getUTCHours()
-    let hoursAvailable = endTime - beginTime
-    let slotsAvailable = (60 / timeSlot) * hoursAvailable
-
-    let newTime = new Date(auditionTimes.getTime() + timeSlot * 60000)
-
-    for (let i = 0; i < slotsAvailable; i++) {
-      newNewTime.push(new Date(newTime.getTime() + (timeSlot * i) * 60000))
-    }
-
-     const allSlotsWithTimes = newNewTime.filter((time) => {
-       return !this.state.confirmedAudition.submitted_times.includes(new Date(time.getTime() + (0) * 60000).toString())
-     })
-
-
-    const slots = allSlotsWithTimes.map(time => {
-        return (
-         <option
-           value={time}>{time.toLocaleTimeString()}
-         </option>
-        )
-     })
-    return slots
-  }
+  // getDateHours = () => {
+  //   let newNewTime = []
+  //
+  //   let beginTime = new Date(this.state.confirmedAudition.begin_audition)
+  //
+  //   let endTime = new Date(this.state.confirmedAudition.end_audition)
+  //
+  //   let auditionTimes = new Date(this.state.confirmedAudition.begin_audition)
+  //
+  //
+  //
+  //   let timeSlot = this.state.confirmedAudition.time_slots
+  //   beginTime = beginTime.getUTCHours()
+  //   endTime = endTime.getUTCHours()
+  //   let hoursAvailable = endTime - beginTime
+  //   let slotsAvailable = (60 / timeSlot) * hoursAvailable
+  //
+  //   let newTime = new Date(auditionTimes.getTime() + timeSlot * 60000)
+  //
+  //   for (let i = 0; i < slotsAvailable; i++) {
+  //     newNewTime.push(new Date(newTime.getTime() + (timeSlot * i) * 60000))
+  //   }
+  //
+  //    const allSlotsWithTimes = newNewTime.filter((time) => {
+  //      return !this.state.confirmedAudition.submitted_times.includes(new Date(time.getTime() + (0) * 60000).toString())
+  //    })
+  //
+  //
+  //   const slots = allSlotsWithTimes.map(time => {
+  //       return (
+  //        <option
+  //          value={time}>{time.toLocaleTimeString()}
+  //        </option>
+  //       )
+  //    })
+  //   return slots
+  // }
 
   getDateHoursMoment = () => {
 
@@ -109,17 +109,15 @@ if (time_slots !== undefined){
     while(startTime <= endTime){
       timeStops.push(moment(startTime).format('YYYY-MM-DD HH:mm Z'))
       startTime.add(time_slots, 'minutes');
-      // console.log(timeStops)
     }
   }
-      // console.log(timeStops)
 
 
       if (submitted_times !== undefined) {
     const allSlotsWithTimes = timeStops.filter((time) => {
       return !this.state.confirmedAudition.submitted_times.includes(time)
     })
-    // console.log(allSlotsWithTimes);
+
     const slots = allSlotsWithTimes.map(time => {
         return (
           <React.Fragment>
@@ -147,11 +145,16 @@ if (time_slots !== undefined){
       const { begin_audition } = this.state.confirmedAudition
 
       let dayOfAudition = moment(begin_audition).format("MM-DD-YYYY")
-
+      console.log(this.state.confirmedAudition);
      return (
       <React.Fragment>
       <div className="card">
         <div style={{textAlign: 'center'}}>
+        <div style={{'fontSize': '2em'}}>
+        <h1>
+        {this.state.confirmedAudition.show_name}
+        </h1>
+        </div>
          <div>
        <Button color="teal">
           <label
@@ -194,4 +197,4 @@ if (time_slots !== undefined){
  }
 }
 
- export default connect(state => ({ audition: state.audition }), { loadAudition })(ResumePDFSubmit)
+ export default connect(state => ({ audition: state.audition, currentActor: state.currentActor }), { loadAudition })(ResumePDFSubmit)
