@@ -144,7 +144,7 @@ if (time_slots !== undefined){
 
       const { begin_audition } = this.state.confirmedAudition
 
-      let dayOfAudition = moment(begin_audition).format("MM-DD-YYYY")
+      let dayOfAudition = moment(begin_audition).format('ddd, MMM DD YYYY')
       console.log(this.state.confirmedAudition);
      return (
       <React.Fragment>
@@ -152,32 +152,18 @@ if (time_slots !== undefined){
         <div style={{textAlign: 'center'}}>
         <div style={{'fontSize': '2em'}}>
         <h1>
-        {this.state.confirmedAudition.show_name}
+          {this.state.confirmedAudition.show_name}
         </h1>
+        <h3>
+          Pick an Audition Time:
+        </h3>
+        <h4>
+          {dayOfAudition}
+        </h4>
         </div>
+        <br />
          <div>
-       <Button color="teal">
-          <label
-          >Upload Your Resume
-            <Input
-            className="ui upload icon"
-            style={{"display":"none"}}
-              name="pdf"
-              type="file"
-              onChange={this.handleFileChange}
-              filename={this.state.file}>
-            </Input>
-          </label>
-        </Button>
-{this.state.file ? <div>Resume Attached</div> : console.log("don't render the file")}
-            {/* <Input
-              name="img"
-              type="file"
-              onChange={this.handleFileChange}
-              filename={this.state.headshot}>
-            </Input> */}
             <div>
-            <label>{dayOfAudition}</label><br />
               <select
                 onChange={this.handleTimeChange}
                 value={this.state.confirmedTime}>
@@ -185,6 +171,23 @@ if (time_slots !== undefined){
               </select>
             </div>
          </div>
+         <div><br />
+           <Button color="teal">
+              <label
+              >Upload Your Resume
+                <Input
+                className="ui upload icon"
+                style={{"display":"none"}}
+                  name="pdf"
+                  type="file"
+                  onChange={this.handleFileChange}
+                  filename={this.state.file}>
+                </Input>
+              </label>
+            </Button>
+          </div>
+  {this.state.file ? <div>Resume Attached</div> : console.log("don't render the file")}
+        <br />
          <Button onClick={(event) => this.handleSubmit(event)}>
            Submit for Audition
          </Button>

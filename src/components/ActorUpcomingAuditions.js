@@ -6,11 +6,19 @@ import moment from 'moment'
 class ActorUpcomingAuditions extends Component {
 
 
-// filteredUpcoming = () => {
-//   return this.props.currentActor.attributes.tryouts.filter(tryout => {
-//       return new Date(tryout.audition_date).getTime() > Date.now() && tryout.show_name.toLowerCase().match(this.props.search.toLowerCase())
-//     })
-//   }
+  filteredUpcoming = () => {
+    return this.props.currentActor.attributes.tryouts.filter(tryout => {
+      let show_name = this.props.currentActor.attributes.auditions.map(audition => {
+        if (audition.id === tryout.audition_id) {
+          return audition.show_name
+        }
+      })
+
+      if (moment.utc((tryout.audition_time)).isAfter(moment().format()) &&       show_name.toString().toLowerCase().match(this.props.search.toLowerCase())) {
+          return tryout
+        }
+    })
+  }
 
   filteredPast = () => {
     return this.props.currentActor.attributes.tryouts.filter(tryout => {
@@ -26,12 +34,12 @@ class ActorUpcomingAuditions extends Component {
     })
   }
 
-  // mappedFutureAuditions = () => {
-  //   console.log(this.filteredPast());
-  //   return this.filteredUpcoming().map(tryout => {
-  //     return <AuditionTab tryout={tryout}/>
-  //   })
-  // }
+  mappedFutureAuditions = () => {
+    console.log(this.filteredPast());
+    return this.filteredUpcoming().map(tryout => {
+      return <AuditionTab tryout={tryout}/>
+    })
+  }
 
   mappedPastAuditions = () => {
     return this.filteredPast().map(tryout => {
@@ -79,7 +87,7 @@ class ActorUpcomingAuditions extends Component {
           </h3>
         </th>
       </tr>
-        {/* this.mappedFutureAuditions() */}
+        {this.mappedFutureAuditions()}
       </tbody>
       </table>
 
