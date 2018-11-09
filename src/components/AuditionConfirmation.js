@@ -89,7 +89,6 @@ class AuditionConfirmation extends Component {
     } else if (this.props.audition[0] !== 'undefined'){
       return (
         <div style={{textAlign: 'center'}} className="card" >
-          {console.log(this.props.audition[0])}
           <div>
         <div style={{textAlign: 'center', fontSize: '2em'}}>
           Audition Confirmation

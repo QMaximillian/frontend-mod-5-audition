@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const PlayTab = (props) => {
-  console.log(props)
-
+  
   if (props.parent === "Theater") {
     return (
       <Link to={`theater/${props.theaterId}/season/${props.seasonId}/show/${props.show.id}`}>

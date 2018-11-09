@@ -3,10 +3,7 @@ import React, { Component } from 'react'
 
 class AuditionConfirmed extends Component {
 
-
-
   render() {
-    console.log(this.props);
   return(
     <div>
       <div className="profile-card">

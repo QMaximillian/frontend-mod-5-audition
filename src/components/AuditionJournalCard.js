@@ -9,8 +9,7 @@ const AuditionJournalCard = (props) => {
   // }
 
   const { auditionJournal } = props
-
-  console.log(auditionJournal)
+  
   return(
     <div /* Link to a show page w/ onClick */>
       {auditionJournal.created_at}

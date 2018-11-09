@@ -145,7 +145,7 @@ if (time_slots !== undefined){
       const { begin_audition } = this.state.confirmedAudition
 
       let dayOfAudition = moment(begin_audition).format('ddd, MMM DD YYYY')
-      console.log(this.state.confirmedAudition);
+
      return (
       <React.Fragment>
       <div className="card">
@@ -186,7 +186,7 @@ if (time_slots !== undefined){
               </label>
             </Button>
           </div>
-  {this.state.file ? <div>Resume Attached</div> : console.log("don't render the file")}
+  {this.state.file ? <div>Resume Attached</div> : <div></div>}
         <br />
          <Button onClick={(event) => this.handleSubmit(event)}>
            Submit for Audition

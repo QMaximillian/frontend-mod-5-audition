@@ -10,7 +10,7 @@ export default class SignUp extends Component {
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
-    }, () => console.log(this.state))
+    })
   }
 
   handleSignUp = () => {
@@ -30,7 +30,6 @@ body: JSON.stringify({
 })
 })
 .then(r => r.json()).then(console.log)
-// .then(console.log)
   }
 
    render() {

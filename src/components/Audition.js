@@ -5,26 +5,18 @@ import { connect } from 'react-redux'
 
 class Audition extends Component {
 
-  handleClick = () => {
-    console.log("Here");
-  }
-
-
    render() {
-     console.log(this.props);
      if (this.props.parent === 'Theater') {
        return (
          <Link to={`auditions/${this.props.audition.id}`}>
            <span
-             className="card-no-hover"
-             onClick={this.handleClick}>
+             className="card-no-hover">
                {this.props.audition.show_name}
                {this.props.audition.state}
            </span>
         </Link>
        )
      } else if (this.props.parent === "Season") {
-       console.log(this.props);
        return (
          <Link to={`${this.props.match.params.seasonId}/auditions/${this.props.audition.id}`}>
            <span

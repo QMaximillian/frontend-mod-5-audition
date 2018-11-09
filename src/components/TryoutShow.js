@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import { loadAudition, loadTryout } from '../actions/actions'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import PDF from 'react-pdf-js';
 import { Button } from 'semantic-ui-react'
 
 class TryoutShow extends Component {
@@ -30,8 +29,6 @@ class TryoutShow extends Component {
        const tryout =  this.props.currentActor.attributes.tryouts.find(tryout => {
            return tryout.id === parseInt(this.props.match.params.id, 10)
          })
-
-       console.log(this.props.audition);
 
        return (
           <div className="tryout-show-grid profile-card">

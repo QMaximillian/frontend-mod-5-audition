@@ -12,9 +12,7 @@ class MyAudition extends Component {
 
 
    render() {
-     console.log(this.props)
      if (this.props.currentActor.attributes.tryouts) {
-       console.log(this.props.currentActor.attributes.tryouts)
      return (
          <Link to={`/my-auditions/tryouts/${this.props.tryout.id}`}>
         <div className="play-tab-card-1">

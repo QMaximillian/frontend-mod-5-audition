@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
 import { Loader, Form, Input, Select, Button, Grid } from 'semantic-ui-react'
-// import moment from 'moment'
 import '../Audition.css'
 
 
@@ -13,28 +12,23 @@ class ActorProfile extends Component {
   state = {
     success: false
   }
+
   componentDidMount() {
     this.props.loadInitialActorState()
   }
 
   handleChange = (event) => {
     if (event.name) {
-      console.log("Dropdown State");
       this.props.updateCurrentActorForm({
         [event.name]: event.value
       })
     } else {
     event.persist()
-    this.props.updateCurrentActorForm({
-      [event.target.name]: event.target.value
-    })
+      this.props.updateCurrentActorForm({
+        [event.target.name]: event.target.value
+      })
     }
   }
-
-  saveAlert = () => {
-
-  }
-
 
 
   updateActor = (event) => {
@@ -48,8 +42,6 @@ class ActorProfile extends Component {
         })
       )
     }
-
-
 
 
   render() {
@@ -69,7 +61,7 @@ class ActorProfile extends Component {
       <div><Loader active inline='centered' /></div>
     )
   } else {
-// city
+
     const { first_name, last_name, email, height, vocal_range, equity, gender, birthday } = this.props.currentActor.attributes
 
       return(
@@ -78,78 +70,73 @@ class ActorProfile extends Component {
             {first_name}'s Profile
           </div>
 
-            <Grid>
-          <Grid.Row centered>
-          <Grid.Column >
-          <Form
-            centered
-            onSubmit={this.updateActor}>
-              <div>
-            <Form.Field
-              control={Input}
-              width={6}
-              name="first_name"
-              onChange={this.handleChange}
-              value={first_name}
-              color="orange"
-              label='First Name'/>
+          <Grid>
+            <Grid.Row centered>
+              <Grid.Column >
+              <Form
+                onSubmit={this.updateActor}>
 
+                <Form.Field
+                  control={Input}
+                  width={6}
+                  name="first_name"
+                  onChange={this.handleChange}
+                  value={first_name}
+                  color="orange"
+                  label='First Name'/>
 
-            <Form.Field
-              control={Input}
-              width={6}
-              name="last_name"
-              onChange={this.handleChange}
-              value={last_name}
-              label='Last Name'/>
-              </div>
+                <Form.Field
+                  control={Input}
+                  width={6}
+                  name="last_name"
+                  onChange={this.handleChange}
+                  value={last_name}
+                  label='Last Name'/>
 
-            <Form.Field
-              control={Input}
-              width={6}
-              name="email"
-              onChange={this.handleChange}
-              value={email}
-              label='E-Mail'/>
+                <Form.Field
+                  control={Input}
+                  width={6}
+                  name="email"
+                  onChange={this.handleChange}
+                  value={email}
+                  label='E-Mail'/>
 
-            <Form.Field
-              control={Input}
-              width={6}
-              name="height"
-              onChange={this.handleChange}
-              value={height}
-              placeholder="Height in inches"
-              label='Height'/>
+                <Form.Field
+                  control={Input}
+                  width={6}
+                  name="height"
+                  onChange={this.handleChange}
+                  value={height}
+                  placeholder="Height in inches"
+                  label='Height'/>
 
+                <Form.Field
+                  control={Input}
+                  width={6}
+                  name="vocal_range"
+                  onChange={this.handleChange}
+                  value={vocal_range}
+                  label='Vocal Range'/>
 
+                <Form.Select
+                  control={Select}
+                  width={6}
+                  name="equity"
+                  onChange={(event, state) => this.handleChange(state)}
+                  label='Equity'
+                  options={booleans}
+                  value={equity}
+                  />
 
-            <Form.Field
-              control={Input}
-              width={6}
-              name="vocal_range"
-              onChange={this.handleChange}
-              value={vocal_range}
-              label='Vocal Range'/>
-
-            <Form.Select
-              control={Select}
-              width={6}
-              name="equity"
-              onChange={(event, state) => this.handleChange(state)}
-              label='Equity'
-              options={booleans}
-              value={equity}
-              />
-
-              <Form.Field
-                control={Select}
-                width={6}
-                name="gender"
-                onChange={(event, state) => this.handleChange(state)}
-                value={gender}
-                options={genders}
-                label='Gender'
-              />
+                <Form.Field
+                  control={Select}
+                  width={6}
+                  name="gender"
+                  onChange={(event, state) => this.handleChange(state)}
+                  value={gender}
+                  options={genders}
+                  label='Gender'
+                />
 
                 <Form.Field
                 control={Input}
@@ -160,18 +147,10 @@ class ActorProfile extends Component {
                 placeholder="YYYY-MM-DD"
                 label='Birthday'/>
 
+                <br />
 
-              {/* <Form.Field
-                control={Input}
-                width={4}
-                name="ethnicity"
-                onChange={this.handleChange}
-                value={ethnicity}
-                label='Ethnicity'/> */}
-            <br />
-
-            <Button type="submit">Save</Button>
-          </Form>
+                <Button type="submit">Save</Button>
+              </Form>
         </Grid.Column>
      </Grid.Row>
  </Grid>

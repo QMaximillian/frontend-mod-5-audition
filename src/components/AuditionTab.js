@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { loadAudition } from '../actions/actions.js'
+
 class AuditionTab extends Component {
+
 
   componentDidMount(){
     this.props.loadAudition(this.props.tryout.audition_id)

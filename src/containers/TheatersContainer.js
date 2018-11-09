@@ -6,10 +6,12 @@ import '../Audition.css'
 
 class TheatersContainer extends Component {
 
+  // Load all theaters into reducer
   componentDidMount() {
     this.props.loadTheaters()
   }
 
+  // Map over all theaters and return a <Theater /> component for each theater
   mappedTheaters = () => {
     return this.props.theatersIndex.map(theater => {
       return <Theater theater={theater}/>
@@ -17,7 +19,6 @@ class TheatersContainer extends Component {
   }
 
    render() {
-     console.log(this.props.theatersIndex)
      return (
         <div>
           {this.mappedTheaters()}

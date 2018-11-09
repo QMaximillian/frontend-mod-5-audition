@@ -8,7 +8,8 @@ class ActorUpcomingAuditions extends Component {
 
   filteredUpcoming = () => {
     return this.props.currentActor.attributes.tryouts.filter(tryout => {
-      let show_name = this.props.currentActor.attributes.auditions.map(audition => {
+
+       let show_name = this.props.currentActor.attributes.auditions.filter(audition => {
         if (audition.id === tryout.audition_id) {
           return audition.show_name
         }
@@ -35,7 +36,6 @@ class ActorUpcomingAuditions extends Component {
   }
 
   mappedFutureAuditions = () => {
-    console.log(this.filteredPast());
     return this.filteredUpcoming().map(tryout => {
       return <AuditionTab tryout={tryout}/>
     })
@@ -49,7 +49,6 @@ class ActorUpcomingAuditions extends Component {
 
 
   render(){
-    console.log(this.props);
     if (this.props.currentActor === undefined) {
       return (
         <div>

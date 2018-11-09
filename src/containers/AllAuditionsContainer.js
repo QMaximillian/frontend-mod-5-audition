@@ -8,29 +8,28 @@ import { Loader } from 'semantic-ui-react'
 
 class AllAuditionContainer extends Component {
 
+  // Load in all auditions from the backend
+  componentDidMount(){
+    this.props.loadAllAuditions()
+  }
 
-
-mappedAuditions = () => {
-  return this.filteredAuditions().map(audition => {
-
-    return <Audition key={audition.id} audition={audition}/>
-  })
+  // Iterate through the entire index of auditions and if an audition's tryouts and has the currently signed-in actor included, do not show that audition
+  filteredAuditions = () => {
+    return this.props.auditionIndex.filter(audition => {
+      return !audition.attributes.tryouts.map(actor => actor.id).includes(parseInt(this.props.currentActor.id, 10))
+    })
 }
 
-filteredAuditions = () => {
-  return this.props.auditionIndex.filter(audition => {
-    return !audition.attributes.tryouts.map(actor => actor.id).includes(parseInt(this.props.currentActor.id, 10))
-  })
+  // Map over the filtered auditions and return an <Audition /> component for each audition
+  mappedAuditions = () => {
+    return this.filteredAuditions().map(audition => {
+      return <Audition key={audition.id} audition={audition}/>
+    })
+  }
 
-}
 
-
-componentDidMount(){
-  this.props.loadAllAuditions()
-}
 
    render() {
-     console.log(this.props.currentActor);
      if (typeof this.props.tryouts === 'undefined') {
        return (
          <div><Loader active inline='centered' /></div>
@@ -44,8 +43,8 @@ componentDidMount(){
              </div>
           )
      }
-
    }
+
  }
 
  export default connect(state => ({ auditionIndex: state.auditionIndex, tryouts: state.tryouts, currentActor: state.currentActor }), { loadAllAuditions })(AllAuditionContainer)

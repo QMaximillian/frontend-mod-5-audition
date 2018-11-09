@@ -9,8 +9,41 @@ import moment from 'moment'
 
 class MyAuditionsContainer extends Component {
 
+  // Return the ordinal suffix of a number (e.g. For one, "st", for 30, "th")
+  getOrdinal = (n) => {
+    // The array "s" is in order of where commonly the ordinal appears (i.e. "0th, 1st, 2nd, 3rd")
+    let s = ["th","st","nd","rd"]
+    // "v" is getting the remainder of the argument "n" and storing the remainder, reducing each number to a range of 1-99. By giving us the last two places in any number, we get rid of unimportant numbers for determing to ordinal.
+    let v = n % 100;
+
+    // Here we return the number and the ordinal associated with it. "s[0]" is the base case, as the majority of numbers will end in "th". Otherwise "s[v]" will commonly return "st", "nd", and "rd". "s[(v-20)%10]" will return special cases like "0th" and "23rd" where the setup of the array 's' will not inherently work.
+    return n+(s[(v-20)%10]||s[v]||s[0]);
+  }
+
+
+  mappedTryout = (audition) => {
+  // Find all tryouts related to the this audition
+  const tryouts = this.props.currentActor.attributes.tryouts.filter(tryout => {
+       return tryout.audition_id === audition.id
+    })
+  // Map over these tryouts and return the audition date and time and which tryout it is ("1st, 2nd, 3rd")
+    return tryouts.map((tryout, i) => {
+      return (
+        <div>
+        <h3>{this.getOrdinal(i + 1)} Tryout</h3>
+        <Link to={`tryout/${tryout.id}`}>
+        <div className="card">
+          {moment(tryout.audition_time).format("MM/DD/YYYY HH:mm A")}
+        </div>
+        </Link>
+        </div>
+      )
+    })
+  }
+
 
   mappedAuditions = () => {
+    // Map over the auditions and return the audition's show_name and tryouts associated to you and the audition
     return this.props.currentActor.attributes.auditions.map(audition => {
       return (<div>
                 <h1>
@@ -22,34 +55,8 @@ class MyAuditionsContainer extends Component {
       })
   }
 
-  mappedTryout = (audition) => {
-  const tryouts = this.props.currentActor.attributes.tryouts.filter(tryout => {
-       return tryout.audition_id === audition.id
-    })
-
-    return tryouts.map((tryout, i) => {
-      return (
-        <div>
-        <h3>{this.getGetOrdinal(i + 1)} Tryout</h3>
-        <Link to={`tryout/${tryout.id}`}>
-        <div className="card">
-          {moment(tryout.audition_time).format("MM/DD/YYYY HH:mm A")}
-        </div>
-        </Link>
-        </div>
-      )
-    })
-  }
-
-  getGetOrdinal = (n) => {
-    var s=["th","st","nd","rd"],
-    v=n%100;
-    return n+(s[(v-20)%10]||s[v]||s[0]);
-  }
 
    render() {
-      // if (typeof this.props.currentActor.auditions === 'undefined') {
-      //
       if (typeof this.props.currentActor.attributes === 'undefined') {
           return (
             <div><Loader active inline='centered' /></div>

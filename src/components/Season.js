@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 export default class Season extends Component {
    render() {
-     console.log(this.props);
      return (
        <Link to={`theater/${this.props.season.theater_id}/season/${this.props.season.id}`}>
         <div className="card">

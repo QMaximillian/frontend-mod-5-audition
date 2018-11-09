@@ -23,12 +23,12 @@ export default class Login extends Component {
           [event.target.name]:event.target.value
         }
       }
-    }, () => console.log(this.state.actor))
+    })
     }
 
   handleLoginSubmit = (event) => {
     event.preventDefault()
-    fetchLoginActor(this.state.actor).then(console.log)
+    fetchLoginActor(this.state.actor)
   }
 
   // handleSignUp = (event) => {

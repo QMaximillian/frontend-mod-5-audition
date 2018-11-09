@@ -9,17 +9,19 @@ import Search from '../components/Search'
 
 class ActorHomeContainer extends Component {
 
-
+  // State is holding information related to searching for the name of an audition in the future or the past
   state = {
     search: ''
   }
 
+  // This handleChange is handling the onChange input in the <Search /> component and updating this.state.search in ActorHomeContainer
   handleChange = (event) => {
       this.setState({
         search: event.target.value
       })
   }
 
+  // Loads all of the relevant information associated with the Actor signed-in
     componentDidMount(){
       this.props.loadInitialActorState()
     }
@@ -34,10 +36,11 @@ class ActorHomeContainer extends Component {
             <ActorUpcomingAuditions search={this.state.search}/>
             </div>
           </div>
-    )
-}
+        )
+  }
 }
 
+  // mapping loaded in values from loadInitialActorState in componentDidMount
 const mapStateToProps = (state) => {
   return {
     currentActor: state.currentActor,

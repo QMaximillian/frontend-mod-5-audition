@@ -18,13 +18,13 @@ class AuditionShow extends Component {
        fetchGet('auditions', this.props.match.params.auditionId).then(audition => {
          this.setState({
             audition: audition.data.attributes
-         }, () => console.log(this.state.audition))
+         })
        })
      } else {
        fetchGet('auditions', this.props.match.params.id).then(audition => {
          this.setState({
             audition: audition.data.attributes
-         }, () => console.log(this.state.audition))
+         })
        })
      }
     }

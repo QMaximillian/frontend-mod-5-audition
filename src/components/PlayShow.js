@@ -13,8 +13,6 @@ class PlayShow extends Component {
 
 
    render() {
-     console.log(this.props);
-
      const { show } = this.props
      if (show.attributes) {
        return (
