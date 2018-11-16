@@ -17,7 +17,7 @@ render(){
   const { activeItem } = this.state
 
   return (
-    <Menu style={{textAlign: "center"}} className="navbar">
+    <Menu style={{textAlign: "center"}} className="">
       <Menu.Item
         as={ Link }
         name='Audition'

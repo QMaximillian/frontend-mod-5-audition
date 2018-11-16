@@ -16,6 +16,7 @@ class ActorUpcomingAuditions extends Component {
   }
 
   filteredPast = () => {
+
     return this.props.currentActor.attributes.tryouts.filter(tryout => {
       if (moment.utc(tryout.audition_time).isBefore(moment().format()) &&       tryout.show_name.toLowerCase().match(this.props.search.toLowerCase()))
       {
@@ -35,7 +36,6 @@ class ActorUpcomingAuditions extends Component {
       return <AuditionTab tryout={tryout} />
     })
   }
-
 
   render(){
     if (this.props.currentActor === undefined) {
