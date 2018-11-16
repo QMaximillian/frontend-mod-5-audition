@@ -16,12 +16,21 @@ class AllAuditionContainer extends Component {
   // Iterate through the entire index of auditions and if an audition's tryouts and has the currently signed-in actor included, do not show that audition
   filteredAuditions = () => {
     return this.props.auditionIndex.filter(audition => {
-      return !audition.attributes.tryouts.map(actor => actor.id).includes(parseInt(this.props.currentActor.id, 10))
+      return !audition.attributes.tryouts.map(tryout => tryout.actor_id).includes(parseInt(this.props.currentActor.id, 10))
+    })
+}
+
+  filteredReduceAuditions = () => {
+    return this.props.auditionIndex.filter(audition => {
+      return !audition.attributes.tryouts.map(tryout => tryout.actor_id).includes(parseInt(this.props.currentActor.id, 10))
     })
 }
 
   // Map over the filtered auditions and return an <Audition /> component for each audition
   mappedAuditions = () => {
+    if (this.filteredAuditions().length === 0) {
+      return "You have no available auditions"
+    }
     return this.filteredAuditions().map(audition => {
       return <Audition key={audition.id} audition={audition}/>
     })

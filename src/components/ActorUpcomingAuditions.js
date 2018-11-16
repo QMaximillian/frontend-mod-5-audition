@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Loader } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { loadAudition } from '../actions/actions'
 import AuditionTab from './AuditionTab'
 import moment from 'moment'
 class ActorUpcomingAuditions extends Component {
@@ -8,14 +9,7 @@ class ActorUpcomingAuditions extends Component {
 
   filteredUpcoming = () => {
     return this.props.currentActor.attributes.tryouts.filter(tryout => {
-
-       let show_name = this.props.currentActor.attributes.auditions.filter(audition => {
-        if (audition.id === tryout.audition_id) {
-          return audition.show_name
-        }
-      })
-
-      if (moment.utc((tryout.audition_time)).isAfter(moment().format()) &&       show_name.toString().toLowerCase().match(this.props.search.toLowerCase())) {
+      if (moment.utc((tryout.audition_time)).isAfter(moment().format()) &&       tryout.show_name.toLowerCase().match(this.props.search.toLowerCase())) {
           return tryout
         }
     })
@@ -23,17 +17,12 @@ class ActorUpcomingAuditions extends Component {
 
   filteredPast = () => {
     return this.props.currentActor.attributes.tryouts.filter(tryout => {
-      let show_name = this.props.currentActor.attributes.auditions.map(audition => {
-        if (audition.id === tryout.audition_id) {
-          return audition.show_name
-        }
-      })
-
-      if (moment.utc((tryout.audition_time)).isBefore(moment().format()) &&       show_name.toString().toLowerCase().match(this.props.search.toLowerCase())) {
-          return tryout
-        }
-    })
-  }
+      if (moment.utc(tryout.audition_time).isBefore(moment().format()) &&       tryout.show_name.toLowerCase().match(this.props.search.toLowerCase()))
+      {
+        return tryout
+      }
+  })
+}
 
   mappedFutureAuditions = () => {
     return this.filteredUpcoming().map(tryout => {
@@ -90,7 +79,7 @@ class ActorUpcomingAuditions extends Component {
       </tbody>
       </table>
 
-{/*  */}
+
         <div style={{fontSize: '2rem'}}>
         Past Auditions
         </div>
@@ -122,4 +111,4 @@ class ActorUpcomingAuditions extends Component {
   }
 }
 
-export default connect(state => ({ currentActor: state.currentActor }))(ActorUpcomingAuditions)
+export default connect(state => ({ currentActor: state.currentActor }), { loadAudition })(ActorUpcomingAuditions)

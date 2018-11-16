@@ -40,6 +40,7 @@ class ResumePDFSubmit extends Component {
     formData.append('tryout[audition_id]', this.props.match.params.id)
     formData.append('tryout[audition_time]', this.state.confirmedTime)
     formData.append('tryout[location]', "New York City")
+    formData.append('tryout[show_name]', this.state.confirmedAudition.show_name)
 
 
     fetchPostTryout(formData)
