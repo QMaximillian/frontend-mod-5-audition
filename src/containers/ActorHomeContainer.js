@@ -44,11 +44,9 @@ class ActorHomeContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     currentActor: state.currentActor,
-    appliedAuditions: state.appliedAuditions,
-    resumes: state.resumes,
-    tryoutAuditions: state.tryoutAuditions,
-    auditionJournals: state.auditionJournals,
-    tryouts: state.tryouts
+    auditions: state.auditions,
+    tryouts: state.tryouts,
+    auditionJournals: state.auditionJournals
   }
 }
 

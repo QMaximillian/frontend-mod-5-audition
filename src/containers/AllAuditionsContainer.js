@@ -31,6 +31,7 @@ class AllAuditionContainer extends Component {
     if (this.filteredAuditions().length === 0) {
       return "You have no available auditions"
     }
+
     return this.filteredAuditions().map(audition => {
       return <Audition key={audition.id} audition={audition}/>
     })
