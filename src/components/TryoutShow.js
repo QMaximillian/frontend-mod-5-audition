@@ -9,7 +9,7 @@ import { Button } from 'semantic-ui-react'
 class TryoutShow extends Component {
 
   componentDidMount(){
-    if (this.props.currentActor.attributes.tryouts !== undefined) {
+    if (this.props.currentActor.attributes !== undefined) {
       const tryout =  this.props.currentActor.attributes.tryouts.find(tryout => {
           return tryout.id === parseInt(this.props.match.params.id, 10)
         })
@@ -26,10 +26,7 @@ class TryoutShow extends Component {
     }
 
      render() {
-       const tryout =  this.props.currentActor.attributes.tryouts.find(tryout => {
-           return tryout.id === parseInt(this.props.match.params.id, 10)
-         })
-
+      if (this.props.audition.attributes !== undefined) {
        return (
           <div className="tryout-show-grid profile-card">
             <div style={{textAlign: 'left'}}>
@@ -49,15 +46,18 @@ class TryoutShow extends Component {
               <h3>
                 Audition Time:
               </h3>
-              <h4>{moment(tryout.audition_time).format("MM/DD/YYYY HH:mm A")}</h4>
+              <h4>{moment(this.props.tryout.audition_time).format("MM/DD/YYYY HH:mm A")}</h4>
             <div>
-              <h1>{tryout.callback}</h1>
+              <h1>{this.props.tryout.callback}</h1>
             </div>
             {this.props.tryout.attributes !== undefined ? <Button color="teal"><a href={this.props.tryout.attributes.service_url_link} target="_blank">Your Submitted Resume</a></Button> : <div>LOADING</div>}
-
-
           </div>
        )
+     } else {
+       return (
+       <div>LOADING</div>
+     )
+     }
    }
  }
 

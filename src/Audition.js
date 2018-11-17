@@ -42,7 +42,7 @@ class Audition extends Component {
 
   render() {
     return (
-      <div className="top-level">
+      <div className="content">
         <Switch>
           <Route exact path="/actor/audition-home/audition-journals/:id"/>
           <Route exact path="/theater/:theaterId/season/:seasonId" component={SeasonShow}/>

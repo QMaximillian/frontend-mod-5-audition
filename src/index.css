@@ -1,29 +1,19 @@
 body {
-  margin: 0;
-  padding: 0;
   font-family: sans-serif;
 }
 
-html {
-  background: linear-gradient(to bottom right, red, yellow);
-  /* opacity: .7; */
+.container {
   height: 100%;
-
-  background-repeat: no-repeat;
-
-  background-size: cover;
-
-  background-attachment: fixed;
-  margin: 0;
-  font-family: 'Helvetica Neue'
+  display: grid;
+  grid-gap: 3px;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 40px auto 40px;
+  background-color: #FFF;
 }
+
 
 @font-face {
   font-family: 'Helvetica Neue',Arial,Helvetica,sans-serif;
   font-style: normal;
   font-weight: 800;
 }
-/*
-.top-level {
-
-} */

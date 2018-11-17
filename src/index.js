@@ -8,8 +8,10 @@ import { Provider } from 'react-redux'
 import { Switch } from 'react-router' // react-router v4
 import { ConnectedRouter } from 'connected-react-router'
 import { actorReducer, initialState } from './reducers/index'
-import Navbar from './components/Navbar'
+// import Navbar from './components/Navbar'
+import NavbarNew from './components/NavbarNew'
 import Audition from './Audition'
+import "./index.css"
 
 
 const history = createBrowserHistory()
@@ -33,8 +35,8 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div className="top-level">
-        <Navbar />
+      <div className="container">
+        <NavbarNew />
         <Switch>
           <Audition />
         </Switch>

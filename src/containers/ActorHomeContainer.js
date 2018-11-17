@@ -28,8 +28,8 @@ class ActorHomeContainer extends Component {
 
   render() {
     return(
-          <div className="home-grid">
-            <div className="sidebar" style={{textAlign: 'center'}}>
+      <div style={{textAlign: 'center'}} >
+            <div>
             <h1>Welcome to Audition</h1>
             <Search search={this.state.search}
               handleChange={this.handleChange}/>
