@@ -13,7 +13,8 @@ import AuditionShow from './components/AuditionShow'
 import AuditionConfirmation from './components/AuditionConfirmation'
 
 import ResumePDFSubmit from './components/ResumePDFSubmit'
-import AllAuditionsContainer from './containers/AllAuditionsContainer'
+// import AllAuditionsContainer from './containers/AllAuditionsContainer'
+import SearchContainer from './containers/SearchContainer'
 import 'semantic-ui-css/semantic.min.css'
 import './Audition.css'
 import './index.css'
@@ -48,7 +49,7 @@ class Audition extends Component {
           <Route exact path="/theater/:theaterId/season/:seasonId" component={SeasonShow}/>
           <Route exact path="/audition/:id/resume_submit" component={ResumePDFSubmit}/>
           <Route exact path="/my-auditions" component={MyAuditionsContainer}/>
-          <Route exact path="/find-auditions" component={AllAuditionsContainer}/>
+          <Route exact path="/search" component={SearchContainer}/>
           <Route exact path="/auditions/:id" component={AuditionShow}/>
           <Route exact path="/tryout/:id" component={TryoutShow}/>
           {/* <Route exact path="/actor/audition-journals" component={AuditionJournal}/> */}

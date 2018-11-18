@@ -5,27 +5,23 @@ import '../Audition.css'
 class NavbarNew extends Component {
 
 
-
-
 render(){
   return (
-      <div className="header">
+    <div className="header">
         <nav>
           <ul>
-              <Link to="/">Audition</Link>
-              <span style={{textAlign: "right"}}>
-              <Link to="/search">Search</Link>
-            <li class="sub-menu-parent">
-              <Link to="#">Settings</Link>
-              <ul class="sub-menu">
-                <Link to="/actor/1">Profile</Link>
-                <Link to="/my-auditions">My Auditions</Link>
-              </ul>
-            </li>
-          </span>
-          </ul>
-          </nav>
-          </div>
+              <li><Link to="/">Audition</Link></li>
+              <li><Link to="/search">Search</Link></li>
+              <li><Link to="#">Settings</Link>
+                <ul>
+                  <li><Link to="/actor/1">Profile</Link></li>
+                  <li><Link to="/my-auditions">My Auditions</Link></li>
+                </ul>
+              </li>
+        </ul>
+        </nav>
+    </div>
+
   )
  }
 }
