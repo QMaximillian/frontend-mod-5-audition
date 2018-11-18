@@ -6,9 +6,10 @@ body {
   height: 100%;
   display: grid;
   grid-gap: 3px;
-  grid-template-columns: 1fr 5fr;
-  grid-template-rows: 40px auto 40px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
   background-color: #FFF;
+  padding-top: 80px;
 }
 
 
