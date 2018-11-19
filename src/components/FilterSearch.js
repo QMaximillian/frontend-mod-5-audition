@@ -6,62 +6,87 @@ export default class FilterSearch extends Component {
 
 
    render() {
-     console.log(this.props);
      let categoryOptions = [
        {
          text: 'Theaters',
          value: 'theaters'
-       }, {
+       },
+       {
          text: 'Auditions',
          value: 'auditions'
+       },
+       {
+         text: 'All',
+         value: 'all'
        }
      ]
 
      let equityOptions = [
        {
          text: 'Equity',
-         value: 'Equity'
+         value: 'equity'
        },
        {
          text: 'Non-Equity',
-         value: 'Non-Equity'
+         value: 'non-Equity'
+       },
+       {
+         text: 'All',
+         value: 'all'
        }
      ]
 
      let genderOptions = [
        {
          text: 'Male',
-         value: 'Male'
+         value: 'male'
        },
        {
          text: 'Female',
-         value: 'Female'
+         value: 'female'
        },
        {
          text: 'Transgender',
-         value: 'Transgender'
+         value: 'transgender'
+       },
+       {
+         text: 'All',
+         value: 'all'
        }
      ]
 
      return (
        <React.Fragment>
        <div className="centered filterbox">
-
        <Form>
          <Form.Select
            control={Select}
            width={6}
            name="searchType"
            label='Category'
-           onChange={(event, state) => this.props.handleSearchTypeChange(state)}
+           onChange={(event, state) => this.props.handleSearchChange(state)}
            options={categoryOptions}
            value={this.props.searchType}
            />
+         <Form.Select
+           control={Select}
+           width={6}
+           name="equity"
+           label='Equity'
+           onChange={(event, state) => this.props.handleSearchChange(state)}
+           options={equityOptions}
+           value={this.props.equity}
+           />
+         <Form.Select
+           control={Select}
+           width={6}
+           name="gender"
+           label='Gender'
+           onChange={(event, state) => this.props.handleSearchChange(state)}
+           options={genderOptions}
+           value={this.props.gender}
+           />
         </Form>
-          // <Dropdown onChange={this.handleSearchType} className="inline" placeholder='Category' fluid selection options={categoryOptions}/>
-          // <Dropdown className="inline" placeholder='Equity Status' fluid selection options={equityOptions}/>
-          // <Dropdown className="inline" placeholder='Gender' fluid selection options={genderOptions}/>
-
         </div>
       </React.Fragment>
      )

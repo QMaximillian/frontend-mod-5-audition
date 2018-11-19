@@ -15,16 +15,26 @@ class AllAuditionContainer extends Component {
 
   // Iterate through the entire index of auditions and if an audition's tryouts and has the currently signed-in actor included, do not show that audition
   filteredAuditions = () => {
+    if (this.props.parent === "tryThis") {
+
     return this.props.auditionIndex.filter(audition => {
-      return !audition.attributes.tryouts.map(tryout => tryout.actor_id).includes(parseInt(this.props.currentActor.id, 10))
+      if (this.props.equity === true) {
+      return audition.attributes.equity === true
+    } else {
+      return audition.attributes.equity === false
+    }
     })
+  }
+  // return this.props.auditionIndex.filter(audition => {
+  //   return !audition.attributes.tryouts.map(tryout => tryout.actor_id).includes(parseInt(this.props.currentActor.id, 10))
+  // })
 }
 
-  filteredReduceAuditions = () => {
-    return this.props.auditionIndex.filter(audition => {
-      return !audition.attributes.tryouts.map(tryout => tryout.actor_id).includes(parseInt(this.props.currentActor.id, 10))
-    })
-}
+//   filteredReduceAuditions = () => {
+//     return this.props.auditionIndex.filter(audition => {
+//       return !audition.attributes.tryouts.map(tryout => tryout.actor_id).includes(parseInt(this.props.currentActor.id, 10))
+//     })
+// }
 
   // Map over the filtered auditions and return an <Audition /> component for each audition
   mappedAuditions = () => {
@@ -40,10 +50,17 @@ class AllAuditionContainer extends Component {
 
 
    render() {
+     console.log(this.mappedAuditions());
      if (typeof this.props.tryouts === 'undefined') {
        return (
          <div><Loader active inline='centered' /></div>
        )
+     } else if (this.props.audition === 'undefined') {
+       <div>
+         <section className='card-container'>
+         {this.mappedAuditions()}
+         </section>
+       </div>
      } else {
           return (
              <div>
