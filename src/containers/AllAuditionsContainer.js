@@ -60,11 +60,12 @@ class AllAuditionContainer extends Component {
          <div><Loader active inline='centered' /></div>
        )
      } else if (this.props.audition === 'undefined') {
-       <div>
+       return(<div>
          <section className='card-container'>
          {this.mappedAuditions()}
          </section>
        </div>
+     )
      } else {
           return (
              <div>

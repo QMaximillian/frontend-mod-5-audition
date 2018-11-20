@@ -1,5 +1,5 @@
-import React, { Fragment, Component } from 'react'
-import { Dropdown, Form, Select } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Form, Select } from 'semantic-ui-react'
 import "../Audition.css"
 export default class FilterSearch extends Component {
 
@@ -36,27 +36,26 @@ export default class FilterSearch extends Component {
        }
      ]
 
-     let genderOptions = [
-       {
-         text: 'Male',
-         value: 'male'
-       },
-       {
-         text: 'Female',
-         value: 'female'
-       },
-       {
-         text: 'Transgender',
-         value: 'transgender'
-       },
-       {
-         text: 'All',
-         value: 'all'
-       }
-     ]
+     // let genderOptions = [
+     //   {
+     //     text: 'Male',
+     //     value: 'male'
+     //   },
+     //   {
+     //     text: 'Female',
+     //     value: 'female'
+     //   },
+     //   {
+     //     text: 'Transgender',
+     //     value: 'transgender'
+     //   },
+     //   {
+     //     text: 'All',
+     //     value: 'all'
+     //   }
+     // ]
 
      return (
-       <React.Fragment>
        <div className="centered filterbox">
        <Form>
          <Form.Select
@@ -89,7 +88,6 @@ export default class FilterSearch extends Component {
            /> */}
         </Form>
         </div>
-      </React.Fragment>
      )
    }
  };

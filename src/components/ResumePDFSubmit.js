@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { fetchPostTryout, fetchGet } from '../adapters/actorAdapter'
 import { Redirect } from 'react-router-dom'
-import { Button, Input } from 'semantic-ui-react'
+import { Button, Input, Form } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { loadAudition } from '../actions/actions'
 // import Moment from 'react-moment'
@@ -34,6 +34,11 @@ class ResumePDFSubmit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    if (this.state.confirmedTime === undefined) {
+      alert('Please pick an actual time')
+      return
+    }
+
     const formData = new FormData()
     formData.append('tryout[resume]', this.state.file)
     formData.append('tryout[actor_id]', this.props.currentActor.id)
@@ -52,10 +57,10 @@ class ResumePDFSubmit extends Component {
   }
 
 
-  handleTimeChange = (event) => {
+  handleTimeChange = (state) => {
     this.setState({
-      confirmedTime: event.target.value
-    })
+      confirmedTime: state.value
+    }, () => console.log(this.state.confirmedTime))
   }
 
 
@@ -119,16 +124,16 @@ if (time_slots !== undefined){
       return !this.state.confirmedAudition.submitted_times.includes(time)
     })
 
-    const slots = allSlotsWithTimes.map(time => {
-        return (
-          <React.Fragment>
-          <option
-           value={moment(time).format()}>{moment(time).format('HH:mm A')}
-          </option>
-          </React.Fragment>
-        )
-     })
-    return slots
+    let timeOptions = []
+
+    for (let time of allSlotsWithTimes) {
+      timeOptions.push({'text': moment(time).format('HH:mm A'), 'value': moment(time).format()})
+    }
+    console.log(timeOptions);
+    // allSlotsWithTimes.map(time => {
+    //
+    //  })
+    return timeOptions
   }
     }
 
@@ -165,11 +170,13 @@ if (time_slots !== undefined){
         <br />
          <div>
             <div>
-              <select
-                onChange={this.handleTimeChange}
-                value={this.state.confirmedTime}>
-                {this.getDateHoursMoment()}
-              </select>
+              <Form.Select
+              label="Pick a time"
+              name="confirmedTime"
+                onChange={(event, state) => this.handleTimeChange(state)}
+                value={this.state.confirmedTime}
+                options={this.getDateHoursMoment()}>
+              </Form.Select>
             </div>
          </div>
          <div><br />
