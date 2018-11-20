@@ -7,9 +7,9 @@ import AllAuditionsContainer from './AllAuditionsContainer'
 export default class SearchContainer extends Component {
 
     state = {
-      searchType: '',
-      equity: '',
-      gender: ''
+      searchType: 'all',
+      equity: 'all',
+      // gender: 'all'
     }
 
     handleSearchChange = (state) => {
@@ -26,12 +26,12 @@ export default class SearchContainer extends Component {
           handleSearchChange={this.handleSearchChange}
           searchType={this.state.searchType}
           equity={this.state.equity}
-          gender={this.state.gender}/>
+          /*gender={this.state.gender} *//>
           </div>
           <div>
           <br />
           <br />
-          { this.state.searchType === 'all' ? <div><div><AllAuditionsContainer /></div><div><TheatersContainer/></div></div> : this.state.searchType === 'auditions' ? <AllAuditionContainer
+          { this.state.searchType === 'all' ? <div><div><AllAuditionsContainer parent='tryThis' equity={this.state.equity} /></div><div><TheatersContainer/></div></div> : this.state.searchType === 'auditions' ? <AllAuditionContainer
           parent='tryThis' equity={this.state.equity}/> : this.state.searchType === 'theaters' ? <TheatersContainer /> : <div></div> }
 
           </div>

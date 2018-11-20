@@ -24,11 +24,11 @@ export default class FilterSearch extends Component {
      let equityOptions = [
        {
          text: 'Equity',
-         value: 'equity'
+         value: 'true'
        },
        {
          text: 'Non-Equity',
-         value: 'non-Equity'
+         value: 'false'
        },
        {
          text: 'All',
@@ -76,8 +76,9 @@ export default class FilterSearch extends Component {
            onChange={(event, state) => this.props.handleSearchChange(state)}
            options={equityOptions}
            value={this.props.equity}
+
            />
-         <Form.Select
+         {/* <Form.Select
            control={Select}
            width={6}
            name="gender"
@@ -85,7 +86,7 @@ export default class FilterSearch extends Component {
            onChange={(event, state) => this.props.handleSearchChange(state)}
            options={genderOptions}
            value={this.props.gender}
-           />
+           /> */}
         </Form>
         </div>
       </React.Fragment>

@@ -18,11 +18,15 @@ class AllAuditionContainer extends Component {
     if (this.props.parent === "tryThis") {
 
     return this.props.auditionIndex.filter(audition => {
-      if (this.props.equity === true) {
-      return audition.attributes.equity === true
-    } else {
-      return audition.attributes.equity === false
-    }
+      if (this.props.equity === 'true' && audition.attributes.equity === true) {
+        return audition
+      } else if (this.props.equity === 'false' && audition.attributes.equity === false) {
+        return audition
+      } else if (this.props.equity === 'all') {
+        return audition
+      }
+
+
     })
   }
   // return this.props.auditionIndex.filter(audition => {
