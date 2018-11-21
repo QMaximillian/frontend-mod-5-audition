@@ -14,10 +14,10 @@ class TheatersContainer extends Component {
   // Map over all theaters and return a <Theater /> component for each theater
   mappedTheaters = () => {
     return this.props.theatersIndex.map(theater => {
-      return <Theater theater={theater}/>
+      return <Theater key={theater.id} theater={theater}/>
     })
   }
-
+  
    render() {
      return (
         <div>
