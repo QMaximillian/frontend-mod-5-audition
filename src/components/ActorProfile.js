@@ -53,7 +53,8 @@ class ActorProfile extends Component {
 
     const genders = [
       {key: 'female', text: "Female", value: "Female"},
-      {key: 'male', text: "Male", value: "Male"}
+      {key: 'male', text: "Male", value: "Male"},
+      {key: 'Transgender', text: "Transgender", value: "transgender"}
     ]
 
   if (typeof this.props.currentActor.attributes === 'undefined') {
@@ -62,7 +63,7 @@ class ActorProfile extends Component {
     )
   } else {
 
-    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday } = this.props.currentActor.attributes
+    const { first_name, last_name, email, feet, inches, vocal_range, equity, gender, birthday } = this.props.currentActor.attributes
 
       return(
         <div className="profile-card">
@@ -78,7 +79,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Input}
-                  width={6}
+                  width={12}
                   name="first_name"
                   onChange={this.handleChange}
                   value={first_name}
@@ -87,7 +88,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Input}
-                  width={6}
+                  width={12}
                   name="last_name"
                   onChange={this.handleChange}
                   value={last_name}
@@ -95,7 +96,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Input}
-                  width={6}
+                  width={12}
                   name="email"
                   onChange={this.handleChange}
                   value={email}
@@ -103,16 +104,25 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Input}
-                  width={6}
-                  name="height"
+                  width={12}
+                  name="feet"
                   onChange={this.handleChange}
-                  value={height}
-                  placeholder="Height in inches"
+                  value={feet}
+                  placeholder="Feet"
                   label='Height'/>
 
                 <Form.Field
                   control={Input}
-                  width={6}
+                  width={12}
+                  name="inches"
+                  onChange={this.handleChange}
+                  value={inches}
+                  placeholder="Inches"
+                  label='Height'/>
+
+                <Form.Field
+                  control={Input}
+                  width={12}
                   name="vocal_range"
                   onChange={this.handleChange}
                   value={vocal_range}
@@ -120,7 +130,7 @@ class ActorProfile extends Component {
 
                 <Form.Select
                   control={Select}
-                  width={6}
+                  width={12}
                   name="equity"
                   onChange={(event, state) => this.handleChange(state)}
                   label='Equity'
@@ -130,7 +140,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Select}
-                  width={6}
+                  width={12}
                   name="gender"
                   onChange={(event, state) => this.handleChange(state)}
                   value={gender}
@@ -140,7 +150,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                 control={Input}
-                width={6}
+                width={12}
                 name="birthday"
                 onChange={this.handleChange}
                 value={birthday}

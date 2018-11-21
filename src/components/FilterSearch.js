@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Form, Select } from 'semantic-ui-react'
 import "../Audition.css"
+
+
 export default class FilterSearch extends Component {
 
-
-
    render() {
+     
      let categoryOptions = [
        {
          text: 'Theaters',

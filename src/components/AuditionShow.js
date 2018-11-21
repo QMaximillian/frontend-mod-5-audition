@@ -4,6 +4,7 @@ import { fetchGet } from '../adapters/actorAdapter'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import {Button} from 'semantic-ui-react'
+// import { loadInitialActorState } from '../actions/actions.js'
 
 
 
@@ -14,6 +15,8 @@ class AuditionShow extends Component {
   }
 
      componentDidMount(){
+       // this.props.loadInitialActorState()
+
        if (this.props.match.params.auditionId) {
        fetchGet('auditions', this.props.match.params.auditionId).then(audition => {
          this.setState({
@@ -36,16 +39,21 @@ class AuditionShow extends Component {
   }
 
 render() {
-  if (this.state.audition.show_name) {
+  console.log(this.props);
+  if (this.state.audition.show_name && this.props.currentActor.attributes !== undefined) {
      return (
       <div className='card' style={{textAlign: 'left'}}>
           <div style={{fontSize: '2em'}}>
             <h1>{this.state.audition.show_name}</h1><br/>
             <h5>{this.handleLineBreak(this.state.audition.location)}</h5>
             <span>
-            <Link to={`/audition/${this.props.match.params.id}/resume_submit`}>
-              <Button>Submit For This Audition</Button>
-            </Link>
+            {this.props.currentActor.attributes.equity === true ?
+                <Link to={`/audition/${this.props.match.params.id}/resume_submit`}>
+                  <Button>Submit For This Audition</Button>
+                </Link>
+              : <div>This an equity only audition</div>
+              }
+
             </span>
           </div>
           <hr/>
@@ -75,6 +83,4 @@ render() {
      }
  }
 
- connect(state => ({ auditionIndex: state.auditionIndex }))(AuditionShow)
-
- export default AuditionShow
+ export default connect(state => ({ currentActor: state.currentActor }))(AuditionShow)

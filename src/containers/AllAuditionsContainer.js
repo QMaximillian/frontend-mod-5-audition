@@ -25,8 +25,6 @@ class AllAuditionContainer extends Component {
       } else if (this.props.equity === 'all') {
         return audition
       }
-
-
     })
   }
   // return this.props.auditionIndex.filter(audition => {
