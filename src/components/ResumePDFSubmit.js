@@ -48,12 +48,9 @@ class ResumePDFSubmit extends Component {
     formData.append('tryout[show_name]', this.state.confirmedAudition.show_name)
 
 
-    fetchPostTryout(formData)
-
-    this.setState({
-       redirect: true
-    })
-
+    fetchPostTryout(formData).then( this.setState({
+        redirect: true
+     }))
   }
 
 

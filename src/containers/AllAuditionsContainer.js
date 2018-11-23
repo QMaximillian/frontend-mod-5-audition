@@ -13,12 +13,18 @@ class AllAuditionContainer extends Component {
     this.props.loadAllAuditions()
   }
 
-  // Iterate through the entire index of auditions and if an audition's tryouts and has the currently signed-in actor included, do not show that audition
   filteredAuditions = () => {
+    return this.props.auditionIndex.filter(audition => {
+      return !audition.attributes.tryouts.map(tryout => tryout.actor_id).includes(parseInt(this.props.currentActor.id, 10))
+    })
+
+  }
+  // Iterate through the entire index of auditions and if an audition's tryouts and has the currently signed-in actor included, do not show that audition
+  searchFilterAuditions = () => {
     if (this.props.parent === "tryThis") {
 
 
-    return this.props.auditionIndex.filter(audition => {
+    return this.filteredAuditions().filter(audition => {
       if (this.props.equity === 'true' && audition.attributes.equity === true) {
         return audition
       } else if (this.props.equity === 'false' && audition.attributes.equity === false) {
@@ -28,9 +34,6 @@ class AllAuditionContainer extends Component {
       }
     })
   }
-  // return this.props.auditionIndex.filter(audition => {
-  //   return !audition.attributes.tryouts.map(tryout => tryout.actor_id).includes(parseInt(this.props.currentActor.id, 10))
-  // })
 }
 
 //   filteredReduceAuditions = () => {
@@ -41,11 +44,11 @@ class AllAuditionContainer extends Component {
 
   // Map over the filtered auditions and return an <Audition /> component for each audition
   mappedAuditions = () => {
-    if (this.filteredAuditions().length === 0) {
+    if (this.searchFilterAuditions().length === 0) {
       return "You have no available auditions"
     }
 
-    return this.filteredAuditions().map(audition => {
+    return this.searchFilterAuditions().map(audition => {
       return <Audition key={audition.id} audition={audition}/>
     })
   }
