@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import { Redirect } from 'react-router-dom'
-import { Form, Grid, Container} from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import { fetchLoginActor } from '../adapters/actorAdapter'
 import '../Audition.css'
 
@@ -28,23 +28,15 @@ export default class Login extends Component {
 
   handleLoginSubmit = (event) => {
     event.preventDefault()
-    fetchLoginActor(this.state.actor)
+    fetchLoginActor(this.state.actor).then(console.log)
   }
 
-  // handleSignUp = (event) => {
-  //   event.
-  // }
 
   render() {
 
     const { actor } = this.state
+    console.log(actor.password, actor.email)
     return(
-    // <Link to='/actor/audition-home'>
-    // </Link>
-    <div>
-    <Grid>
-
-      <Container className="container">
           <Form>
               <Form.Input
                 name="email"
@@ -63,10 +55,6 @@ export default class Login extends Component {
                   content="Log In"
                   primary/>
             </Form>
-      </Container>
-    </Grid>
-
-      </div>
     )
   }
 }

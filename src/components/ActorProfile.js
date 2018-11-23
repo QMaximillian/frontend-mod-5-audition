@@ -109,7 +109,7 @@ class ActorProfile extends Component {
                   onChange={this.handleChange}
                   value={feet}
                   placeholder="Feet"
-                  label='Height'/>
+                  label='Feet'/>
 
                 <Form.Field
                   control={Input}
@@ -118,7 +118,7 @@ class ActorProfile extends Component {
                   onChange={this.handleChange}
                   value={inches}
                   placeholder="Inches"
-                  label='Height'/>
+                  label='Inches'/>
 
                 <Form.Field
                   control={Input}

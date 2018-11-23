@@ -27,6 +27,7 @@ class ActorHomeContainer extends Component {
     }
 
   render() {
+    console.log(this.props.currentActor)
     return(
       <div style={{textAlign: 'center'}} >
             <div>

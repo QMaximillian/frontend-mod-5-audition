@@ -17,6 +17,7 @@ class AllAuditionContainer extends Component {
   filteredAuditions = () => {
     if (this.props.parent === "tryThis") {
 
+
     return this.props.auditionIndex.filter(audition => {
       if (this.props.equity === 'true' && audition.attributes.equity === true) {
         return audition
@@ -52,7 +53,6 @@ class AllAuditionContainer extends Component {
 
 
    render() {
-     console.log(this.mappedAuditions());
      if (typeof this.props.tryouts === 'undefined') {
        return (
          <div><Loader active inline='centered' /></div>
