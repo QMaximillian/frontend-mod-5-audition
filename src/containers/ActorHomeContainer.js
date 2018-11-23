@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { loadInitialActorState } from '../actions/actions'
 import '../Audition.css'
 import Search from '../components/Search'
+import withAuth from '../hocs/withAuth'
 
 
 
@@ -27,7 +28,7 @@ class ActorHomeContainer extends Component {
     }
 
   render() {
-    console.log(this.props.currentActor)
+    console.log(this.props)
     return(
       <div style={{textAlign: 'center'}} >
             <div>
@@ -51,4 +52,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadInitialActorState })(ActorHomeContainer)
+export default withAuth(connect(mapStateToProps, { loadInitialActorState })(ActorHomeContainer))

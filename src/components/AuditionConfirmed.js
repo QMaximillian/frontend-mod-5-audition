@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import withAuth from '../hocs/withAuth'
 
 
 class AuditionConfirmed extends Component {
@@ -14,4 +15,4 @@ class AuditionConfirmed extends Component {
 }
 }
 
-export default AuditionConfirmed
+export default withAuth(AuditionConfirmed)

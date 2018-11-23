@@ -1,10 +1,9 @@
-//Start creating a comprehensive information page tomorrow
-
 import React, { Component } from 'react'
 import { loadAudition, loadTryout } from '../actions/actions'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import { Button } from 'semantic-ui-react'
+import withAuth from '../hocs/withAuth'
 
 class TryoutShow extends Component {
 
@@ -63,4 +62,4 @@ class TryoutShow extends Component {
 
 
 
- export default connect(state => ({ currentActor: state.currentActor, audition: state.audition, tryout: state.tryout}), { loadAudition, loadTryout })(TryoutShow)
+ export default withAuth(connect(state => ({ currentActor: state.currentActor, audition: state.audition, tryout: state.tryout}), { loadAudition, loadTryout })(TryoutShow))

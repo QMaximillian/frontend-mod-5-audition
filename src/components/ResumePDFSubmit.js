@@ -7,6 +7,7 @@ import { loadAudition } from '../actions/actions'
 // import Moment from 'react-moment'
 import moment from 'moment'
 import '../Audition.css'
+import withAuth from '../hocs/withAuth'
 
 class ResumePDFSubmit extends Component {
 
@@ -48,7 +49,7 @@ class ResumePDFSubmit extends Component {
     formData.append('tryout[show_name]', this.state.confirmedAudition.show_name)
 
 
-    fetchPostTryout(formData).then( this.setState({
+    fetchPostTryout(formData).then(() => this.setState({
         redirect: true
      }))
   }
@@ -204,4 +205,4 @@ if (time_slots !== undefined){
  }
 }
 
- export default connect(state => ({ audition: state.audition, currentActor: state.currentActor }), { loadAudition })(ResumePDFSubmit)
+ export default withAuth(connect(state => ({ audition: state.audition, currentActor: state.currentActor }), { loadAudition })(ResumePDFSubmit))

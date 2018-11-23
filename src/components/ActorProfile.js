@@ -4,6 +4,7 @@ import { loadInitialActorState, updateCurrentActorForm } from '../actions/action
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
 import { Loader, Form, Input, Select, Button, Grid } from 'semantic-ui-react'
 import '../Audition.css'
+import withAuth from '../hocs/withAuth'
 
 
 
@@ -174,4 +175,4 @@ class ActorProfile extends Component {
   }
 }
 
-export default connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile)
+export default withAuth(connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile))

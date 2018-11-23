@@ -3,8 +3,9 @@ import AllAuditionContainer from './AllAuditionsContainer'
 import FilterSearch from '../components/FilterSearch'
 import TheatersContainer from './TheatersContainer'
 import AllAuditionsContainer from './AllAuditionsContainer'
+import withAuth from '../hocs/withAuth'
 
-export default class SearchContainer extends Component {
+class SearchContainer extends Component {
 
     state = {
       searchType: 'all',
@@ -39,3 +40,5 @@ export default class SearchContainer extends Component {
      )
    }
  }
+
+ export default withAuth(SearchContainer)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
 import { fetchLoginActor } from '../adapters/actorAdapter'
 import '../Audition.css'
@@ -28,14 +28,15 @@ export default class Login extends Component {
 
   handleLoginSubmit = (event) => {
     event.preventDefault()
-    fetchLoginActor(this.state.actor).then(console.log)
+    fetchLoginActor(this.state.actor)
+    .then(resp => {
+      this.props.handleLoginActor(resp)
+    })
   }
 
 
   render() {
-
     const { actor } = this.state
-    console.log(actor.password, actor.email)
     return(
           <Form>
               <Form.Input
@@ -55,6 +56,6 @@ export default class Login extends Component {
                   content="Log In"
                   primary/>
             </Form>
-    )
-  }
+          )
+    }
 }

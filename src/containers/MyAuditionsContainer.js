@@ -5,6 +5,7 @@ import { Loader } from 'semantic-ui-react'
 import "../Audition.css"
 import { loadAudition } from '../actions/actions'
 import moment from 'moment'
+import withAuth from '../hocs/withAuth'
 
 
 class MyAuditionsContainer extends Component {
@@ -85,4 +86,4 @@ class MyAuditionsContainer extends Component {
  }
 
 
- export default connect(state => ({ auditions: state.auditions, tryouts: state.tryouts, currentActor: state.currentActor }), { loadAudition })(MyAuditionsContainer)
+ export default withAuth(connect(state => ({ auditions: state.auditions, tryouts: state.tryouts, currentActor: state.currentActor }), { loadAudition })(MyAuditionsContainer))

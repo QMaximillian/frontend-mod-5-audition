@@ -4,6 +4,7 @@ import { fetchGet } from '../adapters/actorAdapter'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import {Button} from 'semantic-ui-react'
+import withAuth from '../hocs/withAuth'
 // import { loadInitialActorState } from '../actions/actions.js'
 
 
@@ -83,4 +84,4 @@ render() {
      }
  }
 
- export default connect(state => ({ currentActor: state.currentActor }))(AuditionShow)
+ export default withAuth(connect(state => ({ currentActor: state.currentActor }))(AuditionShow))

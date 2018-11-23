@@ -12,7 +12,7 @@ render(){
     <Navbar collapseOnSelect fluid fixedTop>
   <Navbar.Header>
     <Navbar.Brand>
-      <Link to="/">Audition</Link>
+      <Link to="/home">Audition</Link>
     </Navbar.Brand>
   </Navbar.Header>
   <Navbar.Collapse>

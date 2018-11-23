@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Loader, Button } from 'semantic-ui-react'
 import { loadAudition } from '../actions/actions'
 import { connect } from 'react-redux'
+import withAuth from '../hocs/withAuth'
 
 class AuditionConfirmation extends Component {
 
@@ -115,4 +116,4 @@ class AuditionConfirmation extends Component {
   }
 }
 
-export default connect(state => ({ audition: state.audition }), { loadAudition })(AuditionConfirmation)
+export default withAuth(connect(state => ({ audition: state.audition }), { loadAudition })(AuditionConfirmation))

@@ -25,6 +25,7 @@ import PlayShow from './components/PlayShow'
 import AuditionConfirmed from './components/AuditionConfirmed'
 
 
+
 class Audition extends Component {
 
   componentDidMount(){
@@ -41,31 +42,49 @@ class Audition extends Component {
     //PUT MY DEFAULT RESUME IN STORE
   }
 
+  state = {
+    auth: {
+      currentActor: {}
+    }
+  }
+
+  handleLoginActor = (actor) => {
+    const newAuth = {
+        ...this.state.auth,
+        currentActor: actor
+    }
+    this.setState({
+      auth: newAuth
+    })
+  }
+
   render() {
+    const loggedIn = !!this.state.auth.currentActor.actor
+    console.log(loggedIn);
     return (
       <div className="content">
         <Switch>
-          <Route exact path="/actor/audition-home/audition-journals/:id"/>
-          <Route exact path="/theater/:theaterId/season/:seasonId" component={SeasonShow}/>
-          <Route exact path="/audition/:id/resume_submit" component={ResumePDFSubmit}/>
-          <Route exact path="/my-auditions" component={MyAuditionsContainer}/>
-          <Route exact path="/search" component={SearchContainer}/>
-          <Route exact path="/auditions/:id" component={AuditionShow}/>
-          <Route exact path="/tryout/:id" component={TryoutShow}/>
+          <Route exact path="/theater/:theaterId/season/:seasonId" render={() => <SeasonShow loggedIn={loggedIn}/>}/>
+          <Route exact path="/audition/:id/resume_submit" render={() => <ResumePDFSubmit loggedIn={loggedIn}/>}/>
+          <Route exact path="/my-auditions" render={() => <MyAuditionsContainer loggedIn={loggedIn}/>}/>
+          <Route exact path="/search" render={() => <SearchContainer loggedIn={loggedIn}/>}/>
+          <Route exact path="/auditions/:id" render={() => <AuditionShow loggedIn={loggedIn}/>}/>
+          <Route exact path="/tryout/:id" render={() => <TryoutShow loggedIn={loggedIn}/>}/>
           {/* <Route exact path="/actor/audition-journals" component={AuditionJournal}/> */}
-          <Route exact path="/actor/1" component={ActorProfile}/>
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/actor/1" render={() => <ActorProfile loggedIn={loggedIn}/>}/>
+          <Route exact path="/login" render={() => <Login
+            loggedIn={loggedIn}  handleLoginActor={this.handleLoginActor}/>} />
           <Route exact path="/sign-up" component={SignUp} />
-          <Route exact path="/audition/:id/audition-confirmation" component={AuditionConfirmation} />
-          <Route exact path="/" component={ActorHomeContainer} />
+          <Route exact path="/audition/:id/audition-confirmation" render={() => <AuditionConfirmation loggedIn={loggedIn}/>} />
+          <Route exact path="/home" render={() => <ActorHomeContainer loggedIn={loggedIn}/>}/>
           <Route exact path="/theaters"
-        component={TheatersContainer}/>
+        render={() => <TheatersContainer loggedIn={loggedIn}/>}/>
           <Route exact path="/theater/:theaterId/season/:seasonId/show/:showId"
-        component={PlayShow}/>
+        render={() => <PlayShow loggedIn={loggedIn}/>}/>
           <Route exact path="/audition/:id/audition-confirmation/confirmed"
-        component={AuditionConfirmed}/>
+        render={() => <AuditionConfirmed loggedIn={loggedIn}/>}/>
           <Route exact path="/my-auditions/tryouts/:id"
-        component={TryoutShow}/>
+        render={() => <TryoutShow loggedIn={loggedIn}/>}/>
         </Switch>
       </div>
     )
