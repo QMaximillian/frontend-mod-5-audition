@@ -29,7 +29,7 @@ import AuditionConfirmed from './components/AuditionConfirmed'
 class Audition extends Component {
 
   componentDidMount(){
-    this.props.loadInitialActorState()
+
 
     // PUT MY AUDITIONS IN STORE
     //PUT AUDITIONS IN STORE
@@ -55,8 +55,23 @@ class Audition extends Component {
     }
     this.setState({
       auth: newAuth
-    })
+    }, () => this.props.loadInitialActorState(this.state.auth.currentActor.actor))
   }
+
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      const options = {
+        headers : {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: localStorage.getItem('token')
+      }
+    }
+    fetch('http://localhost:3001/api/v1/reauth', options)
+    .then(resp => resp.json())
+    .then(resp => this.props.loadInitialActorState(resp.actor))
+  }
+}
 
   render() {
     const loggedIn = !!this.state.auth.currentActor.actor
@@ -77,8 +92,8 @@ class Audition extends Component {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/audition/:id/audition-confirmation" render={() => <AuditionConfirmation loggedIn={loggedIn}/>} />
           <Route exact path="/home" render={() => <ActorHomeContainer loggedIn={loggedIn}/>}/>
-          <Route exact path="/theaters"
-        render={() => <TheatersContainer loggedIn={loggedIn}/>}/>
+          {/* <Route exact path="/theaters"
+        render={() => <TheatersContainer loggedIn={loggedIn}/>}/> */}
           <Route exact path="/theater/:theaterId/season/:seasonId/show/:showId"
         render={() => <PlayShow loggedIn={loggedIn}/>}/>
           <Route exact path="/audition/:id/audition-confirmation/confirmed"

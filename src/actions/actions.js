@@ -101,9 +101,9 @@ export const setTheaters = (theaters) => {
   }
 }
 
-export const loadInitialActorState = () => {
-  return (dispatch) => {
-    fetchActor(1).then(resp => {
+export const loadInitialActorState = (id) => {
+  return (dispatch, getState) => {
+    fetchActor(id).then(resp => {
       dispatch(setInitialState(resp.data))
     })
   }
@@ -157,9 +157,9 @@ export const setAudition = (audition) => {
 }
 
 
-export const loadAuditionJournals = () => {
-  return (dispatch) => {
-    fetchGet('actors', 1).then(resp => {
+export const loadAuditionJournals = (id) => {
+  return (dispatch, getState) => {
+    fetchGet('actors', id).then(resp => {
       dispatch(setAuditionJournals(resp.data.attributes.audition_journals))
     })
   }

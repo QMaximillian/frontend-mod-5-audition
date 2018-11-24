@@ -16,7 +16,7 @@ class AuditionShow extends Component {
   }
 
      componentDidMount(){
-       // this.props.loadInitialActorState()
+
 
        if (this.props.match.params.auditionId) {
        fetchGet('auditions', this.props.match.params.auditionId).then(audition => {

@@ -5,6 +5,7 @@ import TheatersContainer from './TheatersContainer'
 import AllAuditionsContainer from './AllAuditionsContainer'
 import withAuth from '../hocs/withAuth'
 
+
 class SearchContainer extends Component {
 
     state = {
@@ -20,6 +21,7 @@ class SearchContainer extends Component {
     }
 
    render() {
+     console.log(this.props);
      return (
         <div>
           <div>

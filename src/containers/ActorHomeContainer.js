@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ActorUpcomingAuditions from '../components/ActorUpcomingAuditions'
 import { connect } from 'react-redux'
-import { loadInitialActorState } from '../actions/actions'
+// import { loadInitialActorState } from '../actions/actions'
 import '../Audition.css'
 import Search from '../components/Search'
 import withAuth from '../hocs/withAuth'
@@ -24,7 +24,7 @@ class ActorHomeContainer extends Component {
 
   // Loads all of the relevant information associated with the Actor signed-in
     componentDidMount(){
-      this.props.loadInitialActorState()
+
     }
 
   render() {
@@ -52,4 +52,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withAuth(connect(mapStateToProps, { loadInitialActorState })(ActorHomeContainer))
+export default withAuth(connect(mapStateToProps)(ActorHomeContainer))

@@ -15,7 +15,7 @@ class ActorProfile extends Component {
   }
 
   componentDidMount() {
-    this.props.loadInitialActorState()
+
   }
 
   handleChange = (event) => {
@@ -165,10 +165,7 @@ class ActorProfile extends Component {
         </Grid.Column>
      </Grid.Row>
  </Grid>
-
           <div className={this.state.success ? 'fadeIn' : 'fadeOut'}>Saved</div>
-
-          {/* {this.state.success ?  : <div></div>} */}
         </div>
       )
     }

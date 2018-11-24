@@ -31,6 +31,7 @@ export default class Login extends Component {
     fetchLoginActor(this.state.actor)
     .then(resp => {
       this.props.handleLoginActor(resp)
+      localStorage.setItem('token', resp.actor)
     })
   }
 

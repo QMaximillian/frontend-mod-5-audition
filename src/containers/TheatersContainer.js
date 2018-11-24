@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { loadTheaters } from '../actions/actions'
 import Theater from '../components/Theater'
 import '../Audition.css'
-import withAuth from '../hocs/withAuth'
+
 
 class TheatersContainer extends Component {
 
@@ -28,4 +28,4 @@ class TheatersContainer extends Component {
    }
  }
 
- export default withAuth(connect(state => ({ theatersIndex: state.theatersIndex}), { loadTheaters })(TheatersContainer))
+ export default connect(state => ({ theatersIndex: state.theatersIndex}), { loadTheaters })(TheatersContainer)
