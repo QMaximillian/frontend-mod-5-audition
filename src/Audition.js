@@ -28,8 +28,6 @@ import AuditionConfirmed from './components/AuditionConfirmed'
 
 class Audition extends Component {
 
-  componentDidMount(){
-
 
     // PUT MY AUDITIONS IN STORE
     //PUT AUDITIONS IN STORE
@@ -40,7 +38,7 @@ class Audition extends Component {
     //PUT MY TRYOUT AUDITIONS IN STORE
     //PUT RESUMES IN STORE
     //PUT MY DEFAULT RESUME IN STORE
-  }
+
 
   state = {
     auth: {
@@ -69,13 +67,19 @@ class Audition extends Component {
     }
     fetch('http://localhost:3001/api/v1/reauth', options)
     .then(resp => resp.json())
-    .then(resp => this.props.loadInitialActorState(resp.actor))
-  }
-}
+    .then(resp =>
+      this.setState({
+        auth: {
+          ...this.state.auth,
+          currentActor: resp
+        }
+      }, () => this.props.loadInitialActorState(this.state.auth.currentActor.actor)))
+     }
+   }
 
   render() {
     const loggedIn = !!this.state.auth.currentActor.actor
-    console.log(loggedIn);
+
     return (
       <div className="content">
         <Switch>
