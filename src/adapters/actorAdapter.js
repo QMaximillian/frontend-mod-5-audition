@@ -5,6 +5,7 @@ const baseSeasonUrl = 'http://localhost:3001/api/v1/seasons'
 const baseShowUrl = 'http://localhost:3001/api/v1/shows'
 const baseTryoutUrl = 'http://localhost:3001/api/v1/tryouts'
 const baseAuditionUrl = 'http://localhost:3001/api/v1/auditions'
+// const loginUrl = 'http://localhost:3001/api/v1/login'
 
 export const fetchLoginActor = (actor) => {
   return fetch(`${baseUrl}login`, {
@@ -15,32 +16,53 @@ export const fetchLoginActor = (actor) => {
 }
 
 export const fetchAudition = (id) => {
-  return fetch(`${baseAuditionUrl}/${id}`).then(resp => resp.json())
+  return fetch(`${baseAuditionUrl}/${id}`, {
+    method: 'GET',
+    headers: headers()
+  }).then(resp => resp.json())
 }
 
 export const fetchTryout = (id) => {
-  return fetch(`${baseTryoutUrl}/${id}`).then(resp => resp.json())
+  return fetch(`${baseTryoutUrl}/${id}`, {
+      method: 'GET',
+      headers: headers()
+  }).then(resp => resp.json())
 }
 
 export const fetchShow = (id) => {
-  return fetch(`${baseShowUrl}/${id}`).then(resp => resp.json())
+  return fetch(`${baseShowUrl}/${id}`, {
+    method: 'GET',
+    headers: headers()
+  }).then(resp => resp.json())
 }
 
 export const fetchSeasons = () => {
-  return fetch(baseSeasonUrl).then(resp => resp.json())
+  return fetch(baseSeasonUrl, {
+    method: 'GET',
+    headers: headers()
+  }).then(resp => resp.json())
 }
 
 
 export const fetchSeason = (id) => {
-  return fetch(`${baseSeasonUrl}/${id}`).then(resp => resp.json())
+  return fetch(`${baseSeasonUrl}/${id}`, {
+    method: 'GET',
+    headers: headers()
+  }).then(resp => resp.json())
 }
 
 export const fetchTheaters = () => {
-  return fetch(baseTheaterUrl).then(resp => resp.json())
+  return fetch(baseTheaterUrl, {
+    method: 'GET',
+    headers: headers()
+  }).then(resp => resp.json())
 }
 
 export const fetchActor = (id) => {
-  return fetch(`http://localhost:3001/api/v1/actors/${id}`)
+  return fetch(`http://localhost:3001/api/v1/actors/${id}`, {
+    method: 'GET',
+    headers: headers()
+  })
   .then(resp => resp.json())
 }
 
@@ -49,16 +71,25 @@ export const fetchUpdateCurrentActor = (id, body) => {
 }
 
 export const fetchGet = (route, id) => {
-  return fetch(`${baseUrl}${route}/${id}`).then(resp => resp.json())
+  return fetch(`${baseUrl}${route}/${id}`, {
+    method: 'GET',
+    headers: headers()
+  }).then(resp => resp.json())
 }
 
 export const fetchGetIndex = (route) => {
-  return fetch(`${baseUrl}${route}`).then(resp => resp.json())
+  return fetch(`${baseUrl}${route}`, {
+    method: 'GET',
+    headers: headers()
+  }).then(resp => resp.json())
 }
 
 export const fetchPostTryout = (body) => {
   return fetch(baseTryoutUrl, {
     method: 'POST',
+    headers: {
+      Authorization: localStorage.getItem('token'),
+    },
     body: body
   }).then(resp => resp.json())
 }
@@ -86,7 +117,8 @@ function patchRequest(body) {
 function headers() {
   return {
     "Content-Type": "application/json",
-    Accept: "application/json"
+    Accept: "application/json",
+    Authorization: localStorage.getItem('token')
   };
 }
 

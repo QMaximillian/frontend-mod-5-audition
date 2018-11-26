@@ -5,7 +5,7 @@ const withAuth = (WrappedComponent) => {
   return class extends Component {
     render() {
       if (this.props.loggedIn) {
-      return <WrappedComponent dog='dog' {...this.props}/>
+      return <WrappedComponent {...this.props}/>
     } else {
       return <Redirect to='/login' />
     }

@@ -19,10 +19,11 @@ import 'semantic-ui-css/semantic.min.css'
 import './Audition.css'
 import './index.css'
 import TryoutShow from './components/TryoutShow'
-import TheatersContainer from './containers/TheatersContainer'
+// import TheatersContainer from './containers/TheatersContainer'
 import SeasonShow from './components/SeasonShow'
 import PlayShow from './components/PlayShow'
 import AuditionConfirmed from './components/AuditionConfirmed'
+
 
 
 
@@ -42,18 +43,21 @@ class Audition extends Component {
 
   state = {
     auth: {
-      currentActor: {}
+      actor: {}
     }
   }
 
   handleLoginActor = (actor) => {
     const newAuth = {
         ...this.state.auth,
-        currentActor: actor
+        actor: actor
     }
     this.setState({
       auth: newAuth
-    }, () => this.props.loadInitialActorState(this.state.auth.currentActor.actor))
+    }, () => console.log(this.state.auth.actor))
+    localStorage.setItem('token', this.state.auth.actor.jwt)
+    this.props.loadInitialActorState(this.state.auth.actor.actor_id)
+    // fetchActor(this.state.auth.actor.actor_id).then(console.log)
   }
 
   componentDidMount() {
@@ -71,39 +75,40 @@ class Audition extends Component {
       this.setState({
         auth: {
           ...this.state.auth,
-          currentActor: resp
+          actor: resp
         }
-      }, () => this.props.loadInitialActorState(this.state.auth.currentActor.actor)))
+      }, () => this.props.loadInitialActorState(this.state.auth.actor.actor_id)))
      }
    }
 
   render() {
-    const loggedIn = !!this.state.auth.currentActor.actor
+    const loggedIn = !!this.state.auth.actor.actor_id
 
     return (
       <div className="content">
         <Switch>
-          <Route exact path="/theater/:theaterId/season/:seasonId" render={() => <SeasonShow loggedIn={loggedIn}/>}/>
-          <Route exact path="/audition/:id/resume_submit" render={() => <ResumePDFSubmit loggedIn={loggedIn}/>}/>
-          <Route exact path="/my-auditions" render={() => <MyAuditionsContainer loggedIn={loggedIn}/>}/>
-          <Route exact path="/search" render={() => <SearchContainer loggedIn={loggedIn}/>}/>
-          <Route exact path="/auditions/:id" render={() => <AuditionShow loggedIn={loggedIn}/>}/>
-          <Route exact path="/tryout/:id" render={() => <TryoutShow loggedIn={loggedIn}/>}/>
+          <Route exact path="/theater/:theaterId/season/:seasonId" render={(props) => <SeasonShow loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/audition/:id/resume_submit" render={(props) => <ResumePDFSubmit loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/my-auditions" render={(props) => <MyAuditionsContainer loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/search" render={(props) => <SearchContainer loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/auditions/:id" render={(props) => <AuditionShow loggedIn={loggedIn} {...props}
+          {...props}/>}/>
+          <Route exact path="/tryout/:id" render={(props) => <TryoutShow loggedIn={loggedIn} {...props}/>}/>
           {/* <Route exact path="/actor/audition-journals" component={AuditionJournal}/> */}
-          <Route exact path="/actor/1" render={() => <ActorProfile loggedIn={loggedIn}/>}/>
-          <Route exact path="/login" render={() => <Login
-            loggedIn={loggedIn}  handleLoginActor={this.handleLoginActor}/>} />
+          <Route exact path="/actor/1" render={(props) => <ActorProfile loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/login" render={(props) => <Login
+            loggedIn={loggedIn} {...props}  handleLoginActor={this.handleLoginActor}/>} />
           <Route exact path="/sign-up" component={SignUp} />
-          <Route exact path="/audition/:id/audition-confirmation" render={() => <AuditionConfirmation loggedIn={loggedIn}/>} />
-          <Route exact path="/home" render={() => <ActorHomeContainer loggedIn={loggedIn}/>}/>
+          <Route exact path="/audition/:id/audition-confirmation" render={(props) => <AuditionConfirmation loggedIn={loggedIn} {...props}/>} />
+          <Route exact path="/home" render={(props) => <ActorHomeContainer loggedIn={loggedIn} {...props}/>}/>
           {/* <Route exact path="/theaters"
-        render={() => <TheatersContainer loggedIn={loggedIn}/>}/> */}
+        render={(props) => <TheatersContainer loggedIn={loggedIn} {...props}/>}/> */}
           <Route exact path="/theater/:theaterId/season/:seasonId/show/:showId"
-        render={() => <PlayShow loggedIn={loggedIn}/>}/>
+        render={(props) => <PlayShow loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/audition/:id/audition-confirmation/confirmed"
-        render={() => <AuditionConfirmed loggedIn={loggedIn}/>}/>
+        render={(props) => <AuditionConfirmed loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/my-auditions/tryouts/:id"
-        render={() => <TryoutShow loggedIn={loggedIn}/>}/>
+        render={(props) => <TryoutShow loggedIn={loggedIn} {...props}/>}/>
         </Switch>
       </div>
     )

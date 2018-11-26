@@ -109,6 +109,16 @@ export const loadInitialActorState = (id) => {
   }
 }
 
+export const setInitialState = (actor) => {
+  return {
+    type: LOAD_INITIAL_ACTOR_STATE,
+    payload: {
+      currentActor: actor,
+      tryouts: actor.attributes.tryouts
+    }
+  }
+}
+
 
 
 
@@ -174,15 +184,7 @@ export const setAuditionJournals = (auditionJournals) => {
   }
 }
 
-export const setInitialState = (actor) => {
-  return {
-    type: LOAD_INITIAL_ACTOR_STATE,
-    payload: {
-      currentActor: actor,
-      tryouts: actor.attributes.tryouts
-    }
-  }
-}
+
 
 
 

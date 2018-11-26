@@ -3,7 +3,7 @@ import { fetchPostTryout, fetchGet } from '../adapters/actorAdapter'
 import { Redirect } from 'react-router-dom'
 import { Button, Input, Form } from 'semantic-ui-react'
 import { connect } from "react-redux"
-import { loadAudition } from '../actions/actions'
+import { loadAudition, loadInitialActorState } from '../actions/actions'
 // import Moment from 'react-moment'
 import moment from 'moment'
 import '../Audition.css'
@@ -49,7 +49,7 @@ class ResumePDFSubmit extends Component {
     formData.append('tryout[show_name]', this.state.confirmedAudition.show_name)
 
 
-    fetchPostTryout(formData).then(() => this.setState({
+    fetchPostTryout(formData).then(() => this.props.loadInitialActorState(this.props.currentActor.id)).then(() => this.setState({
         redirect: true
      }))
   }
@@ -127,7 +127,6 @@ if (time_slots !== undefined){
     for (let time of allSlotsWithTimes) {
       timeOptions.push({'text': moment(time).format('HH:mm A'), 'value': moment(time).format()})
     }
-    console.log(timeOptions);
     // allSlotsWithTimes.map(time => {
     //
     //  })
@@ -205,4 +204,4 @@ if (time_slots !== undefined){
  }
 }
 
- export default withAuth(connect(state => ({ audition: state.audition, currentActor: state.currentActor }), { loadAudition })(ResumePDFSubmit))
+ export default withAuth(connect(state => ({ audition: state.audition, currentActor: state.currentActor }), { loadAudition, loadInitialActorState })(ResumePDFSubmit))

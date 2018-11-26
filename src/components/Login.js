@@ -11,7 +11,8 @@ export default class Login extends Component {
     actor: {
       email: "",
       password: ""
-    }
+    },
+    redirect: false
   }
 
   handleChange = (event) => {
@@ -31,14 +32,17 @@ export default class Login extends Component {
     fetchLoginActor(this.state.actor)
     .then(resp => {
       this.props.handleLoginActor(resp)
-      localStorage.setItem('token', resp.jwt)
-
-    })
+    }).then(() => this.setState({
+      redirect: true
+    }))
   }
 
 
   render() {
     const { actor } = this.state
+    if (this.state.redirect) {
+      return <Redirect push to={'/home'}/>
+    } else {
     return(
           <Form>
               <Form.Input
@@ -60,4 +64,5 @@ export default class Login extends Component {
             </Form>
           )
     }
+}
 }

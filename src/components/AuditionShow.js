@@ -16,16 +16,16 @@ class AuditionShow extends Component {
   }
 
      componentDidMount(){
-
-
+       // console.log(this.props.match.params.auditionId)
        if (this.props.match.params.auditionId) {
        fetchGet('auditions', this.props.match.params.auditionId).then(audition => {
          this.setState({
             audition: audition.data.attributes
          })
        })
-     } else {
-       fetchGet('auditions', this.props.match.params.id).then(audition => {
+     } else if (this.props.match.params.id){
+       fetchGet('auditions', this.props.match.params.id)
+       .then(audition => {
          this.setState({
             audition: audition.data.attributes
          })
@@ -40,7 +40,7 @@ class AuditionShow extends Component {
   }
 
 render() {
-  console.log(this.props);
+
   if (this.state.audition.show_name && this.props.currentActor.attributes !== undefined) {
      return (
       <div className='card' style={{textAlign: 'left'}}>
@@ -84,4 +84,4 @@ render() {
      }
  }
 
- export default withAuth(connect(state => ({ currentActor: state.currentActor }))(AuditionShow))
+ export default withAuth(connect(state => ({ currentActor: state.currentActor, auditionIndex: state.auditionIndex }))(AuditionShow))
