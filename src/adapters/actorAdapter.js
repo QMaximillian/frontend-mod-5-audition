@@ -95,7 +95,24 @@ export const fetchPostTryout = (body) => {
 }
 
 
-
+export const fetchActorCreate = (firstName, lastName, email, password) => {
+  return fetch('http://localhost:3001/api/v1/actors', {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+    },
+    body: JSON.stringify({
+      actor: {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password
+      }
+    })
+})
+.then(r => r.json())
+}
 
 
 function patchRequest(body) {
@@ -121,6 +138,7 @@ function headers() {
     Authorization: localStorage.getItem('token')
   };
 }
+
 
 // function responseHandler(response) {
 //     if (response.ok) {

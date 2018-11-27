@@ -23,23 +23,13 @@ import TryoutShow from './components/TryoutShow'
 import SeasonShow from './components/SeasonShow'
 import PlayShow from './components/PlayShow'
 import AuditionConfirmed from './components/AuditionConfirmed'
-
+import LandingPage from './containers/LandingPage'
+import NavbarNew from './components/NavbarNew'
+import { Redirect } from 'react-router-dom'
 
 
 
 class Audition extends Component {
-
-
-    // PUT MY AUDITIONS IN STORE
-    //PUT AUDITIONS IN STORE
-    //PUT RESUMES IN STORE
-    //PUT MY RESUMES IN STORE
-    //PUT MY AUDITION_JOURNALS IN STORE
-    //PUT MY APPLIED TRYOUTS IN STORE
-    //PUT MY TRYOUT AUDITIONS IN STORE
-    //PUT RESUMES IN STORE
-    //PUT MY DEFAULT RESUME IN STORE
-
 
   state = {
     auth: {
@@ -60,6 +50,12 @@ class Audition extends Component {
     // fetchActor(this.state.auth.actor.actor_id).then(console.log)
   }
 
+  handleLogout = (loggedIn) => {
+    localStorage.clear()
+    loggedIn = false
+    return <Redirect to='/'/>
+  }
+
   componentDidMount() {
     if (localStorage.getItem('token')) {
       const options = {
@@ -78,7 +74,7 @@ class Audition extends Component {
           actor: resp
         }
       }, () => this.props.loadInitialActorState(this.state.auth.actor.actor_id)))
-     }
+    }
    }
 
   render() {
@@ -86,7 +82,11 @@ class Audition extends Component {
 
     return (
       <div className="content">
+      <NavbarNew
+      loggedIn={loggedIn}
+      handleLogout={this.handleLogout}/>
         <Switch>
+          <Route exact path="/" render={(props) => <LandingPage loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/theater/:theaterId/season/:seasonId" render={(props) => <SeasonShow loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/audition/:id/resume_submit" render={(props) => <ResumePDFSubmit loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/my-auditions" render={(props) => <MyAuditionsContainer loggedIn={loggedIn} {...props}/>}/>

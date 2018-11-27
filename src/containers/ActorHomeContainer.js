@@ -23,9 +23,6 @@ class ActorHomeContainer extends Component {
   }
 
   // Loads all of the relevant information associated with the Actor signed-in
-    componentDidMount(){
-
-    }
 
   render() {
     console.log(this.props)

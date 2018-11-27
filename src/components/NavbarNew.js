@@ -8,35 +8,70 @@ class NavbarNew extends Component {
 
 
 render(){
-  return (
-    <Navbar collapseOnSelect fluid fixedTop>
-  <Navbar.Header>
-    <Navbar.Brand>
-      <Link to="/home">Audition</Link>
-    </Navbar.Brand>
-  </Navbar.Header>
-  <Navbar.Collapse>
-    <Nav pullRight>
-    <LinkContainer to="/search">
-      <NavItem eventKey={1}>
-        Search
-      </NavItem>
-    </LinkContainer>
-    <NavDropdown eventKey={2} title="Me" id="basic-nav-dropdown">
-      <LinkContainer to="#">
-        <MenuItem eventKey={2.1}>Settings</MenuItem>
+  if (this.props.loggedIn) {
+    return (
+      <Navbar collapseOnSelect fluid fixedTop>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <Link to="/home">Audition</Link>
+      </Navbar.Brand>
+    </Navbar.Header>
+    <Navbar.Collapse>
+      <Nav pullRight>
+      <LinkContainer to="/search">
+        <NavItem eventKey={1}>
+          Search
+        </NavItem>
       </LinkContainer>
-      <LinkContainer to="/actor/1">
-        <MenuItem eventKey={2.2}>Profile</MenuItem>
+      <NavDropdown eventKey={2} title="Me" id="basic-nav-dropdown">
+        <LinkContainer to="#">
+          <MenuItem eventKey={2.1}>Settings</MenuItem>
+        </LinkContainer>
+        <LinkContainer to="/actor/1">
+          <MenuItem eventKey={2.2}>Profile</MenuItem>
+        </LinkContainer>
+        <LinkContainer to="/my-auditions">
+          <MenuItem eventKey={2.3}>My Auditions</MenuItem>
+        </LinkContainer>
+      </NavDropdown>
+      <LinkContainer to="/">
+      {/* make loggedIn = false, and clear localStorage */}
+      <MenuItem eventKey={3.0}>Logout</MenuItem>
       </LinkContainer>
-      <LinkContainer to="/my-auditions">
-        <MenuItem eventKey={2.3}>My Auditions</MenuItem>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
+    )
+  } else {
+    return (
+      <Navbar collapseOnSelect fluid fixedTop>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <Link to="/">Audition</Link>
+      </Navbar.Brand>
+    </Navbar.Header>
+    <Navbar.Collapse>
+      <Nav pullRight>
+      <LinkContainer to="/login">
+        <NavItem eventKey={1}>
+          Login
+        </NavItem>
       </LinkContainer>
-    </NavDropdown>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>
-  )
+      <LinkContainer to="/sign-up">
+        <NavItem eventKey={2}>
+          Sign Up
+        </NavItem>
+      </LinkContainer>
+      <LinkContainer to="/about">
+        <NavItem eventKey={3}>
+          About
+        </NavItem>
+      </LinkContainer>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
+    )
+  }
  }
 }
 

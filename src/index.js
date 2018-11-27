@@ -9,7 +9,7 @@ import { Switch } from 'react-router' // react-router v4
 import { ConnectedRouter } from 'connected-react-router'
 import { actorReducer, initialState } from './reducers/index'
 // import Navbar from './components/Navbar'
-import NavbarNew from './components/NavbarNew'
+// import NavbarNew from './components/NavbarNew'
 import Audition from './Audition'
 import "./index.css"
 
@@ -36,7 +36,6 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <NavbarNew />
       <div className="container">
         <Switch>
           <Audition />
