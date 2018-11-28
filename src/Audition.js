@@ -25,7 +25,7 @@ import PlayShow from './components/PlayShow'
 import AuditionConfirmed from './components/AuditionConfirmed'
 import LandingPage from './containers/LandingPage'
 import NavbarNew from './components/NavbarNew'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 
 
@@ -50,9 +50,8 @@ class Audition extends Component {
     // fetchActor(this.state.auth.actor.actor_id).then(console.log)
   }
 
-  handleLogout = (loggedIn) => {
+  handleLogout = () => {
     localStorage.removeItem('token')
-    loggedIn = false
     this.setState({
       auth: {
         actor: {}

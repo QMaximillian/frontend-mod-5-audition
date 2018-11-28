@@ -6,10 +6,6 @@ import '../Audition.css'
 
 class NavbarNew extends Component {
 
-  handleLogout = (loggedIn) => {
-    localStorage.removeItem('token')
-    loggedIn = false
-  }
 
 render(){
   if (this.props.loggedIn) {
@@ -40,7 +36,7 @@ render(){
       </NavDropdown>
       <LinkContainer to="/">
       {/* make loggedIn = false, and clear localStorage */}
-      <MenuItem onClick={() => this.props.handleLogout(this.props.loggedIn)} eventKey={3.0}>Logout</MenuItem>
+      <MenuItem onClick={() => this.props.handleLogout()} eventKey={3.0}>Logout</MenuItem>
       </LinkContainer>
       </Nav>
     </Navbar.Collapse>
