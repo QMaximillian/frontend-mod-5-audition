@@ -40,6 +40,7 @@ export default class Login extends Component {
 
   render() {
     const { actor } = this.state
+    console.log(this.state)
     if (this.state.redirect) {
       return <Redirect push to={'/home'}/>
     } else {

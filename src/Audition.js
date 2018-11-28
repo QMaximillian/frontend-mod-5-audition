@@ -51,9 +51,13 @@ class Audition extends Component {
   }
 
   handleLogout = (loggedIn) => {
-    localStorage.clear()
+    localStorage.removeItem('token')
     loggedIn = false
-    return <Redirect to='/'/>
+    this.setState({
+      auth: {
+        actor: {}
+      }
+    })
   }
 
   componentDidMount() {
@@ -79,7 +83,7 @@ class Audition extends Component {
 
   render() {
     const loggedIn = !!this.state.auth.actor.actor_id
-
+    console.log(loggedIn)
     return (
       <div className="content">
       <NavbarNew
