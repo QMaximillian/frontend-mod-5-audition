@@ -70,9 +70,7 @@ class AllAuditionContainer extends Component {
      } else {
           return (
              <div>
-               <section className='card-container'>
                {this.mappedAuditions()}
-               </section>
              </div>
           )
      }

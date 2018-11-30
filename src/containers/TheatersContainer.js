@@ -21,7 +21,7 @@ class TheatersContainer extends Component {
 
    render() {
      return (
-        <div>
+        <div style={{textAlign: "center"}}>
           {this.mappedTheaters()}
         </div>
      )

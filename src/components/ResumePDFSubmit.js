@@ -35,8 +35,8 @@ class ResumePDFSubmit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    // console.log(this.state.confirmedTime)
-    if (this.state.confirmedTime === 0 || this.state.file === '' ) //check if file is .pdf
+
+    if (this.state.confirmedTime === 0 || this.state.file === '' ) //check if file is pdf
     {
       alert('Please pick an actual time')
       return

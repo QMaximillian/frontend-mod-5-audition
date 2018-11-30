@@ -14,10 +14,6 @@ class ActorProfile extends Component {
     success: false
   }
 
-  componentDidMount() {
-
-  }
-
   handleChange = (event) => {
     if (event.name) {
       this.props.updateCurrentActorForm({
@@ -165,7 +161,6 @@ class ActorProfile extends Component {
         </Grid.Column>
      </Grid.Row>
  </Grid>
-          <div className={this.state.success ? 'fadeIn' : 'fadeOut'}>Saved</div>
         </div>
       )
     }

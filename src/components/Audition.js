@@ -31,8 +31,7 @@ class Audition extends Component {
        return (
          <Link to={`/auditions/${this.props.audition.id}`}>
           <div className='card-no-hover'>
-            <div style={{position: 'relative', top: '50%',
-              transform: 'translateY(-50%)'}}>
+            <div style={{textAlign: "center"}}>
               <div>
               {this.props.audition.attributes.show_name}
               </div>

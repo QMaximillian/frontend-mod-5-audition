@@ -4,6 +4,7 @@ import FilterSearch from '../components/FilterSearch'
 import TheatersContainer from './TheatersContainer'
 import AllAuditionsContainer from './AllAuditionsContainer'
 import withAuth from '../hocs/withAuth'
+import { Grid } from 'semantic-ui-react'
 
 
 class SearchContainer extends Component {
@@ -34,9 +35,33 @@ class SearchContainer extends Component {
           <div>
           <br />
           <br />
-          { this.state.searchType === 'all' ? <div><div><AllAuditionsContainer parent='tryThis' equity={this.state.equity} /></div><div><TheatersContainer/></div></div> : this.state.searchType === 'auditions' ? <AllAuditionContainer
-          parent='tryThis' equity={this.state.equity}/> : this.state.searchType === 'theaters' ? <TheatersContainer /> : <div></div> }
+          { this.state.searchType === 'all' ?
+            <Grid columns="2" padded="vertically">
+              <Grid.Column>
+                <AllAuditionsContainer
+                parent='tryThis'
+                equity={this.state.equity}
+                 />
+              </Grid.Column>
+              <Grid.Column>
+                <TheatersContainer/>
+              </Grid.Column>
+            </Grid> :
 
+            this.state.searchType === 'auditions' ?
+            <Grid
+              columns="1"
+              padded="vertically">
+              <Grid.Column>
+                <AllAuditionContainer
+                  parent='tryThis' equity={this.state.equity}/>
+              </Grid.Column>
+            </Grid> :
+
+                 this.state.searchType === 'theaters' ?
+                 <TheatersContainer /> :
+                 <div></div>
+            }
           </div>
         </div>
      )
