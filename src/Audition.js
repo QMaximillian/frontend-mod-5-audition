@@ -45,6 +45,7 @@ class Audition extends Component {
     this.setState({
       auth: newAuth
     }, () => console.log(this.state.auth.actor))
+
     localStorage.setItem('token', this.state.auth.actor.jwt)
     this.props.loadInitialActorState(this.state.auth.actor.actor_id)
     // fetchActor(this.state.auth.actor.actor_id).then(console.log)
@@ -82,7 +83,7 @@ class Audition extends Component {
 
   render() {
     const loggedIn = !!this.state.auth.actor.actor_id
-    console.log(loggedIn)
+
     return (
       <div className="content">
       <NavbarNew

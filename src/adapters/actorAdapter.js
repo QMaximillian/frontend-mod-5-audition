@@ -12,7 +12,7 @@ export const fetchLoginActor = (actor) => {
     method: 'POST',
     headers: headers(),
     body: JSON.stringify({ actor })
-  }).then(resp => resp.json())
+  }).then(resp => resp.json()).then(resp => responseHandler(resp))
 }
 
 export const fetchAudition = (id) => {
@@ -140,10 +140,16 @@ function headers() {
 }
 
 
-// function responseHandler(response) {
-//     if (response.ok) {
-//       return response.json();
-//     } else {
-//       console.log("ERROR", response.json());
-//     }
-// }
+function responseHandler(response) {
+  if (response.error) {
+    return Promise.reject(response)
+    .catch(response => {
+      window.alert(response.error.message)
+      return Promise.reject(response.error.message)
+    })
+  } else {
+    return response
+  }
+
+
+}

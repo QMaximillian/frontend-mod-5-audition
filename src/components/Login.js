@@ -31,6 +31,7 @@ export default class Login extends Component {
     event.preventDefault()
     fetchLoginActor(this.state.actor)
     .then(resp => {
+      console.log(resp)
       this.props.handleLoginActor(resp)
     }).then(() => this.setState({
       redirect: true
