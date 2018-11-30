@@ -26,6 +26,7 @@ import AuditionConfirmed from './components/AuditionConfirmed'
 import LandingPage from './containers/LandingPage'
 import NavbarNew from './components/NavbarNew'
 // import { Redirect } from 'react-router-dom'
+import { fetchReauthActor } from './adapters/actorAdapter'
 
 
 
@@ -62,24 +63,16 @@ class Audition extends Component {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
-      const options = {
-        headers : {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: localStorage.getItem('token')
-      }
+      fetchReauthActor()
+      .then(resp =>
+        this.setState({
+          auth: {
+            ...this.state.auth,
+            actor: resp
+          }
+        }, () => this.props.loadInitialActorState(this.state.auth.actor.actor_id)))
     }
-    fetch('http://localhost:3001/api/v1/reauth', options)
-    .then(resp => resp.json())
-    .then(resp =>
-      this.setState({
-        auth: {
-          ...this.state.auth,
-          actor: resp
-        }
-      }, () => this.props.loadInitialActorState(this.state.auth.actor.actor_id)))
-    }
-   }
+  }
 
   render() {
     const loggedIn = !!this.state.auth.actor.actor_id

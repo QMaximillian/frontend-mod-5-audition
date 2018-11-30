@@ -35,7 +35,9 @@ class ResumePDFSubmit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    if (this.state.confirmedTime === undefined) {
+    // console.log(this.state.confirmedTime)
+    if (this.state.confirmedTime === 0 || this.state.file === '' ) //check if file is .pdf
+    {
       alert('Please pick an actual time')
       return
     }
@@ -60,45 +62,6 @@ class ResumePDFSubmit extends Component {
       confirmedTime: state.value
     }, () => console.log(this.state.confirmedTime))
   }
-
-
-  // getDateHours = () => {
-  //   let newNewTime = []
-  //
-  //   let beginTime = new Date(this.state.confirmedAudition.begin_audition)
-  //
-  //   let endTime = new Date(this.state.confirmedAudition.end_audition)
-  //
-  //   let auditionTimes = new Date(this.state.confirmedAudition.begin_audition)
-  //
-  //
-  //
-  //   let timeSlot = this.state.confirmedAudition.time_slots
-  //   beginTime = beginTime.getUTCHours()
-  //   endTime = endTime.getUTCHours()
-  //   let hoursAvailable = endTime - beginTime
-  //   let slotsAvailable = (60 / timeSlot) * hoursAvailable
-  //
-  //   let newTime = new Date(auditionTimes.getTime() + timeSlot * 60000)
-  //
-  //   for (let i = 0; i < slotsAvailable; i++) {
-  //     newNewTime.push(new Date(newTime.getTime() + (timeSlot * i) * 60000))
-  //   }
-  //
-  //    const allSlotsWithTimes = newNewTime.filter((time) => {
-  //      return !this.state.confirmedAudition.submitted_times.includes(new Date(time.getTime() + (0) * 60000).toString())
-  //    })
-  //
-  //
-  //   const slots = allSlotsWithTimes.map(time => {
-  //       return (
-  //        <option
-  //          value={time}>{time.toLocaleTimeString()}
-  //        </option>
-  //       )
-  //    })
-  //   return slots
-  // }
 
   getDateHoursMoment = () => {
 
@@ -127,17 +90,9 @@ if (time_slots !== undefined){
     for (let time of allSlotsWithTimes) {
       timeOptions.push({'text': moment(time).format('HH:mm A'), 'value': moment(time).format()})
     }
-    // allSlotsWithTimes.map(time => {
-    //
-    //  })
     return timeOptions
   }
     }
-
-
-
-
-
 
 
    render() {

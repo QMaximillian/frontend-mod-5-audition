@@ -7,6 +7,16 @@ const baseTryoutUrl = 'http://localhost:3001/api/v1/tryouts'
 const baseAuditionUrl = 'http://localhost:3001/api/v1/auditions'
 // const loginUrl = 'http://localhost:3001/api/v1/login'
 
+export const fetchReauthActor = () => {
+  return fetch('http://localhost:3001/api/v1/reauth',
+    {
+      method: 'GET',
+      headers: headers()
+    }
+  )
+  .then(resp => resp.json())
+}
+
 export const fetchLoginActor = (actor) => {
   return fetch(`${baseUrl}login`, {
     method: 'POST',
@@ -88,6 +98,7 @@ export const fetchPostTryout = (body) => {
   return fetch(baseTryoutUrl, {
     method: 'POST',
     headers: {
+      "Content-Type": "application/pdf",
       Authorization: localStorage.getItem('token'),
     },
     body: body
@@ -136,7 +147,7 @@ function headers() {
     "Content-Type": "application/json",
     Accept: "application/json",
     Authorization: localStorage.getItem('token')
-  };
+  }
 }
 
 
