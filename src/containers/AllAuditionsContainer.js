@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Audition from '../components/Audition.js'
 import { connect } from 'react-redux'
 import { loadAllAuditions } from '../actions/actions'
-import { Loader } from 'semantic-ui-react'
+import { Loader, Grid, Table } from 'semantic-ui-react'
 
 
 
@@ -49,7 +49,11 @@ class AllAuditionContainer extends Component {
     }
 
     return this.searchFilterAuditions().map(audition => {
-      return <Audition key={audition.id} audition={audition}/>
+      return (
+        <Table.Row>
+          <Audition key={audition.id} audition={audition}/>
+        </Table.Row>
+      )
     })
   }
 
@@ -57,21 +61,25 @@ class AllAuditionContainer extends Component {
 
    render() {
      if (typeof this.props.tryouts === 'undefined') {
-       return (
-         <div><Loader active inline='centered' /></div>
-       )
+       return <Loader active inline='centered' />
      } else if (this.props.audition === 'undefined') {
-       return(<div>
-         <section className='card-container'>
-         {this.mappedAuditions()}
-         </section>
-       </div>
-     )
+       return <Loader active inline='centered' />
      } else {
           return (
-             <div>
+
+            <Table >
+            <Table.Header>
+                <Table.Row>
+                <Table.HeaderCell>Show Name</Table.HeaderCell>
+                <Table.HeaderCell>Location</Table.HeaderCell>
+                <Table.HeaderCell>Call Type</Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
                {this.mappedAuditions()}
-             </div>
+            </Table.Body>
+              </Table>
+
           )
      }
    }

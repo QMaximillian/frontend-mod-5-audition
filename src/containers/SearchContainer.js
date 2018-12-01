@@ -36,27 +36,22 @@ class SearchContainer extends Component {
           <br />
           <br />
           { this.state.searchType === 'all' ?
-            <Grid columns="2" padded="vertically">
-              <Grid.Column>
+
+          <div>
                 <AllAuditionsContainer
                 parent='tryThis'
                 equity={this.state.equity}
                  />
-              </Grid.Column>
-              <Grid.Column>
                 <TheatersContainer/>
-              </Grid.Column>
-            </Grid> :
+          </div>
+:
 
             this.state.searchType === 'auditions' ?
-            <Grid
-              columns="1"
-              padded="vertically">
-              <Grid.Column>
                 <AllAuditionContainer
-                  parent='tryThis' equity={this.state.equity}/>
-              </Grid.Column>
-            </Grid> :
+                  parent='tryThis' equity={this.state.equity}
+                  />
+
+             :
 
                  this.state.searchType === 'theaters' ?
                  <TheatersContainer /> :
