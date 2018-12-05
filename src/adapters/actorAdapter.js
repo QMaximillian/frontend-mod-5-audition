@@ -95,10 +95,10 @@ export const fetchGetIndex = (route) => {
 }
 
 export const fetchPostTryout = (body) => {
+
   return fetch(baseTryoutUrl, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/pdf",
       Authorization: localStorage.getItem('token'),
     },
     body: body

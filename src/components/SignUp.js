@@ -25,9 +25,6 @@ export default class SignUp extends Component {
        return <Redirect to='/'/>
      } else {
      return (
-        <div>
-          <Grid>
-            <Container>
                 <Form>
                   <div style={{textAlign: 'center'}}>
                     Please enter sign up info
@@ -70,9 +67,6 @@ export default class SignUp extends Component {
                       content="Sign Up"
                       primary/>
                   </Form>
-            </Container>
-          </Grid>
-        </div>
      )
    }
    }

@@ -19,12 +19,33 @@ class AllAuditionContainer extends Component {
     })
 
   }
+
+  // reduceAuditions = () => {
+  //   return this.props.auditionIndex.reduce((arr, item, index, passedInObj) => {
+  //     console.log(item.attributes.tryouts)
+  //
+  //
+  //     if (item.attributes.tryouts[index]) {
+  //
+  //
+  //     if (item.attributes.tryouts[0].actor_id !== parseInt(this.props.currentActor.id)) {
+  //       arr.push(item)
+  //     }
+  //
+  //
+  //   }
+  //     return arr
+  //
+  //
+  //   }, [])
+  // }
+
   // Iterate through the entire index of auditions and if an audition's tryouts and has the currently signed-in actor included, do not show that audition
   searchFilterAuditions = () => {
     if (this.props.parent === "tryThis") {
 
 
-    return this.filteredAuditions().filter(audition => {
+    return this.reduceAuditions().filter(audition => {
       if (this.props.equity === 'true' && audition.attributes.equity === true) {
         return audition
       } else if (this.props.equity === 'false' && audition.attributes.equity === false) {
@@ -65,8 +86,8 @@ class AllAuditionContainer extends Component {
      } else if (this.props.audition === 'undefined') {
        return <Loader active inline='centered' />
      } else {
+        console.log(this.reduceAuditions())
           return (
-
             <Table >
             <Table.Header>
                 <Table.Row>

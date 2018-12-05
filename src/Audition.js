@@ -23,7 +23,7 @@ import TryoutShow from './components/TryoutShow'
 import SeasonShow from './components/SeasonShow'
 import PlayShow from './components/PlayShow'
 import AuditionConfirmed from './components/AuditionConfirmed'
-import LandingPage from './containers/LandingPage'
+import SemanticHomeContainer from './containers/SemanticHomeContainer'
 import NavbarNew from './components/NavbarNew'
 // import { Redirect } from 'react-router-dom'
 import { fetchReauthActor } from './adapters/actorAdapter'
@@ -83,7 +83,7 @@ class Audition extends Component {
       loggedIn={loggedIn}
       handleLogout={this.handleLogout}/>
         <Switch>
-          <Route exact path="/" render={(props) => <LandingPage loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/" render={(props) => <SemanticHomeContainer loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/theater/:theaterId/season/:seasonId" render={(props) => <SeasonShow loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/audition/:id/resume_submit" render={(props) => <ResumePDFSubmit loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/my-auditions" render={(props) => <MyAuditionsContainer loggedIn={loggedIn} {...props}/>}/>

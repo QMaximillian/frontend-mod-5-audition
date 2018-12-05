@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchGet, fetchPostTryout } from '../adapters/actorAdapter'
+import { fetchGet } from '../adapters/actorAdapter'
 import { Link } from 'react-router-dom'
 import { Loader, Button } from 'semantic-ui-react'
 import { loadAudition } from '../actions/actions'
@@ -30,7 +30,7 @@ class AuditionConfirmation extends Component {
   }
 
   handleTryoutPost = (event) => {
-    fetchPostTryout({audition_name: this.props.audition.show_name,actor_id: 1, audition_id: this.props.match.params.id, audition_time: this.state.confirmedTime, location: this.state.confirmedAudition.location, starred: false, callback: false, cast: false})
+    // fetchPostTryout({audition_name: this.props.audition.show_name,actor_id: 1, audition_id: this.props.match.params.id, audition_time: this.state.confirmedTime, location: this.state.confirmedAudition.location, starred: false, callback: false, cast: false})
 
 
     this.setState({
