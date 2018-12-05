@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import '../Audition.css'
 import Search from '../components/Search'
 import withAuth from '../hocs/withAuth'
+import { Grid } from 'semantic-ui-react'
 
 
 
@@ -26,15 +27,49 @@ class ActorHomeContainer extends Component {
 
   render() {
     console.log(this.props)
-    return(
-      <div style={{textAlign: 'center'}} >
-            <div>
-            <h1>Welcome to Audition</h1>
-            <Search search={this.state.search}
-              handleChange={this.handleChange}/>
-            <ActorUpcomingAuditions search={this.state.search}/>
-            </div>
-          </div>
+    return (
+      <Grid container columns='equal' style={{textAlign: 'center'}} >
+            <Grid.Row columns={1}>
+              <Grid.Column>
+              <h1>Welcome to Audition</h1>
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row columns={4}>
+              <Grid.Column width={4}>
+                AuditionDay
+              </Grid.Column>
+              <Grid.Column width={4}>
+                HELLO
+              </Grid.Column>
+              <Grid.Column width={4}>
+                HELLO
+              </Grid.Column>
+              <Grid.Column stretched width={4}>
+                <Search search={this.state.search} handleChange={this.handleChange}/>
+                <ActorUpcomingAuditions search={this.state.search}/>
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row columns={4}>
+              <Grid.Column width={4}>
+                HELLO
+              </Grid.Column>
+              <Grid.Column width={4}>
+                HELLO
+              </Grid.Column>
+              <Grid.Column width={4}>
+                HELLO
+              </Grid.Column>
+              <Grid.Column width={4}>
+
+              </Grid.Column>
+            </Grid.Row>
+
+
+
+
+          </Grid>
         )
   }
 }

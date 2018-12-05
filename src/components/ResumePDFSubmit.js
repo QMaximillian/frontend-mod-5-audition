@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { fetchPostTryout, fetchGet } from '../adapters/actorAdapter'
 import { Redirect } from 'react-router-dom'
-import { Button, Input, Form } from 'semantic-ui-react'
+import { Button, Input, Form, Dimmer, Loader} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { loadAudition, loadInitialActorState } from '../actions/actions'
 // import Moment from 'react-moment'
 import moment from 'moment'
 import '../Audition.css'
 import withAuth from '../hocs/withAuth'
+
 
 class ResumePDFSubmit extends Component {
 
@@ -16,6 +17,7 @@ class ResumePDFSubmit extends Component {
     file: '',
     redirect: false,
     confirmedTime: 0,
+    loading: false,
     confirmedAudition: {}
   }
 
@@ -41,6 +43,10 @@ class ResumePDFSubmit extends Component {
       alert('Please pick an actual time')
       return
     }
+
+    this.setState({
+      loading: true
+    })
 
     const formData = new FormData()
     formData.append('tryout[resume]', this.state.file)
@@ -148,9 +154,21 @@ if (time_slots !== undefined){
           </div>
   {this.state.file ? <div>Resume Attached</div> : <div></div>}
         <br />
+
+        {this.state.loading === false ?
          <Button onClick={(event) => this.handleSubmit(event)}>
            Submit for Audition
          </Button>
+       :
+       <React.Fragment>
+       <Dimmer active>
+        <Loader size='massive'>Loading</Loader>
+        </Dimmer>
+        <Button onClick={(event) => this.handleSubmit(event)}>
+          Submit for Audition
+        </Button>
+      </React.Fragment>
+      }
        </div>
       </div>
       </React.Fragment>
