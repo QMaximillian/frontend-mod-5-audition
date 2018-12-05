@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Image } from 'semantic-ui-react'
 
 
 export default class SemanticHomeContainer extends Component {
    render() {
      return (
         <Grid container style={{height: '100vh'}}>
-        <Grid.Row textAlign='center' verticalAlign='middle' style={{height: '25%', border: '2px red solid'}}>
-          <Grid.Column width={5}>
+        <Grid.Row textAlign='center' verticalAlign='middle' style={{height: '40%', border: '2px red solid', 'background-image': "url(https://s11986.pcdn.co/wp-content/uploads/2016/03/widescreen-iphone-photo.jpg)", 'background-repeat': 'no-repeat', 'background-size': 'cover'}}>
+
+          {/*<Grid.Column width={5}>
           SemanticHomeContainer
           </Grid.Column>
           <Grid.Column width={6}>
@@ -15,22 +16,28 @@ export default class SemanticHomeContainer extends Component {
           </Grid.Column>
           <Grid.Column width={5}>
           SemanticHomeContainer
-          </Grid.Column>
+          </Grid.Column>*/}
         </Grid.Row>
 
-        <Grid.Row style={{height: '25%', border: '2px red solid'}}>
-          <Grid.Column width={6}>
+        <Grid.Row textAlign='center' verticalAlign='middle' style={{height: '30%', border: '2px red solid'}}>
+          <Grid.Column width={5}>
+          SecondRow
+          </Grid.Column>
+          <Grid.Column width={5}>
+          SecondRow
+          </Grid.Column>
+          <Grid.Column width={5}>
           SecondRow
           </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row style={{height: '25%', border: '2px red solid'}}>
+        <Grid.Row style={{height: '10%', border: '2px red solid'}}>
           <Grid.Column width={6}>
           Third Row
           </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row style={{height: '25%', border: '2px red solid'}}>
+        <Grid.Row style={{height: '10%', border: '2px red solid'}}>
           <Grid.Column width={6}>
           Fourth Row
           </Grid.Column>

@@ -43,9 +43,7 @@ class AllAuditionContainer extends Component {
   // Iterate through the entire index of auditions and if an audition's tryouts and has the currently signed-in actor included, do not show that audition
   searchFilterAuditions = () => {
     if (this.props.parent === "tryThis") {
-
-
-    return this.reduceAuditions().filter(audition => {
+    return this.filteredAuditions().filter(audition => {
       if (this.props.equity === 'true' && audition.attributes.equity === true) {
         return audition
       } else if (this.props.equity === 'false' && audition.attributes.equity === false) {
@@ -86,7 +84,6 @@ class AllAuditionContainer extends Component {
      } else if (this.props.audition === 'undefined') {
        return <Loader active inline='centered' />
      } else {
-        console.log(this.reduceAuditions())
           return (
             <Table >
             <Table.Header>
