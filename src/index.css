@@ -2,7 +2,7 @@ body {
   font-family: sans-serif;
 }
 
-.container {
+/* .container {
   height: 100%;
   display: grid;
   grid-gap: 3px;
@@ -10,7 +10,7 @@ body {
   grid-template-rows: auto;
   background-color: #FFF;
   padding-top: 80px;
-}
+} */
 
 
 @font-face {

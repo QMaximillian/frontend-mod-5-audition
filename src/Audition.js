@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Audition.css';
 import ActorHomeContainer from './containers/ActorHomeContainer'
 import { loadInitialActorState } from './actions/actions'
@@ -78,7 +78,7 @@ class Audition extends Component {
     const loggedIn = !!this.state.auth.actor.actor_id
 
     return (
-      <div className="content">
+<React.Fragment>
       <NavbarNew
       loggedIn={loggedIn}
       handleLogout={this.handleLogout}/>
@@ -107,7 +107,7 @@ class Audition extends Component {
           <Route exact path="/my-auditions/tryouts/:id"
         render={(props) => <TryoutShow loggedIn={loggedIn} {...props}/>}/>
         </Switch>
-      </div>
+</React.Fragment>
     )
   }
 }

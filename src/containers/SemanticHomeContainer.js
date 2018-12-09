@@ -6,7 +6,9 @@ import { Grid } from 'semantic-ui-react'
 export default class SemanticHomeContainer extends Component {
    render() {
      return (
-        <Grid container style={{height: '100vh'}}>
+        <Grid
+        style={{padding: '100px', height: '100vh'}}
+        >
         <Grid.Row textAlign='center' verticalAlign='left' style={{height: '40%', border: '2px red solid', 'background-image': "url(https://s11986.pcdn.co/wp-content/uploads/2016/03/widescreen-iphone-photo.jpg)", 'background-repeat': 'no-repeat', 'background-size': 'cover', 'background-opacity': '0.1'}}>
 
           <Grid.Column width={5}>

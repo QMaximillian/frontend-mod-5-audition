@@ -35,13 +35,13 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
-      <div className="container">
+
+
         <Switch>
           <Audition />
         </Switch>
-      </div>
-      </div>
+
+
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
