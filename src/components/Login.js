@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Form } from 'semantic-ui-react'
+import { Form, Grid, Header, Segment } from 'semantic-ui-react'
 import { fetchLoginActor } from '../adapters/actorAdapter'
 import '../Audition.css'
 
@@ -46,24 +46,40 @@ export default class Login extends Component {
       return <Redirect push to={'/home'}/>
     } else {
     return(
-          <Form>
-              <Form.Input
-                name="email"
-                onChange={this.handleChange}
-                value={actor.email}
-                label="Enter E-Mail"/>
-              <Form.Input
-                type="password"
-                name="password"
-                onChange={this.handleChange}
-                value={actor.password}
-                label="Enter Password"/>
+      <div style={{height: '100%'}}>
+          <Grid textAlign='center' style={{height: '100%', 'padding-top': '150px'}} verticalAlign='middle'>
 
-                <Form.Button
-                  onClick={this.handleLoginSubmit}
-                  content="Log In"
-                  primary/>
-            </Form>
+            <Grid.Column width={6}>
+            <Header>
+              Login
+            </Header>
+              <Form size="medium">
+                <Segment stacked>
+                <Form.Input
+                  fluid
+                  name="email"
+                  onChange={this.handleChange}
+                  value={actor.email}
+                  label="Enter E-Mail"/>
+                <Form.Input
+                  type="password"
+                  name="password"
+                  onChange={this.handleChange}
+                  value={actor.password}
+                  label="Enter Password"/>
+
+                  <Form.Button
+                    onClick={this.handleLoginSubmit}
+                    fluid
+                    size="large"
+                    color='yellow'
+                    content="Login"
+                    primary/>
+                  </Segment>
+              </Form>
+              </Grid.Column>
+          </Grid>
+          </div>
           )
     }
 }

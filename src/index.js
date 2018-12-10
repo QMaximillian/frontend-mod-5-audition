@@ -35,13 +35,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-
-
         <Switch>
           <Audition />
         </Switch>
-
-
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

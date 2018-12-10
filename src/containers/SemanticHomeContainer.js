@@ -11,6 +11,7 @@ import { Grid, Button,
   Segment,
   Sidebar,
   Visibility } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -91,10 +92,12 @@ class SemanticHomeContainer extends Component {
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
+    <Link push to='/about'>
     <Button primary size='huge'>
-      Get Started
+      Learn More
       <Icon name='right arrow' />
     </Button>
+    </Link>
   </Container>
 
 )
@@ -176,7 +179,9 @@ const HomepageLayout = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
+          <Link push to='/about'>
             <Button size='huge'>Learn More/FAQ</Button>
+          </Link>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -184,13 +189,18 @@ const HomepageLayout = () => (
 
     <Segment  vertical style={{ padding: '5em 0em' }}>
       <Container>
-        <Grid divided  stackable>
+        <Grid divided stackable>
           <Grid.Row>
             <Grid.Column width={3}>
               <Header  as='h4' content='More Options' />
               <List link >
+              <Link push to='/about'>
                 <List.Item as='a'>About</List.Item>
+              </Link>
+              <br />
+              <Link push to='/contact'>
                 <List.Item as='a'>Contact Us</List.Item>
+              </Link>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
@@ -207,4 +217,5 @@ const HomepageLayout = () => (
     </Segment>
   </ResponsiveContainer>
 )
+
 export default HomepageLayout

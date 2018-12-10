@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Grid, Container, Form } from 'semantic-ui-react'
+import { Grid, Container, Form, Header, Segment } from 'semantic-ui-react'
 import { fetchActorCreate } from '../adapters/actorAdapter'
 
 export default class SignUp extends Component {
@@ -24,7 +24,15 @@ export default class SignUp extends Component {
      if (this.state.redirect) {
        return <Redirect to='/'/>
      } else {
-     return (
+       return (
+         <div style={{height: '100%'}}>
+             <Grid textAlign='center' style={{height: '100%', 'padding-top': '150px'}} verticalAlign='middle'>
+
+               <Grid.Column width={6}>
+               <Header>
+                 Sign Up
+               </Header>
+               <Segment stacked>
                 <Form>
                   <div style={{textAlign: 'center'}}>
                     Please enter sign up info
@@ -64,9 +72,15 @@ export default class SignUp extends Component {
                           }
                         })
                       }
+                      fluid
+                      size='large'
                       content="Sign Up"
                       primary/>
                   </Form>
+                  </Segment>
+                  </Grid.Column>
+                  </Grid>
+                  </div>
      )
    }
    }

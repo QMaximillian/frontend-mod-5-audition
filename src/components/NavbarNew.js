@@ -10,7 +10,7 @@ class NavbarNew extends Component {
 render(){
   if (this.props.loggedIn) {
     return (
-      <Navbar collapseOnSelect fluid fixedTop>
+      <Navbar collapseOnSelect fluid fixedTop inverse>
     <Navbar.Header>
       <Navbar.Brand>
         <Link to="/home">Audition</Link>
@@ -35,7 +35,7 @@ render(){
         </LinkContainer>
       </NavDropdown>
       <LinkContainer to="/">
-      {/* make loggedIn = false, and clear localStorage */}
+
       <MenuItem onClick={() => this.props.handleLogout()} eventKey={3.0}>Logout</MenuItem>
       </LinkContainer>
       </Nav>
@@ -44,7 +44,7 @@ render(){
     )
   } else {
     return (
-      <Navbar collapseOnSelect fluid fixedTop>
+      <Navbar collapseOnSelect fluid fixedTop inverse>
     <Navbar.Header>
       <Navbar.Brand>
         <Link to="/">Audition</Link>
