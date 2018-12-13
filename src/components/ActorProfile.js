@@ -68,7 +68,7 @@ class ActorProfile extends Component {
             {first_name}'s Profile
           </div>
 
-          <Grid>
+          <Grid container style={{'padding-top': '100px'}}>
             <Grid.Row centered>
               <Grid.Column >
               <Form

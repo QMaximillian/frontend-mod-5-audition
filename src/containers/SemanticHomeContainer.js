@@ -15,61 +15,6 @@ import { Link } from 'react-router-dom'
 
 
 
-class SemanticHomeContainer extends Component {
-   render() {
-     return (
-       <Segment>
-        <Grid
-        style={{padding: '100px', height: '100vh'}}
-        >
-        <Grid.Row textAlign='center' verticalAlign='left' style={{height: '40%', border: '2px red solid', 'background-color': 'red'}}>
-
-          <Grid.Column width={5}>
-          SemanticHomeContainer
-          </Grid.Column>
-          <Grid.Column width={6}>
-          SemanticHomeContainer
-          </Grid.Column>
-          <Grid.Column width={5}>
-          SemanticHomeContainer
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row textAlign='center' verticalAlign='middle' style={{height: '30%', border: '2px red solid'}}>
-          <Grid.Column width={5}>
-          Why
-          </Grid.Column>
-          <Grid.Column width={5}>
-          How
-          </Grid.Column>
-          <Grid.Column width={5}>
-          About
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row textAlign='center' verticalAlign='middle' style={{height: '10%', border: '2px red solid'}}>
-          <Grid.Column width={15}>
-          Tour
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row style={{height: '10%', border: '2px red solid'}}>
-          <Grid.Column width={16}>
-          Disclaimer/Information
-          </Grid.Column>
-        </Grid.Row>
-
-        </Grid>
-        </Segment>
-     )
-   }
- }
-
-
-
-
-
-
  const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
@@ -144,9 +89,9 @@ const HomepageLayout = () => (
       <Grid.Row textAlign='center'>
         <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
           <Header as='h3' style={{ fontSize: '2em' }}>
-            "What a Company"
+            Leave It All On The Stage
           </Header>
-          <p style={{ fontSize: '1.33em' }}>That is what they all say about us</p>
+          <p style={{ fontSize: '1.33em' }}>Don't worry about anything except for killing your auditions</p>
         </Grid.Column>
       </Grid.Row>
         <Grid.Row columns='equal'>
@@ -160,20 +105,18 @@ const HomepageLayout = () => (
             </Grid.Column>
             <Grid.Column>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              We Make Bananas That Can Dance
+              Track Your Progess
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-              bioengineered.
+              Audition Journaling to Guide You In the Right Direction
             </p>
           </Grid.Column>
           <Grid.Column>
           <Header as='h3' style={{ fontSize: '2em' }}>
-            We Make Bananas That Can Dance
+            No More Gatekeeping
           </Header>
           <p style={{ fontSize: '1.33em' }}>
-            Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-            bioengineered.
+            We give you access to tons of information, to give you the best chance of being cast
           </p>
         </Grid.Column>
         </Grid.Row>
@@ -187,7 +130,7 @@ const HomepageLayout = () => (
       </Grid>
     </Segment>
 
-    <Segment  vertical style={{ padding: '5em 0em' }}>
+    <Segment vertical style={{ padding: '5em 0em' }}>
       <Container>
         <Grid divided stackable>
           <Grid.Row>
@@ -208,7 +151,8 @@ const HomepageLayout = () => (
                 Footer Header
               </Header>
               <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
+                Questions About This Site?<br />
+                Send an email: <a>quinnlashinsky@gmail.com</a>
               </p>
             </Grid.Column>
           </Grid.Row>

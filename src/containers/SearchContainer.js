@@ -18,23 +18,22 @@ class SearchContainer extends Component {
     handleSearchChange = (state) => {
       this.setState({
         [state.name]: state.value
-      }, () => console.log(this.state))
+      })
     }
 
    render() {
-     console.log(this.props);
      return (
+       <Grid container style={{'padding-top': '100px'}}>
         <div>
-          <div>
           <FilterSearch
           handleSearchChange={this.handleSearchChange}
           searchType={this.state.searchType}
           equity={this.state.equity}
           /*gender={this.state.gender} *//>
           </div>
-          <div>
-          <br />
-          <br />
+
+
+
           { this.state.searchType === 'all' ?
 
           <div>
@@ -57,8 +56,7 @@ class SearchContainer extends Component {
                  <TheatersContainer /> :
                  <div></div>
             }
-          </div>
-        </div>
+            </Grid>
      )
    }
  }
