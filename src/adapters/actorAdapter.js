@@ -106,23 +106,13 @@ export const fetchPostTryout = (body) => {
 }
 
 
-export const fetchActorCreate = (firstName, lastName, email, password) => {
+export const fetchActorCreate = (actor) => {
   return fetch('http://localhost:3001/api/v1/actors', {
     method: 'POST',
-    headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json'
-    },
-    body: JSON.stringify({
-      actor: {
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        password: password
-      }
-    })
+    headers: headers(),
+    body: JSON.stringify(actor)
 })
-.then(r => r.json())
+.then(resp => resp.json())
 }
 
 
@@ -161,6 +151,4 @@ function responseHandler(response) {
   } else {
     return response
   }
-
-
 }

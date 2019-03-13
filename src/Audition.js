@@ -3,7 +3,6 @@ import './Audition.css';
 import ActorHomeContainer from './containers/ActorHomeContainer'
 import { loadInitialActorState } from './actions/actions'
 import {connect} from 'react-redux'
-import './Audition.css'
 import { Route, Switch } from 'react-router'
 import Login from './components/Login'
 import SignUp from './components/SignUp'

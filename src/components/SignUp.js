@@ -24,6 +24,17 @@ export default class SignUp extends Component {
      if (this.state.redirect) {
        return <Redirect to='/'/>
      } else {
+
+      const actor = 
+      { 
+        actor: { 
+          first_name: this.state.firstName,
+          last_name: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password
+        }
+      }
+
        return (
          <div style={{height: '100%'}}>
              <Grid textAlign='center' style={{height: '100%', 'padding-top': '150px'}} verticalAlign='middle'>
@@ -61,7 +72,7 @@ export default class SignUp extends Component {
                     label="Password"/>
 
                     <Form.Button
-                      onClick={() => fetchActorCreate(this.state.firstName, this.state.lastName, this.state.email, this.state.password).then((resp) => {
+                      onClick={() => fetchActorCreate(actor).then((resp) => {
                           if (resp && resp.actor) {
                             window.alert("Success!")
                             this.setState({

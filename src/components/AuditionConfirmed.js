@@ -8,7 +8,7 @@ class AuditionConfirmed extends Component {
   return(
     <div>
       <div className="profile-card">
-        <h1 style={{textAlign: 'center'}}>Audition Confirmed</h1>
+        <h1 style={{textAlign: 'center', marginTop: '100px'}}>Audition Confirmed</h1>
       </div>
     </div>
   )

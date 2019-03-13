@@ -36,7 +36,9 @@ class ActorHomeContainer extends Component {
               </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row style={{height: '25%'}}>
+
+              <Grid.Row style={{height: '25%'}}>
+              {/*
               <Grid.Column width={4}>
                 MENU
               </Grid.Column>
@@ -45,8 +47,8 @@ class ActorHomeContainer extends Component {
               </Grid.Column>
               <Grid.Column width={4}>
                 HELLO
-              </Grid.Column>
-              <Grid.Column stretched width={4}>
+              </Grid.Column> */}
+              <Grid.Column stretched width={16}>
                 <Search search={this.state.search} handleChange={this.handleChange}/>
                 <ActorUpcomingAuditions search={this.state.search}/>
               </Grid.Column>
@@ -54,25 +56,25 @@ class ActorHomeContainer extends Component {
 
             <Grid.Row style={{height: '25%'}}>
               <Grid.Column width={4}>
-                MENU
+
               </Grid.Column>
               <Grid.Column width={4}>
-                ME
+
               </Grid.Column>
               <Grid.Column width={4}>
-                ME
+
               </Grid.Column>
             </Grid.Row>
 
             <Grid.Row style={{height: '25%'}}>
               <Grid.Column width={4}>
-                MENU
+
               </Grid.Column>
               <Grid.Column width={4}>
-                ME
+
               </Grid.Column>
               <Grid.Column width={4}>
-                ME
+
               </Grid.Column>
             </Grid.Row>
 
@@ -83,7 +85,7 @@ class ActorHomeContainer extends Component {
                   <Grid.Row>
                     <Grid.Column width={3}>
                       <Header  as='h4' content='More Options' />
-                      <List link >
+                      {/*<List link >
                       <Link push to='/about'>
                         <List.Item as='a'>About</List.Item>
                       </Link>
@@ -91,14 +93,13 @@ class ActorHomeContainer extends Component {
                       <Link push to='/contact'>
                         <List.Item as='a'>Contact Us</List.Item>
                       </Link>
-                      </List>
+                      </List>*/}
                     </Grid.Column>
                     <Grid.Column width={7}>
                       <Header as='h4' >
-                        Footer Header
+                        Audition
                       </Header>
                       <p>
-                        Extra space for a call to action inside the footer that could help re-engage users.
                       </p>
                     </Grid.Column>
                   </Grid.Row>

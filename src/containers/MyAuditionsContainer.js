@@ -68,7 +68,7 @@ class MyAuditionsContainer extends Component {
           )
         } else if (this.props.currentActor.attributes.tryouts.length === 0){
         return(
-          <h1 style={{textAlign: 'center', fontSize: '2rem'}}>
+          <h1 style={{textAlign: 'center', fontSize: '2rem', marginTop: '100px'}}>
             {this.props.currentActor.attributes.first_name} has no auditions
           </h1>
         )
@@ -76,7 +76,7 @@ class MyAuditionsContainer extends Component {
         console.log(this.props.currentActor.attributes.tryouts);
        return (
          <div>
-           <div style={{textAlign: "center", fontSize: "2em"}}>
+           <div style={{textAlign: "center", fontSize: "2em", marginTop: "100px"}}>
            {this.props.currentActor.attributes.first_name}'s Auditions
           </div>
           <div className="card-container">

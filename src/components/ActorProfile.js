@@ -35,7 +35,12 @@ class ActorProfile extends Component {
 
       fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, city: city }).then(
         this.setState({
-            success: true
+            success: !this.state.success
+        }, () => {
+          alert('Profile Saved')
+          this.setState({
+            success: !this.state.success
+          })
         })
       )
     }

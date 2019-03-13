@@ -122,7 +122,7 @@ const HomepageLayout = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-          <Link push to='/about'>
+          <Link push to='#'>
             <Button size='huge'>Learn More/FAQ</Button>
           </Link>
           </Grid.Column>

@@ -43,7 +43,7 @@ render() {
 
   if (this.state.audition.show_name && this.props.currentActor.attributes !== undefined) {
      return (
-      <div className='card' style={{textAlign: 'left'}}>
+      <div className='card' style={{textAlign: 'center'}}>
           <div style={{fontSize: '2em'}}>
             <h1>{this.state.audition.show_name}</h1><br/>
             <h5>{this.handleLineBreak(this.state.audition.location)}</h5>
