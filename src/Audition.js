@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Audition.css';
 import ActorHomeContainer from './containers/ActorHomeContainer'
 import { loadInitialActorState } from './actions/actions'
 import {connect} from 'react-redux'
-import './Audition.css'
 import { Route, Switch } from 'react-router'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
@@ -13,60 +12,101 @@ import AuditionShow from './components/AuditionShow'
 import AuditionConfirmation from './components/AuditionConfirmation'
 
 import ResumePDFSubmit from './components/ResumePDFSubmit'
-import AllAuditionsContainer from './containers/AllAuditionsContainer'
+// import AllAuditionsContainer from './containers/AllAuditionsContainer'
+import SearchContainer from './containers/SearchContainer'
 import 'semantic-ui-css/semantic.min.css'
 import './Audition.css'
 import './index.css'
 import TryoutShow from './components/TryoutShow'
-import TheatersContainer from './containers/TheatersContainer'
+// import TheatersContainer from './containers/TheatersContainer'
 import SeasonShow from './components/SeasonShow'
 import PlayShow from './components/PlayShow'
 import AuditionConfirmed from './components/AuditionConfirmed'
+import SemanticHomeContainer from './containers/SemanticHomeContainer'
+import NavbarNew from './components/NavbarNew'
+// import { Redirect } from 'react-router-dom'
+import { fetchReauthActor } from './adapters/actorAdapter'
+
 
 
 class Audition extends Component {
 
-  componentDidMount(){
-    this.props.loadInitialActorState()
+  state = {
+    auth: {
+      actor: {}
+    }
+  }
 
-    // PUT MY AUDITIONS IN STORE
-    //PUT AUDITIONS IN STORE
-    //PUT RESUMES IN STORE
-    //PUT MY RESUMES IN STORE
-    //PUT MY AUDITION_JOURNALS IN STORE
-    //PUT MY APPLIED TRYOUTS IN STORE
-    //PUT MY TRYOUT AUDITIONS IN STORE
-    //PUT RESUMES IN STORE
-    //PUT MY DEFAULT RESUME IN STORE
+  handleLoginActor = (actor) => {
+    const newAuth = {
+        ...this.state.auth,
+        actor: actor
+    }
+    this.setState({
+      auth: newAuth
+    }, () => console.log(this.state.auth.actor))
+
+    localStorage.setItem('token', this.state.auth.actor.jwt)
+    this.props.loadInitialActorState(this.state.auth.actor.actor_id)
+    // fetchActor(this.state.auth.actor.actor_id).then(console.log)
+  }
+
+  handleLogout = () => {
+    localStorage.removeItem('token')
+    this.setState({
+      auth: {
+        actor: {}
+      }
+    })
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      fetchReauthActor()
+      .then(resp =>
+        this.setState({
+          auth: {
+            ...this.state.auth,
+            actor: resp
+          }
+        }, () => this.props.loadInitialActorState(this.state.auth.actor.actor_id)))
+    }
   }
 
   render() {
+    const loggedIn = !!this.state.auth.actor.actor_id
+
     return (
-      <div className="top-level">
+<React.Fragment>
+      <NavbarNew
+      loggedIn={loggedIn}
+      handleLogout={this.handleLogout}/>
         <Switch>
-          <Route exact path="/actor/audition-home/audition-journals/:id"/>
-          <Route exact path="/theater/:theaterId/season/:seasonId" component={SeasonShow}/>
-          <Route exact path="/audition/:id/resume_submit" component={ResumePDFSubmit}/>
-          <Route exact path="/my-auditions" component={MyAuditionsContainer}/>
-          <Route exact path="/find-auditions" component={AllAuditionsContainer}/>
-          <Route exact path="/auditions/:id" component={AuditionShow}/>
-          <Route exact path="/tryout/:id" component={TryoutShow}/>
+          <Route exact path="/" render={(props) => <SemanticHomeContainer loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/theater/:theaterId/season/:seasonId" render={(props) => <SeasonShow loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/audition/:id/resume_submit" render={(props) => <ResumePDFSubmit loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/my-auditions" render={(props) => <MyAuditionsContainer loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/search" render={(props) => <SearchContainer loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/auditions/:id" render={(props) => <AuditionShow loggedIn={loggedIn} {...props}
+          {...props}/>}/>
+          <Route exact path="/tryout/:id" render={(props) => <TryoutShow loggedIn={loggedIn} {...props}/>}/>
           {/* <Route exact path="/actor/audition-journals" component={AuditionJournal}/> */}
-          <Route exact path="/actor/1" component={ActorProfile}/>
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/actor/1" render={(props) => <ActorProfile loggedIn={loggedIn} {...props}/>}/>
+          <Route exact path="/login" render={(props) => <Login
+            loggedIn={loggedIn} {...props}  handleLoginActor={this.handleLoginActor}/>} />
           <Route exact path="/sign-up" component={SignUp} />
-          <Route exact path="/audition/:id/audition-confirmation" component={AuditionConfirmation} />
-          <Route exact path="/" component={ActorHomeContainer} />
-          <Route exact path="/theaters"
-        component={TheatersContainer}/>
+          <Route exact path="/audition/:id/audition-confirmation" render={(props) => <AuditionConfirmation loggedIn={loggedIn} {...props}/>} />
+          <Route exact path="/home" render={(props) => <ActorHomeContainer loggedIn={loggedIn} {...props}/>}/>
+          {/* <Route exact path="/theaters"
+        render={(props) => <TheatersContainer loggedIn={loggedIn} {...props}/>}/> */}
           <Route exact path="/theater/:theaterId/season/:seasonId/show/:showId"
-        component={PlayShow}/>
+        render={(props) => <PlayShow loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/audition/:id/audition-confirmation/confirmed"
-        component={AuditionConfirmed}/>
+        render={(props) => <AuditionConfirmed loggedIn={loggedIn} {...props}/>}/>
           <Route exact path="/my-auditions/tryouts/:id"
-        component={TryoutShow}/>
+        render={(props) => <TryoutShow loggedIn={loggedIn} {...props}/>}/>
         </Switch>
-      </div>
+</React.Fragment>
     )
   }
 }

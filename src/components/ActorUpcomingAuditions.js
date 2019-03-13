@@ -9,19 +9,22 @@ class ActorUpcomingAuditions extends Component {
 
   filteredUpcoming = () => {
     return this.props.currentActor.attributes.tryouts.filter(tryout => {
-      if (moment.utc((tryout.audition_time)).isAfter(moment().format()) &&       tryout.show_name.toLowerCase().match(this.props.search.toLowerCase())) {
-          return tryout
-        }
+return  (moment.utc((tryout.audition_time)).isAfter(moment().format()) &&       tryout.show_name.toLowerCase().match(this.props.search.toLowerCase()))
     })
   }
+
+  // filteredUpcoming = () => {
+  //   return this.props.currentActor.attributes.tryouts.filter(tryout => {
+  //     if (moment.utc((tryout.audition_time)).isAfter(moment().format()) &&       tryout.show_name.toLowerCase().match(this.props.search.toLowerCase())) {
+  //         return tryout
+  //       }
+  //   })
+  // }
 
   filteredPast = () => {
 
     return this.props.currentActor.attributes.tryouts.filter(tryout => {
-      if (moment.utc(tryout.audition_time).isBefore(moment().format()) &&       tryout.show_name.toLowerCase().match(this.props.search.toLowerCase()))
-      {
-        return tryout
-      }
+      return (moment.utc(tryout.audition_time).isBefore(moment().format()) &&       tryout.show_name.toLowerCase().match(this.props.search.toLowerCase()))
   })
 }
 

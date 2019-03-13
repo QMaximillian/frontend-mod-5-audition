@@ -15,7 +15,8 @@ export const initialState = {
     season: [],
     show: [],
     tryout: [],
-    audition: {}
+    audition: {},
+    auth: {}
   }
 
 

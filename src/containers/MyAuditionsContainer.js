@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Loader } from 'semantic-ui-react'
 import "../Audition.css"
-import { loadAudition } from '../actions/actions'
+// import { loadAudition } from '../actions/actions'
 import moment from 'moment'
+import withAuth from '../hocs/withAuth'
 
 
 class MyAuditionsContainer extends Component {
 
+// componentDidMount() {
+//   this.props.loadInitialActorState
+// }
   // Return the ordinal suffix of a number (e.g. For one, "st", for 30, "th")
   getOrdinal = (n) => {
     // The array "s" is in order of where commonly the ordinal appears (i.e. "0th, 1st, 2nd, 3rd")
@@ -57,20 +61,22 @@ class MyAuditionsContainer extends Component {
 
 
    render() {
+     console.log(this.props.currentActor);
       if (typeof this.props.currentActor.attributes === 'undefined') {
           return (
             <div><Loader active inline='centered' /></div>
           )
         } else if (this.props.currentActor.attributes.tryouts.length === 0){
         return(
-          <h1 style={{textAlign: 'center', fontSize: '2rem'}}>
+          <h1 style={{textAlign: 'center', fontSize: '2rem', marginTop: '100px'}}>
             {this.props.currentActor.attributes.first_name} has no auditions
           </h1>
         )
       } else {
+        console.log(this.props.currentActor.attributes.tryouts);
        return (
          <div>
-           <div style={{textAlign: "center", fontSize: "2em"}}>
+           <div style={{textAlign: "center", fontSize: "2em", marginTop: "100px"}}>
            {this.props.currentActor.attributes.first_name}'s Auditions
           </div>
           <div className="card-container">
@@ -85,4 +91,4 @@ class MyAuditionsContainer extends Component {
  }
 
 
- export default connect(state => ({ auditions: state.auditions, tryouts: state.tryouts, currentActor: state.currentActor }), { loadAudition })(MyAuditionsContainer)
+ export default withAuth(connect(state => ({ auditions: state.auditions, tryouts: state.tryouts, currentActor: state.currentActor }))(MyAuditionsContainer))

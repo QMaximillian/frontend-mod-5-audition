@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { fetchPostTryout, fetchGet } from '../adapters/actorAdapter'
 import { Redirect } from 'react-router-dom'
-import { Button, Input } from 'semantic-ui-react'
+import { Button, Input, Form, Dimmer, Loader} from 'semantic-ui-react'
 import { connect } from "react-redux"
-import { loadAudition } from '../actions/actions'
+import { loadAudition, loadInitialActorState } from '../actions/actions'
 // import Moment from 'react-moment'
 import moment from 'moment'
 import '../Audition.css'
+import withAuth from '../hocs/withAuth'
+
 
 class ResumePDFSubmit extends Component {
 
@@ -15,6 +17,7 @@ class ResumePDFSubmit extends Component {
     file: '',
     redirect: false,
     confirmedTime: 0,
+    loading: false,
     confirmedAudition: {}
   }
 
@@ -34,6 +37,17 @@ class ResumePDFSubmit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+
+    if (this.state.confirmedTime === 0 || this.state.file === '' ) //check if file is pdf
+    {
+      alert('Please pick an actual time')
+      return
+    }
+
+    this.setState({
+      loading: true
+    })
+
     const formData = new FormData()
     formData.append('tryout[resume]', this.state.file)
     formData.append('tryout[actor_id]', this.props.currentActor.id)
@@ -43,59 +57,17 @@ class ResumePDFSubmit extends Component {
     formData.append('tryout[show_name]', this.state.confirmedAudition.show_name)
 
 
-    fetchPostTryout(formData)
-
-    this.setState({
-       redirect: true
-    })
-
+    fetchPostTryout(formData).then(() => this.props.loadInitialActorState(this.props.currentActor.id)).then(() => this.setState({
+        redirect: true
+     }))
   }
 
 
-  handleTimeChange = (event) => {
+  handleTimeChange = (state) => {
     this.setState({
-      confirmedTime: event.target.value
-    })
+      confirmedTime: state.value
+    }, () => console.log(this.state.confirmedTime))
   }
-
-
-  // getDateHours = () => {
-  //   let newNewTime = []
-  //
-  //   let beginTime = new Date(this.state.confirmedAudition.begin_audition)
-  //
-  //   let endTime = new Date(this.state.confirmedAudition.end_audition)
-  //
-  //   let auditionTimes = new Date(this.state.confirmedAudition.begin_audition)
-  //
-  //
-  //
-  //   let timeSlot = this.state.confirmedAudition.time_slots
-  //   beginTime = beginTime.getUTCHours()
-  //   endTime = endTime.getUTCHours()
-  //   let hoursAvailable = endTime - beginTime
-  //   let slotsAvailable = (60 / timeSlot) * hoursAvailable
-  //
-  //   let newTime = new Date(auditionTimes.getTime() + timeSlot * 60000)
-  //
-  //   for (let i = 0; i < slotsAvailable; i++) {
-  //     newNewTime.push(new Date(newTime.getTime() + (timeSlot * i) * 60000))
-  //   }
-  //
-  //    const allSlotsWithTimes = newNewTime.filter((time) => {
-  //      return !this.state.confirmedAudition.submitted_times.includes(new Date(time.getTime() + (0) * 60000).toString())
-  //    })
-  //
-  //
-  //   const slots = allSlotsWithTimes.map(time => {
-  //       return (
-  //        <option
-  //          value={time}>{time.toLocaleTimeString()}
-  //        </option>
-  //       )
-  //    })
-  //   return slots
-  // }
 
   getDateHoursMoment = () => {
 
@@ -119,23 +91,14 @@ if (time_slots !== undefined){
       return !this.state.confirmedAudition.submitted_times.includes(time)
     })
 
-    const slots = allSlotsWithTimes.map(time => {
-        return (
-          <React.Fragment>
-          <option
-           value={moment(time).format()}>{moment(time).format('HH:mm A')}
-          </option>
-          </React.Fragment>
-        )
-     })
-    return slots
+    let timeOptions = []
+
+    for (let time of allSlotsWithTimes) {
+      timeOptions.push({'text': moment(time).format('HH:mm A'), 'value': moment(time).format()})
+    }
+    return timeOptions
   }
     }
-
-
-
-
-
 
 
    render() {
@@ -165,11 +128,13 @@ if (time_slots !== undefined){
         <br />
          <div>
             <div>
-              <select
-                onChange={this.handleTimeChange}
-                value={this.state.confirmedTime}>
-                {this.getDateHoursMoment()}
-              </select>
+              <Form.Select
+              label="Pick a time"
+              name="confirmedTime"
+                onChange={(event, state) => this.handleTimeChange(state)}
+                value={this.state.confirmedTime}
+                options={this.getDateHoursMoment()}>
+              </Form.Select>
             </div>
          </div>
          <div><br />
@@ -189,9 +154,21 @@ if (time_slots !== undefined){
           </div>
   {this.state.file ? <div>Resume Attached</div> : <div></div>}
         <br />
+
+        {this.state.loading === false ?
          <Button onClick={(event) => this.handleSubmit(event)}>
            Submit for Audition
          </Button>
+       :
+       <React.Fragment>
+       <Dimmer active>
+        <Loader size='massive'>Loading</Loader>
+        </Dimmer>
+        <Button onClick={(event) => this.handleSubmit(event)}>
+          Submit for Audition
+        </Button>
+      </React.Fragment>
+      }
        </div>
       </div>
       </React.Fragment>
@@ -200,4 +177,4 @@ if (time_slots !== undefined){
  }
 }
 
- export default connect(state => ({ audition: state.audition, currentActor: state.currentActor }), { loadAudition })(ResumePDFSubmit)
+ export default withAuth(connect(state => ({ audition: state.audition, currentActor: state.currentActor }), { loadAudition, loadInitialActorState })(ResumePDFSubmit))

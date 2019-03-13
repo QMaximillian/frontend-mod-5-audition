@@ -4,6 +4,7 @@ import { loadInitialActorState, updateCurrentActorForm } from '../actions/action
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
 import { Loader, Form, Input, Select, Button, Grid } from 'semantic-ui-react'
 import '../Audition.css'
+import withAuth from '../hocs/withAuth'
 
 
 
@@ -11,10 +12,6 @@ class ActorProfile extends Component {
 
   state = {
     success: false
-  }
-
-  componentDidMount() {
-    this.props.loadInitialActorState()
   }
 
   handleChange = (event) => {
@@ -38,7 +35,12 @@ class ActorProfile extends Component {
 
       fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, city: city }).then(
         this.setState({
-            success: true
+            success: !this.state.success
+        }, () => {
+          alert('Profile Saved')
+          this.setState({
+            success: !this.state.success
+          })
         })
       )
     }
@@ -53,7 +55,8 @@ class ActorProfile extends Component {
 
     const genders = [
       {key: 'female', text: "Female", value: "Female"},
-      {key: 'male', text: "Male", value: "Male"}
+      {key: 'male', text: "Male", value: "Male"},
+      {key: 'Transgender', text: "Transgender", value: "transgender"}
     ]
 
   if (typeof this.props.currentActor.attributes === 'undefined') {
@@ -62,7 +65,7 @@ class ActorProfile extends Component {
     )
   } else {
 
-    const { first_name, last_name, email, height, vocal_range, equity, gender, birthday } = this.props.currentActor.attributes
+    const { first_name, last_name, email, feet, inches, vocal_range, equity, gender, birthday } = this.props.currentActor.attributes
 
       return(
         <div className="profile-card">
@@ -70,7 +73,7 @@ class ActorProfile extends Component {
             {first_name}'s Profile
           </div>
 
-          <Grid>
+          <Grid container style={{'padding-top': '100px'}}>
             <Grid.Row centered>
               <Grid.Column >
               <Form
@@ -78,7 +81,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Input}
-                  width={6}
+                  width={12}
                   name="first_name"
                   onChange={this.handleChange}
                   value={first_name}
@@ -87,7 +90,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Input}
-                  width={6}
+                  width={12}
                   name="last_name"
                   onChange={this.handleChange}
                   value={last_name}
@@ -95,7 +98,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Input}
-                  width={6}
+                  width={12}
                   name="email"
                   onChange={this.handleChange}
                   value={email}
@@ -103,16 +106,25 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Input}
-                  width={6}
-                  name="height"
+                  width={12}
+                  name="feet"
                   onChange={this.handleChange}
-                  value={height}
-                  placeholder="Height in inches"
-                  label='Height'/>
+                  value={feet}
+                  placeholder="Feet"
+                  label='Feet'/>
 
                 <Form.Field
                   control={Input}
-                  width={6}
+                  width={12}
+                  name="inches"
+                  onChange={this.handleChange}
+                  value={inches}
+                  placeholder="Inches"
+                  label='Inches'/>
+
+                <Form.Field
+                  control={Input}
+                  width={12}
                   name="vocal_range"
                   onChange={this.handleChange}
                   value={vocal_range}
@@ -120,7 +132,7 @@ class ActorProfile extends Component {
 
                 <Form.Select
                   control={Select}
-                  width={6}
+                  width={12}
                   name="equity"
                   onChange={(event, state) => this.handleChange(state)}
                   label='Equity'
@@ -130,7 +142,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                   control={Select}
-                  width={6}
+                  width={12}
                   name="gender"
                   onChange={(event, state) => this.handleChange(state)}
                   value={gender}
@@ -140,7 +152,7 @@ class ActorProfile extends Component {
 
                 <Form.Field
                 control={Input}
-                width={6}
+                width={12}
                 name="birthday"
                 onChange={this.handleChange}
                 value={birthday}
@@ -154,14 +166,10 @@ class ActorProfile extends Component {
         </Grid.Column>
      </Grid.Row>
  </Grid>
-
-          <div className={this.state.success ? 'fadeIn' : 'fadeOut'}>Saved</div>
-
-          {/* {this.state.success ?  : <div></div>} */}
         </div>
       )
     }
   }
 }
 
-export default connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile)
+export default withAuth(connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile))

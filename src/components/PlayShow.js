@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { loadShow } from '../actions/actions'
 import { connect } from 'react-redux'
 import { Loader } from 'semantic-ui-react'
+import withAuth from '../hocs/withAuth'
 // import { Link } from 'react-router-dom'
 
 class PlayShow extends Component {
@@ -43,4 +44,4 @@ class PlayShow extends Component {
   }
 }
 
-export default connect(state => ({ show: state.show }), { loadShow })(PlayShow)
+export default withAuth(connect(state => ({ show: state.show }), { loadShow })(PlayShow))

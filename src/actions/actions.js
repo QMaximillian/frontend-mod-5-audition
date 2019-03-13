@@ -2,17 +2,6 @@ import { fetchActor, fetchShow, fetchGet, fetchGetIndex, fetchTheaters, fetchSea
 import { LOAD_INITIAL_ACTOR_STATE, LOAD_AUDITION_JOURNALS, SET_AUDITIONS_INDEX, SET_CURRENT_AUDITION, SET_THEATERS_INDEX, SET_SEASONS_INDEX, SET_SEASON, SET_SHOW, SET_TRYOUT, SET_AUDITION, EDIT_ACTOR, CREATE_JOURNAL } from './types'
 
 
-// PUT MY AUDITIONS IN STORE
-//PUT AUDITIONS IN STORE
-//PUT RESUMES IN STORE
-//PUT MY RESUMES IN STORE
-//PUT MY AUDITION_JOURNALS IN STORE
-//PUT MY APPLIED TRYOUTS IN STORE
-//PUT MY TRYOUT AUDITIONS IN STORE
-//PUT RESUMES IN STORE
-//PUT MY DEFAULT RESUME IN STORE
-
-
 export const loadSeasons = () => {
   return (dispatch) => {
     fetchSeasons().then(resp => {
@@ -101,11 +90,21 @@ export const setTheaters = (theaters) => {
   }
 }
 
-export const loadInitialActorState = () => {
-  return (dispatch) => {
-    fetchActor(1).then(resp => {
+export const loadInitialActorState = (id) => {
+  return (dispatch, getState) => {
+    fetchActor(id).then(resp => {
       dispatch(setInitialState(resp.data))
     })
+  }
+}
+
+export const setInitialState = (actor) => {
+  return {
+    type: LOAD_INITIAL_ACTOR_STATE,
+    payload: {
+      currentActor: actor,
+      tryouts: actor.attributes.tryouts
+    }
   }
 }
 
@@ -157,9 +156,9 @@ export const setAudition = (audition) => {
 }
 
 
-export const loadAuditionJournals = () => {
-  return (dispatch) => {
-    fetchGet('actors', 1).then(resp => {
+export const loadAuditionJournals = (id) => {
+  return (dispatch, getState) => {
+    fetchGet('actors', id).then(resp => {
       dispatch(setAuditionJournals(resp.data.attributes.audition_journals))
     })
   }
@@ -174,15 +173,7 @@ export const setAuditionJournals = (auditionJournals) => {
   }
 }
 
-export const setInitialState = (actor) => {
-  return {
-    type: LOAD_INITIAL_ACTOR_STATE,
-    payload: {
-      currentActor: actor,
-      tryouts: actor.attributes.tryouts
-    }
-  }
-}
+
 
 
 

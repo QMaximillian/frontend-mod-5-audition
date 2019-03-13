@@ -3,6 +3,7 @@ import { loadSeason } from '../actions/actions'
 import { connect } from 'react-redux'
 import PlayTab from './PlayTab'
 import { Loader } from 'semantic-ui-react'
+import withAuth from '../hocs/withAuth'
 
 class SeasonShow extends Component {
 
@@ -50,4 +51,4 @@ class SeasonShow extends Component {
    }
  }
 
- export default connect(state => ({ season: state.season }), { loadSeason })(SeasonShow)
+ export default withAuth(connect(state => ({ season: state.season }), { loadSeason })(SeasonShow))

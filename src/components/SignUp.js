@@ -1,79 +1,98 @@
 import React, { Component } from 'react'
-import { Grid, Container, Form } from 'semantic-ui-react'
+import { Redirect } from 'react-router-dom'
+import { Grid, Container, Form, Header, Segment } from 'semantic-ui-react'
+import { fetchActorCreate } from '../adapters/actorAdapter'
 
 export default class SignUp extends Component {
 
   state = {
-
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    redirect: false
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
-    })
+    }, () => console.log(this.state))
   }
 
-  handleSignUp = () => {
-    return fetch('http://localhost:3001/api/v1/actors', {
-method: 'POST',
-headers: {
-  'Content-Type': 'application/json',
-  Accept: 'application/json'
-},
-body: JSON.stringify({
-  actor: {
-    first_name: this.state.firstName,
-    last_name: this.state.lastName,
-    email: this.state.email,
-    password: this.state.password
-  }
-})
-})
-.then(r => r.json()).then(console.log)
-  }
 
    render() {
-     return (
-        <div>
+     if (this.state.redirect) {
+       return <Redirect to='/'/>
+     } else {
 
-          <Grid>
+      const actor = 
+      { 
+        actor: { 
+          first_name: this.state.firstName,
+          last_name: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password
+        }
+      }
 
-            <Container>
-                <Form centered>
+       return (
+         <div style={{height: '100%'}}>
+             <Grid textAlign='center' style={{height: '100%', 'padding-top': '150px'}} verticalAlign='middle'>
+
+               <Grid.Column width={6}>
+               <Header>
+                 Sign Up
+               </Header>
+               <Segment stacked>
+                <Form>
                   <div style={{textAlign: 'center'}}>
                     Please enter sign up info
                   </div>
                   <Form.Input
                     name="firstName"
                     onChange={this.handleChange}
-                    // value={actor.email}
+                    value={this.state.firstName}
                     label="First Name"/>
                   <Form.Input
                     name="lastName"
                     onChange={this.handleChange}
-                    // value={actor.email}
+                    value={this.state.lastName}
                     label="Last Name"/>
                   <Form.Input
                     name="email"
                     onChange={this.handleChange}
-                    // value={actor.email}
+                    value={this.state.email}
                     label="E-Mail"/>
 
                   <Form.Input
                     type="password"
                     name="password"
                     onChange={this.handleChange}
-                    // value={actor.password}
+                    value={this.state.password}
                     label="Password"/>
 
                     <Form.Button
-                      onClick={this.handleSignUp}
+                      onClick={() => fetchActorCreate(actor).then((resp) => {
+                          if (resp && resp.actor) {
+                            window.alert("Success!")
+                            this.setState({
+                              redirect: true
+                            })
+                          } else {
+                            window.alert("Not Valid Sign Up Credentials")
+                          }
+                        })
+                      }
+                      fluid
+                      size='large'
                       content="Sign Up"
                       primary/>
                   </Form>
-            </Container>
-          </Grid>
-        </div>
+                  </Segment>
+                  </Grid.Column>
+                  </Grid>
+                  </div>
      )
    }
- };
+   }
+ }
