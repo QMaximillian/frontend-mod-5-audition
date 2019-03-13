@@ -10,6 +10,7 @@
     "mgr-pdf-viewer-react": "^1.0.1",
     "moment": "^2.24.0",
     "pdfjs-dist": "^2.0.943",
+    "prop-types": "^15.6.2",
     "react": "^16.8.4",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.8.4",
@@ -26,7 +27,8 @@
     "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.82.5"
+    "semantic-ui-react": "^0.82.5",
+    "webpack": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
