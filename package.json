@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "connected-react-router": "^4.4.1",
+    "ajv-keywords": "^3.2.0",
+    "connected-react-router": "^4.5.0",
     "convert-units": "^2.3.4",
     "mgr-pdf-viewer-react": "^1.0.1",
     "moment": "^2.22.2",
