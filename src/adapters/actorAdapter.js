@@ -40,7 +40,10 @@ export const fetchTheaters = () => {
 }
 
 export const fetchActor = (id) => {
-  return fetch(`http://localhost:3001/api/v1/actors/${id}`)
+  return fetch(`http://localhost:3001/api/v1/actors/${id}`, {
+    method: 'GET',
+    headers: headers()
+  })
   .then(resp => resp.json())
 }
 
@@ -85,8 +88,9 @@ function patchRequest(body) {
 
 function headers() {
   return {
-    "Content-Type": "application/json",
-    Accept: "application/json"
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: localStorage.getItem('token')
   };
 }
 
