@@ -28,7 +28,7 @@ class ActorHomeContainer extends Component {
   render() {
     console.log(this.props)
     return (
-      <Responsive >
+      <Responsive>
       <Grid container columns='equal' style={{'padding-top': '100px', textAlign: 'center', height: '100vh'}} >
             <Grid.Row style={{height: '10%'}}>
               <Grid.Column>
@@ -106,7 +106,6 @@ class ActorHomeContainer extends Component {
                 </Grid>
               </Container>
             </Segment>
-
           </Grid>
           </Responsive>
         )

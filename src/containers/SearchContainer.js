@@ -12,7 +12,6 @@ class SearchContainer extends Component {
     state = {
       searchType: 'all',
       equity: 'all',
-      // gender: 'all'
     }
 
     handleSearchChange = (state) => {
@@ -21,42 +20,48 @@ class SearchContainer extends Component {
       })
     }
 
+    conditionalSearch = () => {
+      switch (this.state.searchType) {
+        case 'all':
+          return (
+            <div>
+              <AllAuditionsContainer
+                parent='tryThis'
+                equity={this.state.equity}
+              />
+              <TheatersContainer />
+            </div>
+          )
+        break;
+        case 'auditions':
+          return (
+            <AllAuditionContainer
+              parent='tryThis'
+              equity={this.state.equity}
+            />
+          )
+        break;
+        case 'theaters':
+          return <TheatersContainer />
+        break;
+        default:
+          return <div></div>
+      }
+    }
+
    render() {
      return (
        <Grid container style={{'padding-top': '100px'}}>
         <div>
           <FilterSearch
-          handleSearchChange={this.handleSearchChange}
-          searchType={this.state.searchType}
-          equity={this.state.equity}
-          /*gender={this.state.gender} *//>
-          </div>
-
-
-
-          { this.state.searchType === 'all' ?
-
-          <div>
-                <AllAuditionsContainer
-                parent='tryThis'
-                equity={this.state.equity}
-                 />
-                <TheatersContainer/>
-          </div>
-:
-
-            this.state.searchType === 'auditions' ?
-                <AllAuditionContainer
-                  parent='tryThis' equity={this.state.equity}
-                  />
-
-             :
-
-                 this.state.searchType === 'theaters' ?
-                 <TheatersContainer /> :
-                 <div></div>
-            }
-            </Grid>
+            handleSearchChange={this.handleSearchChange}
+            searchType={this.state.searchType}
+            equity={this.state.equity}
+            /*gender={this.state.gender} */
+          />
+        </div>
+          {this.conditionalSearch()}
+        </Grid>
      )
    }
  }
