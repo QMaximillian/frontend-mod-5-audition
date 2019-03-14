@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { Grid, Button,
   Container,
-  Divider,
   Header,
   Icon,
-  Image,
   List,
-  Menu,
   Responsive,
-  Segment,
-  Sidebar,
-  Visibility } from 'semantic-ui-react'
+  Segment
+ } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
@@ -60,7 +56,6 @@ class DesktopContainer extends Component {
 
   render() {
     const { children } = this.props
-    const { fixed } = this.state
 
     return (
       <Responsive style={{'padding-top': '50px'}}>

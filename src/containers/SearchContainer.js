@@ -32,7 +32,6 @@ class SearchContainer extends Component {
               <TheatersContainer />
             </div>
           )
-        break;
         case 'auditions':
           return (
             <AllAuditionContainer
@@ -40,10 +39,8 @@ class SearchContainer extends Component {
               equity={this.state.equity}
             />
           )
-        break;
         case 'theaters':
           return <TheatersContainer />
-        break;
         default:
           return <div></div>
       }

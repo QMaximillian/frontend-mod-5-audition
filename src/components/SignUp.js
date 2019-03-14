@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Grid, Container, Form, Header, Segment } from 'semantic-ui-react'
+import { Grid, Form, Header, Segment } from 'semantic-ui-react'
 import { fetchActorCreate } from '../adapters/actorAdapter'
 
 export default class SignUp extends Component {

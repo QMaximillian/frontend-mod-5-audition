@@ -77,7 +77,7 @@ class Audition extends Component {
     const loggedIn = !!this.state.auth.actor.actor_id
 
     return (
-<React.Fragment>
+<Fragment>
       <NavbarNew
       loggedIn={loggedIn}
       handleLogout={this.handleLogout}/>
@@ -106,7 +106,7 @@ class Audition extends Component {
           <Route exact path="/my-auditions/tryouts/:id"
         render={(props) => <TryoutShow loggedIn={loggedIn} {...props}/>}/>
         </Switch>
-</React.Fragment>
+</Fragment>
     )
   }
 }

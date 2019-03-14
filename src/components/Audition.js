@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Grid, Table } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 
 class Audition extends Component {

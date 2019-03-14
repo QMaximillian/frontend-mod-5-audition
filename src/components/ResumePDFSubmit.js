@@ -111,7 +111,7 @@ if (time_slots !== undefined){
       let dayOfAudition = moment(begin_audition).format('ddd, MMM DD YYYY')
 
      return (
-      <React.Fragment>
+      <Fragment>
       <div className="card">
         <div style={{textAlign: 'center'}}>
         <div style={{'fontSize': '2em'}}>
@@ -160,18 +160,18 @@ if (time_slots !== undefined){
            Submit for Audition
          </Button>
        :
-       <React.Fragment>
+       <Fragment>
        <Dimmer active>
         <Loader size='massive'>Loading</Loader>
         </Dimmer>
         <Button onClick={(event) => this.handleSubmit(event)}>
           Submit for Audition
         </Button>
-      </React.Fragment>
+      </Fragment>
       }
        </div>
       </div>
-      </React.Fragment>
+      </Fragment>
     )
    }
  }

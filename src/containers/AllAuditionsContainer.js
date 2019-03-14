@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Audition from '../components/Audition.js'
 import { connect } from 'react-redux'
 import { loadAllAuditions } from '../actions/actions'
-import { Loader, Grid, Table } from 'semantic-ui-react'
+import { Loader, Table } from 'semantic-ui-react'
 
 
 

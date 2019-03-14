@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import '../Audition.css'
 import Search from '../components/Search'
 import withAuth from '../hocs/withAuth'
-import { Grid, Segment, List, Header, Container, Responsive } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Grid, Segment, Header, Container, Responsive } from 'semantic-ui-react'
+// import { Link } from 'react-router-dom'
 
 
 
