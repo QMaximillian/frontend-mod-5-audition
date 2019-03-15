@@ -42,12 +42,11 @@ export default class Theater extends Component {
           style={{marginBottom: "10px"}}>
             <img alt="Logo for theater" className="theater-logo" src={this.props.theater.attributes.img_link}/>
             {this.state.clicked ?
-            <div>
-
-              <div className="grid-fourth">
-                <div>
-                  <h1 style={{fontSize: '2rem', textDecoration: "underline"}}>Theater</h1>
-                  {this.props.theater.attributes.theater_name}
+              <div>
+                <div className="grid-fourth">
+                  <div>
+                    <h1 style={{fontSize: '2rem', textDecoration: "underline"}}>Theater</h1>
+                    {this.props.theater.attributes.theater_name}
                 </div>
               </div>
 
@@ -84,4 +83,4 @@ export default class Theater extends Component {
         </div>
      )
    }
- };
+ }

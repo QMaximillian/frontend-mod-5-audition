@@ -41,11 +41,10 @@ export default class Login extends Component {
 
   render() {
     const { actor } = this.state
-    console.log(this.state)
-    if (this.state.redirect) {
-      return <Redirect push to={'/home'}/>
-    } else {
-    return(
+    
+    if (this.state.redirect) return <Redirect push to={'/home'}/>
+    
+    return (
       <div style={{height: '100%'}}>
           <Grid textAlign='center' style={{height: '100%', 'padding-top': '150px'}} verticalAlign='middle'>
 
