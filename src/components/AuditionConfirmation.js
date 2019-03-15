@@ -41,6 +41,8 @@ class AuditionConfirmation extends Component {
   }
 
   getDateHours = () => {
+    // Try out date-fns here
+    
     let newNewTime = []
 
     let beginTime = new Date(this.state.confirmedAudition.begin_audition)
@@ -83,11 +85,8 @@ class AuditionConfirmation extends Component {
 
   render() {
 
-    if (typeof this.state.confirmedAudition.begin_audition === 'undefined') {
-      return (
-        <div><Loader active inline='centered' /></div>
-      )
-    } else if (this.props.audition[0] !== 'undefined'){
+    if (typeof this.state.confirmedAudition.begin_audition === 'undefined') return <Loader active inline='centered' />
+
       return (
         <div style={{textAlign: 'center'}} className="card" >
           <div>
@@ -114,6 +113,5 @@ class AuditionConfirmation extends Component {
       )
     }
   }
-}
 
 export default withAuth(connect(state => ({ audition: state.audition }), { loadAudition })(AuditionConfirmation))

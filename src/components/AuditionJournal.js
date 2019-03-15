@@ -20,41 +20,28 @@ mappedTryouts = () => {
     })
 
 
-    if (audition === 'undefined') {
-      return (
-        <div><Loader active inline='centered' />
-      </div>
-    )
-  } else {
+    if (audition === 'undefined') return <Loader active inline='centered' />
+
     return (
       <div>
         {audition.attributes.show_name}
         <br />
         <button onClick={this.handleClick}>Create Journal</button>
-        {/* {tryout.audition_time} */}
       </div>
     )
-  }
   })
 }
 
 
   render() {
-      if (typeof this.props.tryouts === 'undefined') {
-        return (
-          <div><Loader active inline='centered' />
-        </div>
-      )
-      } else {
-        return (
+      if (typeof this.props.tryouts === 'undefined') return <Loader active inline='centered' />
+        
+      return (
           <div>
             {this.mappedTryouts()}
           </div>
-        )
-      }
-    }
-
-
+      )
+  }
 }
 
 

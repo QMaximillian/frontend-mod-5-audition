@@ -23,7 +23,6 @@ class AllAuditionContainer extends Component {
   // Iterate through the entire index of auditions and if an audition's tryouts and has the currently signed-in actor included, do not show that audition
   searchFilterAuditions = () => {
 
-
     return this.filteredAuditions().filter(audition => {
       switch(this.props.equity) {
         case 'true': 
@@ -61,6 +60,7 @@ class AllAuditionContainer extends Component {
 
       render() {
       if (this.props.tryouts === 'undefined' || this.props.audition === 'undefined') return <Loader active inline='centered' />
+            
             return (
               <Table >
               <Table.Header>

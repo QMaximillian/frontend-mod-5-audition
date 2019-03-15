@@ -1,18 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import withAuth from '../hocs/withAuth'
 
 
-class AuditionConfirmed extends Component {
+const AuditionConfirmed = () => {
 
-  render() {
-  return(
-    <div>
-      <div className="profile-card">
-        <h1 style={{textAlign: 'center', marginTop: '100px'}}>Audition Confirmed</h1>
+    return (
+      <div>
+        <div className="profile-card">
+          <h1 style={{textAlign: 'center', marginTop: '100px'}}>Audition Confirmed</h1>
+        </div>
       </div>
-    </div>
-  )
-}
+    )
 }
 
 export default withAuth(AuditionConfirmed)

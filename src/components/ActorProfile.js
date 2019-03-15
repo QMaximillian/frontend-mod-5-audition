@@ -15,12 +15,12 @@ class ActorProfile extends Component {
   }
 
   handleChange = (event) => {
+    event.persist();
     if (event.name) {
       this.props.updateCurrentActorForm({
         [event.name]: event.value
       })
     } else {
-    event.persist()
       this.props.updateCurrentActorForm({
         [event.target.name]: event.target.value
       })
@@ -33,20 +33,18 @@ class ActorProfile extends Component {
 
     const { first_name, last_name, email, height, vocal_range, equity, gender, birthday, city } = this.props.currentActor.attributes
 
-      fetchUpdateCurrentActor(this.props.currentActor.id, {first_name: first_name, last_name: last_name, email: email, height: height, vocal_range: vocal_range, equity: equity, gender: gender, birthday: birthday, city: city }).then(
-        this.setState({
-            success: !this.state.success
-        }, () => {
+      fetchUpdateCurrentActor(this.props.currentActor.id, {first_name, last_name, email, height, vocal_range, equity, gender, birthday, city }).then(
+        this.setState({ success: !this.state.success }, () => {
           alert('Profile Saved')
-          this.setState({
-            success: !this.state.success
-          })
+          this.setState({ success: !this.state.success })
         })
       )
     }
 
 
   render() {
+
+    const { first_name, last_name, email, feet, inches, vocal_range, equity, gender, birthday } = this.props.currentActor.attributes
 
     const booleans = [
       { key: 'true', text: "True", value: true },
@@ -59,15 +57,9 @@ class ActorProfile extends Component {
       {key: 'Transgender', text: "Transgender", value: "transgender"}
     ]
 
-  if (typeof this.props.currentActor.attributes === 'undefined') {
-    return (
-      <div><Loader active inline='centered' /></div>
-    )
-  } else {
+  if (typeof this.props.currentActor.attributes === 'undefined') return <Loader active inline='centered' />
 
-    const { first_name, last_name, email, feet, inches, vocal_range, equity, gender, birthday } = this.props.currentActor.attributes
-
-      return(
+      return (
         <div className="profile-card">
           <div style={{textAlign: 'center', fontSize: '2rem'}}>
             {first_name}'s Profile
@@ -163,13 +155,13 @@ class ActorProfile extends Component {
 
                 <Button type="submit">Save</Button>
               </Form>
-        </Grid.Column>
-     </Grid.Row>
- </Grid>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </div>
       )
     }
   }
-}
+
 
 export default withAuth(connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile))
