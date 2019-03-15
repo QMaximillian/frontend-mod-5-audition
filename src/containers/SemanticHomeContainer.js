@@ -33,7 +33,7 @@ import { Link } from 'react-router-dom'
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Link push to='/about'>
+    <Link to='/about'>
     <Button primary size='huge'>
       Learn More
       <Icon name='right arrow' />
@@ -58,10 +58,10 @@ class DesktopContainer extends Component {
     const { children } = this.props
 
     return (
-      <Responsive style={{'padding-top': '50px'}}>
+      <Responsive style={{paddingTop: '50px'}}>
           <Segment
             textAlign='center'
-            style={{ minHeight: 600, padding: '1em 0em', 'background-color': '#ffb833' }}
+            style={{ minHeight: 600, padding: '1em 0em', backgroundColor: '#ffb833' }}
             >
             <HomepageHeading />
           </Segment>
@@ -117,7 +117,7 @@ const HomepageLayout = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-          <Link push to='#'>
+          <Link to='#'>
             <Button size='huge'>Learn More/FAQ</Button>
           </Link>
           </Grid.Column>
@@ -132,12 +132,12 @@ const HomepageLayout = () => (
             <Grid.Column width={3}>
               <Header  as='h4' content='More Options' />
               <List link >
-              <Link push to='/about'>
-                <List.Item as='a'>About</List.Item>
+              <Link to='/about'>
+                <List.Item as='p'>About</List.Item>
               </Link>
               <br />
-              <Link push to='/contact'>
-                <List.Item as='a'>Contact Us</List.Item>
+              <Link to='/contact'>
+                <List.Item as='p'>Contact Us</List.Item>
               </Link>
               </List>
             </Grid.Column>

@@ -26,7 +26,7 @@ class TryoutShow extends Component {
     }
 
      render() {
-      if (this.props.audition.attributes === undefined && this.props.tryout.attributes == undefined) return <Loader/>
+      if (this.props.audition.attributes === undefined && this.props.tryout.attributes === undefined) return <Loader/>
    
       return (
           <div className="tryout-show-grid profile-card">

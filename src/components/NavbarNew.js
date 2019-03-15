@@ -19,19 +19,19 @@ render(){
     <Navbar.Collapse>
       <Nav pullRight>
       <LinkContainer to="/search">
-        <NavItem eventKey={1}>
+        <NavItem>
           Search
         </NavItem>
       </LinkContainer>
-      <NavDropdown eventKey={2} title="Me" id="basic-nav-dropdown">
+      <NavDropdown title="Me" id="basic-nav-dropdown">
         <LinkContainer to="#">
-          <MenuItem eventKey={2.1}>Settings</MenuItem>
+          <MenuItem>Settings</MenuItem>
         </LinkContainer>
         <LinkContainer to="/actor/1">
-          <MenuItem eventKey={2.2}>Profile</MenuItem>
+          <MenuItem>Profile</MenuItem>
         </LinkContainer>
         <LinkContainer to="/my-auditions">
-          <MenuItem eventKey={2.3}>My Auditions</MenuItem>
+          <MenuItem>My Auditions</MenuItem>
         </LinkContainer>
       </NavDropdown>
       <LinkContainer to="/">
@@ -53,17 +53,17 @@ render(){
     <Navbar.Collapse>
       <Nav pullRight>
       <LinkContainer to="/login">
-        <NavItem eventKey={1}>
+        <NavItem>
           Login
         </NavItem>
       </LinkContainer>
       <LinkContainer to="/sign-up">
-        <NavItem eventKey={2}>
+        <NavItem>
           Sign Up
         </NavItem>
       </LinkContainer>
       <LinkContainer to="/about">
-        <NavItem eventKey={3}>
+        <NavItem>
           About
         </NavItem>
       </LinkContainer>

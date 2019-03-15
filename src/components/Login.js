@@ -41,18 +41,18 @@ export default class Login extends Component {
 
   render() {
     const { actor } = this.state
-    
+
     if (this.state.redirect) return <Redirect push to={'/home'}/>
     
     return (
       <div style={{height: '100%'}}>
-          <Grid textAlign='center' style={{height: '100%', 'padding-top': '150px'}} verticalAlign='middle'>
+          <Grid textAlign='center' style={{height: '100%', 'paddingTop': '150px'}} verticalAlign='middle'>
 
             <Grid.Column width={6}>
             <Header>
               Login
             </Header>
-              <Form size="medium">
+              <Form size="large">
                 <Segment stacked>
                 <Form.Input
                   fluid
@@ -81,5 +81,4 @@ export default class Login extends Component {
           </div>
           )
     }
-}
 }
