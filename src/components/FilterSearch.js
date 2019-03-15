@@ -37,25 +37,6 @@ export default class FilterSearch extends Component {
        }
      ]
 
-     // let genderOptions = [
-     //   {
-     //     text: 'Male',
-     //     value: 'male'
-     //   },
-     //   {
-     //     text: 'Female',
-     //     value: 'female'
-     //   },
-     //   {
-     //     text: 'Transgender',
-     //     value: 'transgender'
-     //   },
-     //   {
-     //     text: 'All',
-     //     value: 'all'
-     //   }
-     // ]
-
      return (
        <div className="centered filterbox">
        <Form>

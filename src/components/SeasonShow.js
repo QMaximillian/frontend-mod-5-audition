@@ -33,23 +33,20 @@ class SeasonShow extends Component {
 
 
    render() {
-     console.log(this.props.season.attributes)
-     if (this.props.season.attributes) {
-       return (
-          <div onClick={this.handleClick} className="card" style={{fontSize: '2rem', paddingTop: '100px'}}>
-            {this.props.season.attributes.season_name}
-            {this.props.season.attributes.season_description}
-              <div className="card-container">
-                {this.mappedShows()}
-              </div>
-          </div>
-       )
-     } else {
-       return (
-         <Loader />
-       )
-     }
-   }
+
+    if (this.props.season.attributes === undefined) return <Loader />
+
+        return (
+            <div onClick={this.handleClick} className="card" style={{fontSize: '2rem', paddingTop: '100px'}}>
+              {this.props.season.attributes.season_name}
+              {this.props.season.attributes.season_description}
+                <div className="card-container">
+                  {this.mappedShows()}
+                </div>
+            </div>
+        )
+  }
  }
+
 
  export default withAuth(connect(state => ({ season: state.season }), { loadSeason })(SeasonShow))
