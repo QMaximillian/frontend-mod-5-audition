@@ -9,7 +9,7 @@ class SeasonShow extends Component {
 
 
   state = {
-    clicked: false
+    clicked: true
   }
 
   componentDidMount(){
@@ -33,14 +33,15 @@ class SeasonShow extends Component {
 
 
    render() {
+     console.log(this.props.season.attributes)
      if (this.props.season.attributes) {
        return (
-          <div onClick={this.handleClick} className="card" style={{fontSize: '2rem'}}>
+          <div onClick={this.handleClick} className="card" style={{fontSize: '2rem', paddingTop: '100px'}}>
             {this.props.season.attributes.season_name}
             {this.props.season.attributes.season_description}
-            {this.state.clicked ?
-              <div className="card-container">{this.mappedShows()}</div>
-               : <div></div>}
+              <div className="card-container">
+                {this.mappedShows()}
+              </div>
           </div>
        )
      } else {

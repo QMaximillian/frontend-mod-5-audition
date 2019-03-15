@@ -16,21 +16,29 @@ class AuditionShow extends Component {
   }
 
      componentDidMount(){
-       // console.log(this.props.match.params.auditionId)
-       if (this.props.match.params.auditionId) {
-       fetchGet('auditions', this.props.match.params.auditionId).then(audition => {
-         this.setState({
-            audition: audition.data.attributes
-         })
-       })
-     } else if (this.props.match.params.id){
-       fetchGet('auditions', this.props.match.params.id)
-       .then(audition => {
-         this.setState({
-            audition: audition.data.attributes
-         })
-       })
-     }
+      const { auditionId, id } = this.props.match.params 
+
+      if (auditionId || id) {
+        fetchGet('auditions', auditionId || id).then(audition => {
+          this.setState({
+              audition: audition.data.attributes
+          })
+        })
+      }
+    //    if (this.props.match.params.auditionId) {
+    //    fetchGet('auditions', this.props.match.params.auditionId).then(audition => {
+    //      this.setState({
+    //         audition: audition.data.attributes
+    //      })
+    //    })
+    //  } else if (this.props.match.params.id) {
+    //    fetchGet('auditions', this.props.match.params.id)
+    //    .then(audition => {
+    //      this.setState({
+    //         audition: audition.data.attributes
+    //      })
+    //    })
+    //  }
     }
 
   handleLineBreak = (value) => {
