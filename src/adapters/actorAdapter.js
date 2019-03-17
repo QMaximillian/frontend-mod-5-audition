@@ -26,11 +26,9 @@ export const fetchReauthActor = () => {
 }
 
 export const fetchLoginActor = (actor) => {
-  return fetch(`${baseUrl}login`, {
-    method: 'POST',
-    headers: headers(),
-    body: JSON.stringify({ actor })
-  }).then(resp => resp.json()).then(resp => responseHandler(resp))
+  return fetch(`${baseUrl}login`, postRequest({ actor }))
+    .then(resp => resp.json())
+      .then(resp => responseHandler(resp))
 }
 
 export const fetchAudition = (id) => {
@@ -88,12 +86,8 @@ export const fetchPostTryout = (body) => {
 
 
 export const fetchActorCreate = (actor) => {
-  return fetch('http://localhost:3001/api/v1/actors', {
-    method: 'POST',
-    headers: headers(),
-    body: JSON.stringify(actor)
-})
-.then(resp => resp.json())
+  return fetch('http://localhost:3001/api/v1/actors', postRequest( actor ))
+    .then(resp => resp.json())
 }
 
 
@@ -105,6 +99,13 @@ function patchRequest(body) {
   }
 }
 
+function postRequest(body) {
+  return {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify(body)
+  }
+}
 // function postRequest(body) {
 //   return {
 //     method: 'POST',
