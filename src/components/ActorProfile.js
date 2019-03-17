@@ -11,9 +11,6 @@ import withAuth from '../hocs/withAuth'
 
 // class ActorProfile extends Component {
 
-//   state = {
-//     success: false
-//   }
 
 //   handleChange = (event) => {
 //     event.persist();
@@ -165,72 +162,84 @@ import withAuth from '../hocs/withAuth'
 //   }
 
 class ActorProfile2 extends Component {
-  handleSubmit = (values, {
+  
+
+  state = {
+    success: false,
+    actor: {
+      first_name: this.props.currentActor.attributes.first_name
+    }
+  }
+
+  handleSubmit = ({first_name}, {
     props = this.props,
     setSubmitting
   }) => {
-
-    console.log(values);
+    
+    const currentActor = {
+      actor: {
+        first_name
+      }
+    }
+    console.log(first_name)
+    fetchUpdateCurrentActor(props.currentActor.id, currentActor)
     alert('Form Submitted');
     setSubmitting(false);
     return;
   }
 
+  handleChange = (event) => {
+    this.setState({
+      actor: {
+        [event.target.name]: event.target.value
+      }
+    }, () => console.log(this.state.actor))
+  }
+
 render() {
-console.log(this.props)
+
+  const {
+    first_name,
+    last_name,
+    email,
+    height,
+    vocal_range,
+    equity,
+    gender,
+    birthday,
+    city
+  } = this.props.currentActor.attributes;
+  
   return (
-    <Formik
-      initialValues={{
-        first_name: '',
-        email_address: '',
-        gender: ''
-      }}
-      validate={(values) => {
-        let errors = [];
+    <div style={{paddingTop: '100px'}}>
+      <Formik
+        initialValues={{
+          first_name
+        }}
+        validate={values => {
+          let errors = [];
 
-        if (!values.email)
-          errors.email = "Email Address Required";
+          if (!values.email) errors.email = "Email Address Required";
 
-        //check if my values have errors
-        return errors;
-      }}
-      onSubmit={this.handleSubmit}
-      render={formProps => {
-        return (
-          <Form>
-            <Field
-              type="text"
-              name="first_name"
-              placeholder="First Name"
-            />
-            <ErrorMessage name="first_name" />
+          //check if my values have errors
+          return errors;
+        }}
+        onSubmit={this.handleSubmit}
+        render={formProps => {
+          return (
+            <Form>
+              <Field value={this.state.actor.first_name }type="text" name="first_name" placeholder="First Name" onChange={this.handleChange}/>
+              <ErrorMessage name="first_name" />
 
-            <Field
-              type="text"
-              name="email"
-              placeholder="Email address"
-            />
-            <ErrorMessage name="email" />
-
-            <Field
-              name="gender"
-              component="select"
-              placeholder="Your Gender">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </Field>
-
-            <ErrorMessage name="gender" />
-
-            <button
-              type="submit"
-              disabled={formProps.isSubmitting}>
-              Submit Form
-                 </button>
-          </Form>
-        );
-      }}
-    />);
+              <button type="submit" disabled={formProps.isSubmitting}>
+                Submit Form
+              </button>
+            </Form>
+          );
+        }}
+      />
+    </div>
+  );
 }
 }
 

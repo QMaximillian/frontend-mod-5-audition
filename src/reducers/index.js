@@ -53,7 +53,8 @@ export const actorReducer = (state = initialState, action) => {
     console.log(state.currentActor)
     return {
       ...state,
-        currentActor: {...state.currentActor,
+        currentActor: {
+        ...state.currentActor,
         attributes: {
           ...state.currentActor.attributes,
           ...action.payload.currentActor
