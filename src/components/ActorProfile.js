@@ -171,7 +171,8 @@ class ActorProfile2 extends Component {
     }
   }
 
-  handleSubmit = ({first_name}, {
+  handleSubmit = ({
+    first_name,
     props = this.props,
     setSubmitting
   }) => {
@@ -181,10 +182,10 @@ class ActorProfile2 extends Component {
         first_name
       }
     }
-    console.log(first_name)
+    console.log(props)
     fetchUpdateCurrentActor(props.currentActor.id, currentActor)
     alert('Form Submitted');
-    setSubmitting(false);
+    props.setSubmitting(false);
     return;
   }
 
@@ -200,15 +201,15 @@ render() {
 
   const {
     first_name,
-    last_name,
-    email,
-    height,
-    vocal_range,
-    equity,
-    gender,
-    birthday,
-    city
-  } = this.props.currentActor.attributes;
+    // last_name,
+    // email,
+    // height,
+    // vocal_range,
+    // equity,
+    // gender,
+    // birthday,
+    // city
+  } = this.state.actor;
   
   return (
     <div style={{paddingTop: '100px'}}>
@@ -224,11 +225,11 @@ render() {
           //check if my values have errors
           return errors;
         }}
-        onSubmit={this.handleSubmit}
+        onSubmit={() => this.handleSubmit(this.state.actor)}
         render={formProps => {
           return (
             <Form>
-              <Field value={this.state.actor.first_name }type="text" name="first_name" placeholder="First Name" onChange={this.handleChange}/>
+              <Field value={this.state.actor.first_name} type="text" name="first_name" placeholder="First Name" onChange={this.handleChange}/>
               <ErrorMessage name="first_name" />
 
               <button type="submit" disabled={formProps.isSubmitting}>
