@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Formik, FormikProps, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
@@ -161,85 +161,106 @@ import withAuth from '../hocs/withAuth'
 //     }
 //   }
 
+
+
+
+const Profile = (props) => {
+
+  const { actor = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    height: '',
+    vocal_range: '',
+    equity: '',
+    gender: '',
+    birthday: '',
+    city: ''
+  } } = props
+
+    return (
+      <div style={{paddingTop: '100px'}}>
+        <Formik 
+          enableReinitialize={true}
+          initialValues={actor}
+          onSubmit={values => {
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2))
+            }, 500)
+          }}
+        >
+        {({ isSubmitting, values, handleChange }) => {
+          console.log(values)
+          return (
+          <Form>
+            <div className="row">
+              <div className="col"></div>
+              <Field name='first_name'>
+                {({ field, form }) => (
+                  <input {...field}
+                  type='text'
+                  placeholder='First Name'
+                  value={values.first_name}
+                  onChange={handleChange}/>
+                )}
+              </Field>
+              <div className="col"></div>
+              <Field name='last_name' type='text' />
+              <div className="col"></div>
+              <Field name='email' type='email' />
+            </div>
+            <button type="submit" disabled={isSubmitting}>Save</button>
+          </Form>
+          )
+          }}
+        
+        </Formik>
+      </div>
+    )
+}
+
 class ActorProfile2 extends Component {
   
 
   state = {
     success: false,
-    actor: {
-      first_name: this.props.currentActor.attributes.first_name
+    first_name: '',
+    last_name: '',
+    email: ''
+  }
+
+  componentDidMount(){
+    if (this.props.currentActor && this.props.currentActor.attributes) {
+      const { first_name,last_name, email } = this.props.currentActor.attributes;
+      this.setState({
+        first_name,
+        last_name,
+        email
+      }, () => console.log(this.state))
     }
   }
 
-  handleSubmit = ({
-    first_name,
-    props = this.props,
+  handleSubmit = ({first_name, last_name}, {
     setSubmitting
   }) => {
     
     const currentActor = {
-      actor: {
-        first_name
-      }
+        first_name,
+        last_name
     }
-    console.log(props)
-    fetchUpdateCurrentActor(props.currentActor.id, currentActor)
+
+    console.log(first_name)
+    fetchUpdateCurrentActor(this.props.currentActor.id, currentActor)
     alert('Form Submitted');
-    props.setSubmitting(false);
+    setSubmitting(false);
     return;
   }
 
-  handleChange = (event) => {
-    this.setState({
-      actor: {
-        [event.target.name]: event.target.value
-      }
-    }, () => console.log(this.state.actor))
-  }
+ 
 
 render() {
-
-  const {
-    first_name,
-    // last_name,
-    // email,
-    // height,
-    // vocal_range,
-    // equity,
-    // gender,
-    // birthday,
-    // city
-  } = this.state.actor;
-  
   return (
-    <div style={{paddingTop: '100px'}}>
-      <Formik
-        initialValues={{
-          first_name
-        }}
-        validate={values => {
-          let errors = [];
-
-          if (!values.email) errors.email = "Email Address Required";
-
-          //check if my values have errors
-          return errors;
-        }}
-        onSubmit={() => this.handleSubmit(this.state.actor)}
-        render={formProps => {
-          return (
-            <Form>
-              <Field value={this.state.actor.first_name} type="text" name="first_name" placeholder="First Name" onChange={this.handleChange}/>
-              <ErrorMessage name="first_name" />
-
-              <button type="submit" disabled={formProps.isSubmitting}>
-                Submit Form
-              </button>
-            </Form>
-          );
-        }}
-      />
-    </div>
+    <Profile actor={this.state}/>
   );
 }
 }
