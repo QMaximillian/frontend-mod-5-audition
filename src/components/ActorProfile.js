@@ -192,26 +192,78 @@ const Profile = (props) => {
         {({ isSubmitting, values, handleChange }) => {
           console.log(values)
           return (
-          <Form>
-            <div className="row">
-              <div className="col"></div>
-              <Field name='first_name'>
-                {({ field, form }) => (
-                  <input {...field}
-                  type='text'
-                  placeholder='First Name'
-                  value={values.first_name}
-                  onChange={handleChange}/>
-                )}
-              </Field>
-              <div className="col"></div>
-              <Field name='last_name' type='text' />
-              <div className="col"></div>
-              <Field name='email' type='email' />
-            </div>
-            <button type="submit" disabled={isSubmitting}>Save</button>
-          </Form>
-          )
+            <Form>
+              <div className="row">
+                <div className="col" />
+                <Field name="first_name">
+                  {({ field, form }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      placeholder="First Name"
+                      value={values.first_name}
+                      onChange={handleChange}
+                    />
+                  )}
+                </Field>
+                <div className="col" />
+                <Field name="last_name" type="text">
+                  {({ field, form }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      placeholder="Last Name"
+                      value={values.last_name}
+                      onChange={handleChange}
+                    />
+                  )}
+                </Field>
+                <div className="col" />
+                <Field name="email" type="email">
+                  {({ field, form }) => (
+                    <input
+                      {...field}
+                      type="email"
+                      placeholder="Email"
+                      value={values.email}
+                      onChange={handleChange}
+                    />
+                  )}
+                </Field>
+                <Field name="feet" type="text">
+                  {({ field, form }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      placeholder="Feet"
+                      value={values.feet}
+                      onChange={handleChange}
+                    />
+                  )}
+                </Field>
+                <Field
+                // figure out how to set a defaultValue
+                  defaultValue={values.inches}
+                  name="inches"
+                  type="text"
+                  component="select"
+                  value={values.inches}
+                  onChange={handleChange}
+                >
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={6}>6</option>
+
+                </Field>
+              </div>
+              <button type="submit" disabled={isSubmitting}>
+                Save
+              </button>
+            </Form>
+          );
           }}
         
         </Formik>
@@ -220,49 +272,60 @@ const Profile = (props) => {
 }
 
 class ActorProfile2 extends Component {
-  
-
   state = {
     success: false,
     first_name: '',
     last_name: '',
-    email: ''
-  }
+    email: '',
+    feet: '',
+    inches: '',
+    vocal_range: '',
+    equity: '',
+    gender: '',
+    birthday: '',
+    city: '',
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     if (this.props.currentActor && this.props.currentActor.attributes) {
-      const { first_name,last_name, email } = this.props.currentActor.attributes;
-      this.setState({
+      const {
         first_name,
         last_name,
-        email
-      }, () => console.log(this.state))
+        email,
+        feet,
+        inches,
+      } = this.props.currentActor.attributes;
+
+      console.log(this.props.currentActor.attributes)
+      this.setState(
+        {
+          first_name,
+          last_name,
+          email,
+          feet,
+          inches
+        },
+        () => console.log(this.state)
+      );
     }
   }
 
-  handleSubmit = ({first_name, last_name}, {
-    setSubmitting
-  }) => {
-    
+  handleSubmit = ({ first_name, last_name, email, feet, height, }, { setSubmitting }) => {
     const currentActor = {
-        first_name,
-        last_name
-    }
+      first_name,
+      last_name
+    };
 
-    console.log(first_name)
-    fetchUpdateCurrentActor(this.props.currentActor.id, currentActor)
-    alert('Form Submitted');
+    console.log(first_name);
+    fetchUpdateCurrentActor(this.props.currentActor.id, currentActor);
+    alert("Form Submitted");
     setSubmitting(false);
     return;
+  };
+
+  render() {
+    return <Profile actor={this.state} />;
   }
-
- 
-
-render() {
-  return (
-    <Profile actor={this.state}/>
-  );
-}
 }
 
 export default withAuth(connect(state => ({ currentActor: state.currentActor }), { loadInitialActorState, updateCurrentActorForm })(ActorProfile2))
