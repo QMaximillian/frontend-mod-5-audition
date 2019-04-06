@@ -184,9 +184,10 @@ const Profile = (props) => {
           enableReinitialize={true}
           initialValues={actor}
           onSubmit={values => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2))
-            }, 500)
+            // setTimeout(() => {
+            //   alert(JSON.stringify(values, null, 2))
+            // }, 500)
+            props.handleSubmit(values, props.setSubmitting)
           }}
         >
         {({ isSubmitting, values, handleChange }) => {
@@ -232,13 +233,18 @@ const Profile = (props) => {
                 </Field>
                 <Field name="feet" type="text">
                   {({ field, form }) => (
-                    <input
+                    <select
                       {...field}
                       type="text"
                       placeholder="Feet"
                       value={values.feet}
                       onChange={handleChange}
-                    />
+                    >
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                      <option value={6}>6</option>
+                    </select>
                   )}
                 </Field>
                 <Field
@@ -310,10 +316,15 @@ class ActorProfile2 extends Component {
     }
   }
 
-  handleSubmit = ({ first_name, last_name, email, feet, height, }, { setSubmitting }) => {
+  handleSubmit = ({ first_name, last_name, email, feet, height, }, setSubmitting ) => {
     const currentActor = {
-      first_name,
-      last_name
+      actor: {
+        first_name,
+        last_name,
+        email,
+        feet,
+        height,
+      }
     };
 
     console.log(first_name);
@@ -324,7 +335,7 @@ class ActorProfile2 extends Component {
   };
 
   render() {
-    return <Profile actor={this.state} />;
+    return <Profile actor={this.state} handleSubmit={this.handleSubmit} />;
   }
 }
 
