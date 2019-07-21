@@ -15,7 +15,7 @@
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.8.4",
     "react-moment": "^0.7.9",
-    "react-pdf": "^3.0.6",
+    "react-pdf": "^4.1.0",
     "react-pdf-js": "^4.0.2",
     "react-redux": "^5.1.1",
     "react-router": "^4.3.1",
