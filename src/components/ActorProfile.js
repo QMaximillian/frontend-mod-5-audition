@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { loadInitialActorState, updateCurrentActorForm } from '../actions/actions'
 import { fetchUpdateCurrentActor } from '../adapters/actorAdapter'
 import { Loader, Form, Input, Select, Button, Grid } from 'semantic-ui-react'
+import { Document, Page } from "react-pdf/dist/entry.webpack"
 import '../Audition.css'
 import withAuth from '../hocs/withAuth'
 
@@ -11,7 +12,8 @@ import withAuth from '../hocs/withAuth'
 class ActorProfile extends Component {
 
   state = {
-    success: false
+    success: false,
+    file: './fonts.pdf'
   }
 
   handleChange = (event) => {
@@ -61,105 +63,114 @@ class ActorProfile extends Component {
 
       return (
         <div className="profile-card">
-          <div style={{textAlign: 'center', fontSize: '2rem'}}>
+          <div style={{ textAlign: "center", fontSize: "2rem" }}>
             {first_name}'s Profile
           </div>
 
-          <Grid container style={{'padding-top': '100px'}}>
+          <Grid container style={{ "padding-top": "100px" }}>
             <Grid.Row centered>
-              <Grid.Column >
-              <Form
-                onSubmit={this.updateActor}>
-
-                <Form.Field
-                  control={Input}
-                  width={12}
-                  name="first_name"
-                  onChange={this.handleChange}
-                  value={first_name}
-                  color="orange"
-                  label='First Name'/>
-
-                <Form.Field
-                  control={Input}
-                  width={12}
-                  name="last_name"
-                  onChange={this.handleChange}
-                  value={last_name}
-                  label='Last Name'/>
-
-                <Form.Field
-                  control={Input}
-                  width={12}
-                  name="email"
-                  onChange={this.handleChange}
-                  value={email}
-                  label='E-Mail'/>
-
-                <Form.Field
-                  control={Input}
-                  width={12}
-                  name="feet"
-                  onChange={this.handleChange}
-                  value={feet}
-                  placeholder="Feet"
-                  label='Feet'/>
-
-                <Form.Field
-                  control={Input}
-                  width={12}
-                  name="inches"
-                  onChange={this.handleChange}
-                  value={inches}
-                  placeholder="Inches"
-                  label='Inches'/>
-
-                <Form.Field
-                  control={Input}
-                  width={12}
-                  name="vocal_range"
-                  onChange={this.handleChange}
-                  value={vocal_range}
-                  label='Vocal Range'/>
-
-                <Form.Select
-                  control={Select}
-                  width={12}
-                  name="equity"
-                  onChange={(event, state) => this.handleChange(state)}
-                  label='Equity'
-                  options={booleans}
-                  value={equity}
+              <Grid.Column>
+                <Form onSubmit={this.updateActor}>
+                  <Form.Field
+                    control={Input}
+                    width={12}
+                    name="first_name"
+                    onChange={this.handleChange}
+                    value={first_name}
+                    color="orange"
+                    label="First Name"
                   />
 
-                <Form.Field
-                  control={Select}
-                  width={12}
-                  name="gender"
-                  onChange={(event, state) => this.handleChange(state)}
-                  value={gender}
-                  options={genders}
-                  label='Gender'
-                />
+                  <Form.Field
+                    control={Input}
+                    width={12}
+                    name="last_name"
+                    onChange={this.handleChange}
+                    value={last_name}
+                    label="Last Name"
+                  />
 
-                <Form.Field
-                control={Input}
-                width={12}
-                name="birthday"
-                onChange={this.handleChange}
-                value={birthday}
-                placeholder="YYYY-MM-DD"
-                label='Birthday'/>
+                  <Form.Field
+                    control={Input}
+                    width={12}
+                    name="email"
+                    onChange={this.handleChange}
+                    value={email}
+                    label="E-Mail"
+                  />
 
-                <br />
+                  <Form.Field
+                    control={Input}
+                    width={12}
+                    name="feet"
+                    onChange={this.handleChange}
+                    value={feet}
+                    placeholder="Feet"
+                    label="Feet"
+                  />
 
-                <Button type="submit">Save</Button>
-              </Form>
+                  <Form.Field
+                    control={Input}
+                    width={12}
+                    name="inches"
+                    onChange={this.handleChange}
+                    value={inches}
+                    placeholder="Inches"
+                    label="Inches"
+                  />
+
+                  <Form.Field
+                    control={Input}
+                    width={12}
+                    name="vocal_range"
+                    onChange={this.handleChange}
+                    value={vocal_range}
+                    label="Vocal Range"
+                  />
+
+                  <Form.Select
+                    control={Select}
+                    width={12}
+                    name="equity"
+                    onChange={(event, state) => this.handleChange(state)}
+                    label="Equity"
+                    options={booleans}
+                    value={equity}
+                  />
+
+                  <Form.Field
+                    control={Select}
+                    width={12}
+                    name="gender"
+                    onChange={(event, state) => this.handleChange(state)}
+                    value={gender}
+                    options={genders}
+                    label="Gender"
+                  />
+
+                  <Form.Field
+                    control={Input}
+                    width={12}
+                    name="birthday"
+                    onChange={this.handleChange}
+                    value={birthday}
+                    placeholder="YYYY-MM-DD"
+                    label="Birthday"
+                  />
+
+                  <br />
+
+                  <Button type="submit">Save</Button>
+                </Form>
+
+                <Document file={{ url: this.state.file}}>
+                  <Page pageNumber={1} />
+                </Document>
               </Grid.Column>
             </Grid.Row>
           </Grid>
         </div>
-      )
+      );
     }
   }
 
