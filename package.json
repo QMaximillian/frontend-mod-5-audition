@@ -8,7 +8,7 @@
     "connected-react-router": "^4.5.0",
     "convert-units": "^2.3.4",
     "mgr-pdf-viewer-react": "^1.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "pdfjs-dist": "^2.0.943",
     "prop-types": "^15.6.2",
     "react": "^16.8.4",
